@@ -1,0 +1,5 @@
+displayName = Castled's Content (15K Downloads+ Celebration!)
+author = Castled
+homepage = https://forums.terraria.org/index.php?threads/castleds-content.81988/
+version = 0.5.0.3
+buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*

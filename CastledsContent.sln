@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CastledsContent", "CastledsContent.csproj", "{DB242139-8FF8-4B54-9524-2F8B7B2C625C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB242139-8FF8-4B54-9524-2F8B7B2C625C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB242139-8FF8-4B54-9524-2F8B7B2C625C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB242139-8FF8-4B54-9524-2F8B7B2C625C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB242139-8FF8-4B54-9524-2F8B7B2C625C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {51CAEB1E-7F00-4A4D-B066-AC4939459F09}
+	EndGlobalSection
+EndGlobal

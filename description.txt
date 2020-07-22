@@ -1,0 +1,39 @@
+Thank you all for 15K+ Downloads! It's unbelievable to see how many people have downloaded my mods. 
+I hope to be able to create higher quality content in the future.
+
+
+Welcome to Castled's Content, a mod which was once my personal playground for testing the quirks of modding, is now turning into a full-on content mod!
+
+
+- [c/aaee21: 40+ new items!]
+
+- 3 new bosses:
+> Nasha and Grakos
+> Corrupt Guardians
+> Crimtane Prisoners
+
+1 new "event"
+
+* D E A T H (Requires Calamity Mod)
+Use the Forbidden Beans item to summon it.
+
+I also have a QOL mod called Castled's Token Addon. Check it out!
+
+Credits:
+====
+Castled : Main mod Creator
+
+Flazmey : Composer
+
+Æterna : Modder
+====
+
+Change log:
+-------------------------------------
+> 0.5: Large Update: Added Nasha and Grakos and a large overhaul to all of the content.
+Includes cross mod comp. with more mods and features.
+
+> 0.5.0.2: Fixed a bug related to YABHB formatting
+
+> 0.5.0.3: Updated theme and boss checklist names. The Theme has been updated with a more fitting theme, rather than a jumble of random notes.
+
