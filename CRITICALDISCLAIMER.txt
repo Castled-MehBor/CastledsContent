@@ -8,4 +8,6 @@ Before you do anything here, please read this file in it's entirety:
 
 - When you see something is wrong, please put it in "Issues". If it has been resolved, I will close it.
 
+- If you are changing something important, please mention me prior to the file update.
+
 All of these are subject to change.
