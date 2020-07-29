@@ -1,7 +1,3 @@
-Thank you all for 15K+ Downloads! It's unbelievable to see how many people have downloaded my mods. 
-I hope to be able to create higher quality content in the future.
-
-
 Welcome to Castled's Content, a mod which was once my personal playground for testing the quirks of modding, is now turning into a full-on content mod!
 
 
@@ -36,4 +32,9 @@ Includes cross mod comp. with more mods and features.
 > 0.5.0.2: Fixed a bug related to YABHB formatting
 
 > 0.5.0.3: Updated theme and boss checklist names. The Theme has been updated with a more fitting theme, rather than a jumble of random notes.
+
+> 0.5.0.4: Achnowledgement of the attempt that I did at protecting this mod.
+
+> 0.5.0.5: The final update for this specific addition: Added music boxes for both versions of Trivial
+Equality, being crafted at a Tinkerers Workshop and updated mod icon.
 

@@ -7,8 +7,8 @@ namespace CastledsContent.Items.Placeable.MusicBox
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Music Box (Trivial Equality)");
-			Tooltip.SetDefault("OST (Original Sound Track)"
+			DisplayName.SetDefault("Music Box (Trivial Equality Original)");
+			Tooltip.SetDefault("EST (Extras Sound Track)"
 			+ "\nComposed by: Castled (Mod Creator)");
 		}
 
@@ -26,6 +26,20 @@ namespace CastledsContent.Items.Placeable.MusicBox
 			item.rare = ItemRarityID.LightRed;
 			item.value = 100000;
 			item.accessory = true;
+		}
+		public override void AddRecipes()
+		{
+			ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddIngredient(this);
+			recipe.AddTile(TileID.TinkerersWorkbench);
+			recipe.SetResult(mod.ItemType("MusicBox1V2"));
+			recipe.AddRecipe();
+
+			recipe = new ModRecipe(mod);
+			recipe.AddIngredient(mod.ItemType("MusicBox1V2"));
+			recipe.AddTile(TileID.TinkerersWorkbench);
+			recipe.SetResult(this);
+			recipe.AddRecipe();
 		}
 	}
 }

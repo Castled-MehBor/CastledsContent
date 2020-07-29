@@ -38,8 +38,10 @@ namespace CastledsContent
         }
         public override void Load()
         {
-            //Music Box Trivial Equality
+            //Music Box Trivial Equality Original
             AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/OST/TrivialEquality"), ItemType("MusicBox1"), TileType("MusicBoxEquality"));
+            //Music Box Trivial Equality Remastered
+            AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/OST/TrivialEqualityV2"), ItemType("MusicBox1V2"), TileType("MusicBoxEquality2"));
 
             //YABHB Compatability
             Mod yabhb = ModLoader.GetMod("FKBossHealthBar");

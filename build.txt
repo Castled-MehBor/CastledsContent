@@ -1,5 +1,5 @@
-displayName = Castled's Content (15K Downloads+ Celebration!)
-author = Castled
+displayName = Castled's Content
+author = Castled, Flazmey and AE
 homepage = https://forums.terraria.org/index.php?threads/castleds-content.81988/
-version = 0.5.0.3
+version = 0.5.0.5
 buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*
