@@ -1,10 +1,11 @@
-Since I did not know how to upload files properly when I did upload them, PLEASE ignore the following folders & files which have been added in the following commits:
+Welcome to the CastledsContent repository!
 
-1. 2) Items Upload
+Before you do anything here, please read this file in it's entirety:
 
-2. Third Files Upload
+- I am new to GitHub so if you see anything strange, it's my  fault v:
 
-Unless you know how to delete folders without a complicated procedure, we do not have any way of deleting these folders easily. 
-However, if you do manage to delete the files added from these two commits, then you would have made navigating this repository 10x easier!
+- When you commit a change to this repo, precisely describe what you did in the message; it will make identifying and, if needed, fixing the new additions much easier
 
-WHEN YOU DOWNLOAD ALL OF THE CODE FROM THIS REPOSITORY, PLEASE DELETE ALL FOLDERS THAT ARE DUPLIACTES THAT ARE FROM THE ITEMS FOLDER, AND DELETE ALL DUPLICATE ITEM FILES WHICH ARE NOT IN THE ITEMS FOLDER, BUT OUTSIDE OF IT.
+- When you see something is wrong, please put it in "Issues". If it has been resolved, I will close it.
+
+All of these are subject to change.
