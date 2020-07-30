@@ -16,6 +16,13 @@ namespace CastledsContent
 {
     public class CastledWorld : ModWorld
     {
+        //Robot Invasion Values
+        public static float globalSpinSpeed = 1.5f;
+        public static int invasionPoints = 0;
+        public static int numberOfEnemies = 0;
+        public static int waveDelayCountdown = 0;
+        public static int counterType = 1; //counterType 1 = Enemy Counter. counterType 2 = wave countdown
+        //Downed
         public static bool downedbossHead;
         public static bool downedCorruptGuardians;
         public static bool downedCrimsonPrisoners;
