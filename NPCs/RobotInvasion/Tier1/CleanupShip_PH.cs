@@ -95,7 +95,6 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                             CastledWorld.numberOfEnemies = 0;
                             CastledWorld.invasionPoints = 0;
                             CastledWorld.counterType = 1;
-                            music = MusicID.OldOnesArmy;
                         }
                     }
                 }
@@ -109,6 +108,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                             Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 15, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("CleanupShipPulse"), 0, 0f, 255, 0f, 0f);
                             waveDelay = 0;
                             waveDelay2++;
+                            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/OST/RobotInvasionTheme");
                         }
                         if (waveDelay2 > 2 && waveHasBegun == false)
                         {
