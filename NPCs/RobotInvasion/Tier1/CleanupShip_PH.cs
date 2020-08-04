@@ -251,8 +251,11 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                         {
                             if (deployDelay > 150)
                             {
+                                CastledWorld.leftOrRight = 1;
                                 NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
-                                NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH2"));
+                                CastledWorld.leftOrRight = -1;
+                                NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
+
                                 CastledWorld.numberOfEnemies += 2;
                             }
                         }

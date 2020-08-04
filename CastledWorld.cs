@@ -22,6 +22,7 @@ namespace CastledsContent
         public static int numberOfEnemies = 0;
         public static int waveDelayCountdown = 0;
         public static int counterType = 1; //counterType 1 = Enemy Counter. counterType 2 = wave countdown
+        public int leftOrRight = 0;
         //Downed
         public static bool downedbossHead;
         public static bool downedCorruptGuardians;

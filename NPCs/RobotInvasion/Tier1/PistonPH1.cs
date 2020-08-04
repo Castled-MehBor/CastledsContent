@@ -12,6 +12,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
         public int pistonUse = 5;
         public int pistonJumpTimer = 0;
         public bool hasBusted = false;
+        public int pistonDirection;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Automated Piston");
@@ -34,6 +35,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
             npc.noTileCollide = false;
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath14;
+            pistonDirection = CastledWorld.leftOrRight;
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
