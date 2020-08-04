@@ -128,7 +128,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                 }
             }
             //If "dead"
-            if (isActive == false)
+            else if (isActive == false)
             {
                 if (initialize == true && Timer > 2030 && startedCycle == false)
                 {
@@ -176,7 +176,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                 }
             }
             //if dead
-            if (isActive == false)
+            else if (isActive == false)
             {
                 if (Timer > 1250 && startedCycle == true)
                 {

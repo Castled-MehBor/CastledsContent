@@ -72,12 +72,11 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
         }
         public override void AI()
         {
-            npc.ai[0]++;
+            Timer++;
             Player P = Main.player[npc.target];
-            if (npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead || !Main.player[npc.target].active)
+            if (npc.target < 0 || npc.target == 255 || P.dead || !P.active)
             {
                 npc.TargetClosest(false);
-                P = Main.player[npc.target];
                 if (!P.active || P.dead)
                 {
                     npc.velocity = new Vector2(0f, -500f);
