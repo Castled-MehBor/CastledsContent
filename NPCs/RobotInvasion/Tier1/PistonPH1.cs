@@ -98,7 +98,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                             if (pistonJumpTimer > 60 && pistonJumpTimer < 120)
                             {
                                 npc.position.Y -= 20;
-                                npc.position.X -= 5;
+                                npc.position.X += (5 * pistonDirection);
                             }
                             else if (pistonJumpTimer > 120 && pistonJumpTimer < 180)
                             {
