@@ -98,11 +98,11 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                                 npc.position.Y -= 20;
                                 npc.position.X -= 5;
                             }
-                            if (pistonJumpTimer > 120 && pistonJumpTimer < 180)
+                            else if (pistonJumpTimer > 120 && pistonJumpTimer < 180)
                             {
                                 npc.position.Y += 2;
                             }
-                            if (pistonJumpTimer > 180)
+                            else if (pistonJumpTimer > 180)
                             {
                                 Timer = 0;
                                 pistonJumpTimer = 0;
