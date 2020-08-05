@@ -158,7 +158,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                     {
                         if (wave < 5)
                         {
-                            if (CastledWorld.numberOfEnemies == 0)
+                            if (CastledWorld.numberOfEnemies <= 0)
                             {
                                 Main.NewText("[c/af4bff:Wave Complete!]");
                                 awaitingWaveTerminate = false;
@@ -191,7 +191,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                         deployDelay++;
                         if (deployDelay > 15 && deployAmount < 4)
                         {
-                            CastledWorld.numberOfEnemies += 4;
+                            CastledWorld.numberOfEnemies++;
                             NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("Robot"));
                             deployDelay = 0;
                             deployAmount++;
@@ -209,7 +209,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                         deployDelay++;
                         if (deployDelay > 35 && deployAmount < 4)
                         {
-                            CastledWorld.numberOfEnemies += 4;
+                            CastledWorld.numberOfEnemies++;
                             NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("Robot"));
                             deployDelay = 0;
                             deployAmount++;
@@ -233,7 +233,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                         deployDelay++;
                         if (deployDelay > 35 && deployAmount < 3)
                         {
-                            CastledWorld.numberOfEnemies += 3;
+                            CastledWorld.numberOfEnemies++;
                             NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("Robot"));
                             deployDelay = 0;
                             deployAmount++;
