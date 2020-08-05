@@ -196,7 +196,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                             deployDelay = 0;
                             deployAmount++;
                         }
-                        if (deployAmount > 3)
+                        if (deployAmount == 4)
                         {
                             deployDelay = 0;
                             deployAmount = 0;
@@ -214,13 +214,14 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                             deployDelay = 0;
                             deployAmount++;
                         }
-                        if (CastledWorld.numberOfEnemies == 4)
+                        if (deployAmount == 4)
                         {
                             CastledWorld.numberOfEnemies += 2;
                             NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("RobotPH"));
                             NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("RobotPH1"));
+                            deployAmount += 2;
                         }
-                        if (CastledWorld.numberOfEnemies > 5)
+                        if (deployAmount == 6)
                         {
                             deployDelay = 0;
                             deployAmount = 0;
@@ -238,16 +239,18 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                             deployDelay = 0;
                             deployAmount++;
                         }
-                        if (CastledWorld.numberOfEnemies == 3)
+                        if (deployAmount == 3)
                         {
                             if (deployDelay > 70)
                             {
                                 CastledWorld.numberOfEnemies += 2;
                                 NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("RobotPH"));
                                 NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("RobotPH1"));
+
+                                deployAmount += 2;
                             }
                         }
-                        if (CastledWorld.numberOfEnemies == 5)
+                        if (deployAmount == 5)
                         {
                             if (deployDelay > 150)
                             {
@@ -257,9 +260,11 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                                 NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
                                 CastledWorld.leftOrRight = -1;
                                 NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
+
+                                deployAmount += 2;
                             }
                         }
-                        if (CastledWorld.numberOfEnemies > 5)
+                        if (deployAmount == 7)
                         {
                             deployDelay = 0;
                             deployAmount = 0;
@@ -283,7 +288,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                             deployDelay = 0;
                             deployAmount += 6;
                         }
-                        if (CastledWorld.numberOfEnemies == 6)
+                        if (deployAmount == 6)
                         {
                             if (deployDelay > 120)
                             {
@@ -293,9 +298,11 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                                 NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
                                 CastledWorld.leftOrRight = -1;
                                 NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
+
+                                deployAmount += 2;
                             }
                         }
-                        if (CastledWorld.numberOfEnemies == 8)
+                        if (deployAmount == 8)
                         {
                             if (deployDelay > 360)
                             {
@@ -305,9 +312,11 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                                 NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
                                 CastledWorld.leftOrRight = -1;
                                 NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
+
+                                deployAmount += 2;
                             }
                         }
-                        if (CastledWorld.numberOfEnemies > 8)
+                        if (deployAmount > 8)
                         {
                             deployDelay = 0;
                             deployAmount = 0;
@@ -330,7 +339,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                             deployDelay = 0;
                             deployAmount += 10;
                         }
-                        if (CastledWorld.numberOfEnemies > 9)
+                        if (deployAmount == 10)
                         {
                             deployDelay = 0;
                             deployAmount = 0;
