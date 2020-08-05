@@ -292,7 +292,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                                 CastledWorld.leftOrRight = 1;
                                 NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
                                 CastledWorld.leftOrRight = -1;
-                                NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH2"));
+                                NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
                             }
                         }
                         if (CastledWorld.numberOfEnemies == 8)
@@ -304,7 +304,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                                 CastledWorld.leftOrRight = 1;
                                 NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
                                 CastledWorld.leftOrRight = -1;
-                                NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH2"));
+                                NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
                             }
                         }
                         if (CastledWorld.numberOfEnemies > 8)
