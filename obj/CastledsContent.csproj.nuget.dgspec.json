@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Owner\\Desktop\\Repo Hyperlink\\CastledsContent\\CastledsContent.csproj": {}
+    "C:\\Users\\Owner\\Desktop\\RepoHyperlinkV2\\CastledsContent.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Owner\\Desktop\\Repo Hyperlink\\CastledsContent\\CastledsContent.csproj": {
+    "C:\\Users\\Owner\\Desktop\\RepoHyperlinkV2\\CastledsContent.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Owner\\Desktop\\Repo Hyperlink\\CastledsContent\\CastledsContent.csproj",
+        "projectUniqueName": "C:\\Users\\Owner\\Desktop\\RepoHyperlinkV2\\CastledsContent.csproj",
         "projectName": "CastledsContent",
-        "projectPath": "C:\\Users\\Owner\\Desktop\\Repo Hyperlink\\CastledsContent\\CastledsContent.csproj",
+        "projectPath": "C:\\Users\\Owner\\Desktop\\RepoHyperlinkV2\\CastledsContent.csproj",
         "packagesPath": "C:\\Users\\Owner\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Owner\\Desktop\\Repo Hyperlink\\CastledsContent\\obj\\",
+        "outputPath": "C:\\Users\\Owner\\Desktop\\RepoHyperlinkV2\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

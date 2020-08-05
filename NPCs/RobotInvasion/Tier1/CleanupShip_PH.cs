@@ -112,7 +112,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                         }
                         if (waveDelay2 > 2 && waveHasBegun == false)
                         {
-                            Main.NewText("[c/af4bff:First Wave: 4 Simple Robots]");
+                            Main.NewText("[c/af4bff:First Wave: 4 Rubble Bots]");
                             Main.NewText("[c/af4bff:Total: 4 enemies]");
                             Timer = 0;
                             waveHasBegun = true;
@@ -123,7 +123,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                     {
                         if (wave == 2)
                         {
-                            Main.NewText("[c/af4bff:Wave 2: 4 Simple Robots, and 2 Evaders]");
+                            Main.NewText("[c/af4bff:Wave 2: 4 Rubble Bots, and 2 Evaders]");
                             Main.NewText("[c/af4bff:Total: 6 enemies]");
                             Timer = 0;
                             waveHasBegun = true;
@@ -131,7 +131,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                         }
                         if (wave == 3)
                         {
-                            Main.NewText("[c/af4bff:Wave 3: 3 Simple Robots, 2 Evaders and 2 Automated Pistions]");
+                            Main.NewText("[c/af4bff:Wave 3: 3 Rubble Bots, 2 Evaders and 2 Automated Pistions]");
                             Main.NewText("[c/af4bff:Total: 7 enemies]");
                             Timer = 0;
                             waveHasBegun = true;
@@ -139,7 +139,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                         }
                         if (wave == 4)
                         {
-                            Main.NewText("[c/af4bff:Wave 4: 4 Simple Robots, 2 Evaders and 4 Automated Pistions]");
+                            Main.NewText("[c/af4bff:Wave 4: 4 Rubble Bots, 2 Evaders and 4 Automated Pistions]");
                             Main.NewText("[c/af4bff:Total: 10 enemies]");
                             Timer = 0;
                             waveHasBegun = true;
@@ -400,56 +400,56 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                     }
                 }
             }
-        //private const int Frame_Ship1 = 0;
-        /*
-        private const int Frame_Ship2 = 1;
-        private const int Frame_Ship3 = 2;
-        private const int Frame_Ship4 = 3;
-        public override void FindFrame(int frameHeight)
-        {
-            if (waveHasBegun == true)
+            //private const int Frame_Ship1 = 0;
+            /*
+            private const int Frame_Ship2 = 1;
+            private const int Frame_Ship3 = 2;
+            private const int Frame_Ship4 = 3;
+            public override void FindFrame(int frameHeight)
             {
-                if (terminateAnimation == false)
+                if (waveHasBegun == true)
                 {
-                    npc.frameCounter++;
-                    if (npc.frameCounter < 60)
+                    if (terminateAnimation == false)
                     {
-                        npc.frame.Y = Frame_Ship1 * frameHeight;
+                        npc.frameCounter++;
+                        if (npc.frameCounter < 60)
+                        {
+                            npc.frame.Y = Frame_Ship1 * frameHeight;
+                        }
+                        if (npc.frameCounter < 61)
+                        {
+                            npc.frame.Y = Frame_Ship2 * frameHeight;
+                        }
+                        else if (npc.frameCounter < 70)
+                        {
+                            npc.frame.Y = Frame_Ship3 * frameHeight;
+                        }
+                        else if (npc.frameCounter < 150)
+                        {
+                            npc.frame.Y = Frame_Ship4 * frameHeight;
+                        }
+                        else if (npc.frameCounter < 156)
+                        {
+                            npc.frame.Y = Frame_Ship3 * frameHeight;
+                        }
+                        else if (npc.frameCounter < 164)
+                        {
+                            npc.frame.Y = Frame_Ship2 * frameHeight;
+                        }
+                        else if (npc.frameCounter < 170)
+                        {
+                            npc.frame.Y = Frame_Ship1 * frameHeight;
+                        }
+                        if (npc.frameCounter > 170)
+                        {
+                            terminateAnimation = true;
+                        }
+                        else
+                        {
+                            terminateAnimation = true;
+                        }
                     }
-                    if (npc.frameCounter < 61)
-                    {
-                        npc.frame.Y = Frame_Ship2 * frameHeight;
-                    }
-                    else if (npc.frameCounter < 70)
-                    {
-                        npc.frame.Y = Frame_Ship3 * frameHeight;
-                    }
-                    else if (npc.frameCounter < 150)
-                    {
-                        npc.frame.Y = Frame_Ship4 * frameHeight;
-                    }
-                    else if (npc.frameCounter < 156)
-                    {
-                        npc.frame.Y = Frame_Ship3 * frameHeight;
-                    }
-                    else if (npc.frameCounter < 164)
-                    {
-                        npc.frame.Y = Frame_Ship2 * frameHeight;
-                    }
-                    else if (npc.frameCounter < 170)
-                    {
-                        npc.frame.Y = Frame_Ship1 * frameHeight;
-                    }
-                    if (npc.frameCounter > 170)
-                    {
-                        terminateAnimation = true;
-                    }
-                    else
-                    {
-                        terminateAnimation = true;
-                    }
-                }
-            }*/
+                }*/
         }
         public override bool CheckActive()
         {

@@ -123,6 +123,40 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                 }
             }
         }
+        private const int Frame_Jump1 = 0;
+        private const int Frame_Jump2 = 1;
+        private const int Frame_Jump3 = 2;
+        private const int Frame_Jump4 = 3;
+        public override void FindFrame(int frameHeight)
+        {
+            if (pistonUse > 0)
+            {
+                if (Timer == 120)
+                {
+                    npc.frame.Y = Frame_Jump1 * frameHeight;
+                }
+                else if (Timer == 180)
+                {
+                    npc.frame.Y = Frame_Jump2 * frameHeight;
+                }
+                else if (Timer == 240)
+                {
+                    npc.frame.Y = Frame_Jump3 * frameHeight;
+                }
+            }
+            if (pistonUse == 0 && hasBusted == false)
+            {
+                npc.frame.Y = Frame_Jump1 * frameHeight;
+            }
+            else if (pistonJumpTimer > 120 && pistonJumpTimer < 180)
+            {
+                npc.frame.Y = Frame_Jump3 * frameHeight;
+            }
+            else if (pistonJumpTimer > 180)
+            {
+                npc.frame.Y = Frame_Jump2 * frameHeight;
+            }
+        }
         public override bool CheckActive()
         {
             return false;

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DS7g/7QMnUkxgJ4MaQbaLxIlDVhPdmJGT8xFh3nOXkBNSFsTxZVgqyclUnWnVPWSq3H0hZowzb2rEfQDFn28Uw==",
+  "dgSpecHash": "+ifLBjws+fv5/rCvr7lFVcWiduAGTMP4P4yVzufNLF5yY9qnSnTlgR5/ea1woGon3lVfQIhvcchyjHV1/5ryWg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Owner\\Desktop\\Repo Hyperlink\\CastledsContent\\CastledsContent.csproj",
+  "projectFilePath": "C:\\Users\\Owner\\Desktop\\RepoHyperlinkV2\\CastledsContent.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Owner\\.nuget\\packages\\tmodloader.codeassist\\0.1.1\\tmodloader.codeassist.0.1.1.nupkg.sha512"
   ],
