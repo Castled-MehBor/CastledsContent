@@ -214,12 +214,14 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                             deployDelay = 0;
                             deployAmount++;
                         }
-                        if (deployAmount == 4)
+                        if (CastledWorld.numberOfEnemies == 4)
                         {
                             CastledWorld.numberOfEnemies += 2;
                             NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("RobotPH"));
                             NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("RobotPH1"));
-
+                        }
+                        if (CastledWorld.numberOfEnemies > 5)
+                        {
                             deployDelay = 0;
                             deployAmount = 0;
                             dispatchWave = false;
@@ -236,20 +238,29 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                             deployDelay = 0;
                             deployAmount++;
                         }
-                        if (deployDelay > 70)
+                        if (CastledWorld.numberOfEnemies == 3)
                         {
-                            CastledWorld.numberOfEnemies += 2;
-                            NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("RobotPH"));
-                            NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("RobotPH1"));
+                            if (deployDelay > 70)
+                            {
+                                CastledWorld.numberOfEnemies += 2;
+                                NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("RobotPH"));
+                                NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("RobotPH1"));
+                            }
                         }
-                        if (deployDelay > 150)
+                        if (CastledWorld.numberOfEnemies == 5)
                         {
-                            CastledWorld.numberOfEnemies += 2;
+                            if (deployDelay > 150)
+                            {
+                                CastledWorld.numberOfEnemies += 2;
 
-                            CastledWorld.leftOrRight = 1;
-                            NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
-                            CastledWorld.leftOrRight = -1;
-                            NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
+                                CastledWorld.leftOrRight = 1;
+                                NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
+                                CastledWorld.leftOrRight = -1;
+                                NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
+                            }
+                        }
+                        if (CastledWorld.numberOfEnemies > 5)
+                        {
                             deployDelay = 0;
                             deployAmount = 0;
                             dispatchWave = false;
@@ -272,24 +283,32 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                             deployDelay = 0;
                             deployAmount += 6;
                         }
-                        if (deployDelay > 120)
+                        if (CastledWorld.numberOfEnemies == 6)
                         {
-                            CastledWorld.numberOfEnemies += 2;
+                            if (deployDelay > 120)
+                            {
+                                CastledWorld.numberOfEnemies += 2;
 
-                            CastledWorld.leftOrRight = 1;
-                            NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
-                            CastledWorld.leftOrRight = -1;
-                            NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
+                                CastledWorld.leftOrRight = 1;
+                                NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
+                                CastledWorld.leftOrRight = -1;
+                                NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
+                            }
                         }
-                        if (deployDelay > 360)
+                        if (CastledWorld.numberOfEnemies == 8)
                         {
-                            CastledWorld.numberOfEnemies += 2;
+                            if (deployDelay > 360)
+                            {
+                                CastledWorld.numberOfEnemies += 2;
 
-                            CastledWorld.leftOrRight = 1;
-                            NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
-                            CastledWorld.leftOrRight = -1;
-                            NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
-
+                                CastledWorld.leftOrRight = 1;
+                                NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
+                                CastledWorld.leftOrRight = -1;
+                                NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
+                            }
+                        }
+                        if (CastledWorld.numberOfEnemies > 8)
+                        {
                             deployDelay = 0;
                             deployAmount = 0;
                             dispatchWave = false;
