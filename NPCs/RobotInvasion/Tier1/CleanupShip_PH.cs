@@ -158,7 +158,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                     {
                         if (wave < 5)
                         {
-                            if (CastledWorld.numberOfEnemies == 0)
+                            if (CastledWorld.numberOfEnemies <= 0)
                             {
                                 Main.NewText("[c/af4bff:Wave Complete!]");
                                 awaitingWaveTerminate = false;
