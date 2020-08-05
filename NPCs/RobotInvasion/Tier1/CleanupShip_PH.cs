@@ -191,7 +191,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                         deployDelay++;
                         if (deployDelay > 15 && deployAmount < 4)
                         {
-                            CastledWorld.numberOfEnemies++;
+                            CastledWorld.numberOfEnemies += 4;
                             NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("Robot"));
                             deployDelay = 0;
                             deployAmount++;
@@ -209,7 +209,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                         deployDelay++;
                         if (deployDelay > 35 && deployAmount < 4)
                         {
-                            CastledWorld.numberOfEnemies++;
+                            CastledWorld.numberOfEnemies += 4;
                             NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("Robot"));
                             deployDelay = 0;
                             deployAmount++;
@@ -233,7 +233,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                         deployDelay++;
                         if (deployDelay > 35 && deployAmount < 3)
                         {
-                            CastledWorld.numberOfEnemies++;
+                            CastledWorld.numberOfEnemies += 3;
                             NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("Robot"));
                             deployDelay = 0;
                             deployAmount++;
