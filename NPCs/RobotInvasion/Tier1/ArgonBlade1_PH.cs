@@ -25,7 +25,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
         public bool initialize = false;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Argon Blade");
+            DisplayName.SetDefault("Blade Emulation");
         }
 
         public override void SetDefaults()
@@ -38,8 +38,8 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
             npc.lifeMax = 100;
             npc.HitSound = SoundID.Item6;
             npc.HitSound = SoundID.DD2_LightningAuraZap;
-            npc.width = 42;
-            npc.height = 42;
+            npc.width = 30;
+            npc.height = 30;
             npc.boss = false;
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -207,7 +207,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                 npc.dontTakeDamage = true;
                 npc.damage = 0;
 
-                if (respawnCounter > 600)
+                if (respawnCounter > 800)
                 {
                     respawnCounter = 0;
                     isActive = true;
@@ -227,6 +227,15 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
         }
         public override bool CheckDead()
         {
+            Main.PlaySound(SoundID.NPCHit53);
+            float Speed = 0f;
+            Vector2 vector8 = npc.BottomRight;
+            int damage = 10;
+            int type = mod.ProjectileType("GammaPlode");
+            float rotation = npc.rotation;
+            int num54 = Projectile.NewProjectile(vector8.X, vector8.Y + 18, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
+            npc.ai[1] = 0;
+
             npc.life = npc.lifeMax;
             isActive = false;
             return false;

@@ -22,7 +22,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
         public bool initialize = false;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Blade Bot");
+            DisplayName.SetDefault("Blade Drone");
             Main.npcFrameCount[npc.type] = 1;
         }
 
@@ -36,8 +36,8 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
             }
             npc.defense = 10;
             npc.knockBackResist = 0f;
-            npc.width = 34;
-            npc.height = 34;
+            npc.width = 50;
+            npc.height = 50;
             npc.value = Item.buyPrice(0, 0, 0, 0);
             npc.npcSlots = 1f;
             npc.lavaImmune = true;
@@ -169,7 +169,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                 if (aiState == 1)
                 {
                     npc.dontTakeDamage = false;
-                    npc.damage = 45;
+                    npc.damage = 30;
                     if (Timer < 300)
                     {
                         npc.velocity.X *= 1f;
@@ -233,7 +233,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                             }
                             if (Timer > 180)
                             {
-                                npc.damage = 75;
+                                npc.damage = 50;
                                 motionBlurCounter++;
                                 attackDuration++;
                                 if (motionBlurCounter > 4)
@@ -273,7 +273,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                             }
                             if (Timer > 180)
                             {
-                                npc.damage = 75;
+                                npc.damage = 50;
                                 motionBlurCounter++;
                                 attackDuration++;
                                 if (motionBlurCounter > 4)
@@ -313,7 +313,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                             }
                             if (Timer > 180)
                             {
-                                npc.damage = 75;
+                                npc.damage = 50;
                                 motionBlurCounter++;
                                 attackDuration++;
                                 if (motionBlurCounter > 4)
@@ -354,7 +354,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                             }
                             if (Timer > 180)
                             {
-                                npc.damage = 75;
+                                npc.damage = 50;
                                 motionBlurCounter++;
                                 attackDuration++;
                                 if (motionBlurCounter > 4)
@@ -394,7 +394,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                             }
                             if (Timer > 180)
                             {
-                                npc.damage = 75;
+                                npc.damage = 50;
                                 motionBlurCounter++;
                                 attackDuration++;
                                 if (motionBlurCounter > 4)

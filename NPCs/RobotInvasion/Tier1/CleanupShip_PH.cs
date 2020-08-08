@@ -3,9 +3,11 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace CastledsContent.NPCs.RobotInvasion.Tier1
 {
+    [AutoloadBossHead]
     public class CleanupShip_PH : ModNPC
     {
         public bool swoopIn = false;
@@ -22,11 +24,10 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
         public int deployAmount;
         public int waveDelay2;
         public int motionBlurCounter = 0;
-        //public bool terminateAnimation = false;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Strange Aircraft");
-            Main.npcFrameCount[npc.type] = 4;
+            Main.npcFrameCount[npc.type] = 1;
         }
 
         public override void SetDefaults()
@@ -35,18 +36,21 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
             npc.lifeMax = 50;
             npc.defense = 0;
             npc.knockBackResist = 0f;
-            npc.width = 210;
-            npc.height = 96;
+            npc.width = 100;
+            npc.height = 92;
             npc.alpha = 100;
             npc.value = Item.buyPrice(0, 0, 0, 0);
             npc.npcSlots = 1f;
+            npc.scale = 1.5f;
             npc.lavaImmune = true;
             npc.noGravity = true;
+            npc.boss = true;
             npc.noTileCollide = true;
             npc.netAlways = true;
             npc.dontTakeDamage = true;
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath14;
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/OST/RobotInvasionTheme");
         }
         public float Timer
         {
@@ -84,13 +88,13 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                         if (motionBlurCounter > 4)
                         {
                             motionBlurCounter = 0;
-                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 26f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("CleanupShipBlur"), 0, 0f, 255, 0f, 0f);
+                            Projectile.NewProjectile(npc.Center.X + 25, npc.Center.Y + 35f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("CleanupShipBlur"), 0, 0f, 255, 0f, 0f);
                         }
                         npc.position.Y += 10;
                         if (Timer > 180)
                         {
                             swoopIn = true;
-                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 26f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("CleanupShipPulse"), 0, 0f, 255, 0f, 0f);
+                            Projectile.NewProjectile(npc.Center.X + 25, npc.Center.Y + 35f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("CleanupShipPulse"), 0, 0f, 255, 0f, 0f);
                             Timer = 0;
                             CastledWorld.numberOfEnemies = 0;
                             CastledWorld.invasionPoints = 0;
@@ -105,10 +109,9 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                         waveDelay++;
                         if (waveDelay > 120 && waveDelay2 < 3 && waveHasBegun == false)
                         {
-                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 15, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("CleanupShipPulse"), 0, 0f, 255, 0f, 0f);
+                            Projectile.NewProjectile(npc.Center.X + 25, npc.Center.Y + 35f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("CleanupShipPulse"), 0, 0f, 255, 0f, 0f);
                             waveDelay = 0;
                             waveDelay2++;
-                            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/OST/RobotInvasionTheme");
                         }
                         if (waveDelay2 > 2 && waveHasBegun == false)
                         {
@@ -165,7 +168,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                                 CastledWorld.counterType = 2;
                                 CastledWorld.waveDelayCountdown = 10;
                                 nextWaveCountdown = true;
-                                Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 15, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("Counter"), 0, 0f, 255, 0f, 0f);
+                                Projectile.NewProjectile(npc.Center.X - 5, npc.Center.Y - 58, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("Counter"), 0, 0f, 255, 0f, 0f);
                                 Timer = 0;
                             }
                         }
@@ -192,7 +195,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                         if (deployDelay > 15 && deployAmount < 4)
                         {
                             CastledWorld.numberOfEnemies++;
-                            NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("Robot"));
+                            NPC.NewNPC((int)npc.position.X + 75, (int)npc.position.Y + 90, mod.NPCType("Robot"));
                             deployDelay = 0;
                             deployAmount++;
                         }
@@ -210,15 +213,16 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                         if (deployDelay > 35 && deployAmount < 4)
                         {
                             CastledWorld.numberOfEnemies++;
-                            NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("Robot"));
+                            NPC.NewNPC((int)npc.position.X + 75, (int)npc.position.Y + 90, mod.NPCType("Robot"));
                             deployDelay = 0;
                             deployAmount++;
                         }
                         if (deployAmount == 4)
                         {
                             CastledWorld.numberOfEnemies += 2;
-                            NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("RobotPH"));
-                            NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("RobotPH1"));
+                            Main.PlaySound(SoundID.Item61);
+                            NPC.NewNPC((int)npc.position.X + 75, (int)npc.position.Y + 90, mod.NPCType("RobotPH"));
+                            NPC.NewNPC((int)npc.position.X + 75, (int)npc.position.Y + 90, mod.NPCType("RobotPH1"));
                             deployAmount += 2;
                         }
                         if (deployAmount == 6)
@@ -235,7 +239,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                         if (deployDelay > 35 && deployAmount < 3)
                         {
                             CastledWorld.numberOfEnemies++;
-                            NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("Robot"));
+                            NPC.NewNPC((int)npc.position.X + 75, (int)npc.position.Y + 90, mod.NPCType("Robot"));
                             deployDelay = 0;
                             deployAmount++;
                         }
@@ -243,9 +247,10 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                         {
                             if (deployDelay > 70)
                             {
+                                Main.PlaySound(SoundID.Item61);
                                 CastledWorld.numberOfEnemies += 2;
-                                NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("RobotPH"));
-                                NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("RobotPH1"));
+                                NPC.NewNPC((int)npc.position.X + 75, (int)npc.position.Y + 90, mod.NPCType("RobotPH"));
+                                NPC.NewNPC((int)npc.position.X + 75, (int)npc.position.Y + 90, mod.NPCType("RobotPH1"));
 
                                 deployAmount += 2;
                             }
@@ -255,11 +260,11 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                             if (deployDelay > 150)
                             {
                                 CastledWorld.numberOfEnemies += 2;
-
+                                Main.PlaySound(SoundID.Item61);
                                 CastledWorld.leftOrRight = 1;
-                                NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
+                                NPC.NewNPC((int)npc.position.X + 75, (int)npc.position.Y + 90, mod.NPCType("PistonPH1"));
                                 CastledWorld.leftOrRight = -1;
-                                NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
+                                NPC.NewNPC((int)npc.position.X + 75, (int)npc.position.Y + 90, mod.NPCType("PistonPH1"));
 
                                 deployAmount += 2;
                             }
@@ -278,13 +283,13 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                         if (deployDelay > 180 && deployAmount < 6)
                         {
                             CastledWorld.numberOfEnemies += 6;
-
-                            NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("Robot"));
-                            NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("Robot"));
-                            NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("Robot"));
-                            NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("Robot"));
-                            NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("RobotPH"));
-                            NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("RobotPH1"));
+                            Main.PlaySound(SoundID.Item61);
+                            NPC.NewNPC((int)npc.position.X + 75, (int)npc.position.Y + 90, mod.NPCType("Robot"));
+                            NPC.NewNPC((int)npc.position.X + 75, (int)npc.position.Y + 90, mod.NPCType("Robot"));
+                            NPC.NewNPC((int)npc.position.X + 75, (int)npc.position.Y + 90, mod.NPCType("Robot"));
+                            NPC.NewNPC((int)npc.position.X + 75, (int)npc.position.Y + 90, mod.NPCType("Robot"));
+                            NPC.NewNPC((int)npc.position.X + 75, (int)npc.position.Y + 90, mod.NPCType("RobotPH"));
+                            NPC.NewNPC((int)npc.position.X + 75, (int)npc.position.Y + 90, mod.NPCType("RobotPH1"));
                             deployDelay = 0;
                             deployAmount += 6;
                         }
@@ -293,11 +298,11 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                             if (deployDelay > 120)
                             {
                                 CastledWorld.numberOfEnemies += 2;
-
+                                Main.PlaySound(SoundID.Item61);
                                 CastledWorld.leftOrRight = 1;
-                                NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
+                                NPC.NewNPC((int)npc.position.X + 75, (int)npc.position.Y + 90, mod.NPCType("PistonPH1"));
                                 CastledWorld.leftOrRight = -1;
-                                NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
+                                NPC.NewNPC((int)npc.position.X + 75, (int)npc.position.Y + 90, mod.NPCType("PistonPH1"));
 
                                 deployAmount += 2;
                             }
@@ -307,11 +312,11 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                             if (deployDelay > 360)
                             {
                                 CastledWorld.numberOfEnemies += 2;
-
+                                Main.PlaySound(SoundID.Item61);
                                 CastledWorld.leftOrRight = 1;
-                                NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
+                                NPC.NewNPC((int)npc.position.X + 75, (int)npc.position.Y + 90, mod.NPCType("PistonPH1"));
                                 CastledWorld.leftOrRight = -1;
-                                NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("PistonPH1"));
+                                NPC.NewNPC((int)npc.position.X + 75, (int)npc.position.Y + 90, mod.NPCType("PistonPH1"));
 
                                 deployAmount += 2;
                             }
@@ -335,7 +340,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                         {
                             CastledWorld.numberOfEnemies += 10;
                             Main.PlaySound(SoundID.Item61);
-                            NPC.NewNPC((int)npc.position.X + 105, (int)npc.position.Y + 70, mod.NPCType("BladeBot"));
+                            NPC.NewNPC((int)npc.position.X + 75, (int)npc.position.Y + 90, mod.NPCType("BladeBot"));
                             deployDelay = 0;
                             deployAmount += 10;
                         }
@@ -374,9 +379,8 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                             motionBlurCounter++;
                             if (motionBlurCounter > 4)
                             {
-                                music = -1;
                                 motionBlurCounter = 0;
-                                Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 26f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("CleanupShipBlur"), 0, 0f, 255, 0f, 0f);
+                                Projectile.NewProjectile(npc.Center.X + 25, npc.Center.Y + 35f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("CleanupShipBlur"), 0, 0f, 255, 0f, 0f);
                             }
                             npc.position.Y += 2;
                         }
@@ -386,71 +390,22 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                             if (motionBlurCounter > 4)
                             {
                                 motionBlurCounter = 0;
-                                Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 26f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("CleanupShipBlur"), 0, 0f, 255, 0f, 0f);
+                                Projectile.NewProjectile(npc.Center.X + 25, npc.Center.Y + 35f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("CleanupShipBlur"), 0, 0f, 255, 0f, 0f);
                             }
                             npc.position.Y -= 12;
                         }
                         if (Timer > 150 && hasLeft == false)
                         {
                             Main.NewText("[c/66ff66:The robots have been defeated!]");
-                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 26f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("Identifier1"), 0, 0f, 255, 0f, 0f);
+                            Projectile.NewProjectile(npc.Center.X + 25, npc.Center.Y + 35f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("Identifier1"), 0, 0f, 255, 0f, 0f);
                             hasLeft = true;
                             npc.life = 0;
                         }
                     }
                 }
             }
-            //private const int Frame_Ship1 = 0;
-            /*
-            private const int Frame_Ship2 = 1;
-            private const int Frame_Ship3 = 2;
-            private const int Frame_Ship4 = 3;
-            public override void FindFrame(int frameHeight)
-            {
-                if (waveHasBegun == true)
-                {
-                    if (terminateAnimation == false)
-                    {
-                        npc.frameCounter++;
-                        if (npc.frameCounter < 60)
-                        {
-                            npc.frame.Y = Frame_Ship1 * frameHeight;
-                        }
-                        if (npc.frameCounter < 61)
-                        {
-                            npc.frame.Y = Frame_Ship2 * frameHeight;
-                        }
-                        else if (npc.frameCounter < 70)
-                        {
-                            npc.frame.Y = Frame_Ship3 * frameHeight;
-                        }
-                        else if (npc.frameCounter < 150)
-                        {
-                            npc.frame.Y = Frame_Ship4 * frameHeight;
-                        }
-                        else if (npc.frameCounter < 156)
-                        {
-                            npc.frame.Y = Frame_Ship3 * frameHeight;
-                        }
-                        else if (npc.frameCounter < 164)
-                        {
-                            npc.frame.Y = Frame_Ship2 * frameHeight;
-                        }
-                        else if (npc.frameCounter < 170)
-                        {
-                            npc.frame.Y = Frame_Ship1 * frameHeight;
-                        }
-                        if (npc.frameCounter > 170)
-                        {
-                            terminateAnimation = true;
-                        }
-                        else
-                        {
-                            terminateAnimation = true;
-                        }
-                    }
-                }*/
         }
+
         public override bool CheckActive()
         {
             return false;

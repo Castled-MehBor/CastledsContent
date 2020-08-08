@@ -11,9 +11,10 @@ namespace CastledsContent.Projectiles.RobotInvasion.FX
 
 		public override void SetDefaults()
 		{
-			projectile.width = 210;
-			projectile.height = 128;
+			projectile.width = 100;
+			projectile.height = 92;
 			projectile.aiStyle = 0;
+			projectile.scale = 1.5f;
 			projectile.tileCollide = false;
 			projectile.penetrate = -1;
 			projectile.timeLeft = 60;

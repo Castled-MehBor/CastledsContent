@@ -12,7 +12,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
         public bool hasLanded = false;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Simple Robot");
+            DisplayName.SetDefault("Rubble Bot");
             Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.AngryBones];
         }
 
@@ -51,6 +51,13 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                 CastledWorld.numberOfEnemies--;
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 15, npc.velocity.X * 0.01f, -2f, mod.ProjectileType("Counter"), 0, 0f, 255, 0f, 0f);
             }
+            float Speed = 1f;
+            Vector2 vector8 = npc.BottomRight;
+            int damage = 6;
+            int type = ProjectileID.SaucerScrap;
+            float rotation = npc.rotation;
+            int num54 = Projectile.NewProjectile(vector8.X, vector8.Y - 15, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
+            npc.ai[1] = 0;
         }
         public float Timer
         {

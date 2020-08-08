@@ -11,10 +11,13 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
     {
         public int laserDelay = 0;
         public bool hasEvaded = false;
+        public bool isAttacking = false;
+        public int runTimer = 0;
+        public int motionBlurCounter = 0;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Evader");
-            Main.npcFrameCount[npc.type] = 15;
+            Main.npcFrameCount[npc.type] = 11;
         }
 
         public override void SetDefaults()
@@ -25,7 +28,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
             npc.knockBackResist = 0f;
             npc.width = 40;
             npc.damage = 35;
-            npc.height = 56;
+            npc.height = 50;
             npc.value = Item.buyPrice(0, 0, 0, 0);
             npc.npcSlots = 1f;
             npc.lavaImmune = true;
@@ -100,6 +103,12 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                         npc.position.X -= 7;
                         npc.noGravity = true;
                         npc.noTileCollide = true;
+                        motionBlurCounter++;
+                        if (motionBlurCounter > 4)
+                        {
+                            motionBlurCounter = 0;
+                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("EvaderRightBlur"), 0, 0f, 255, 0f, 0f);
+                        }
                     }
                     if (Timer > 360)
                     {
@@ -117,12 +126,13 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                         laserDelay++;
                         if (laserDelay > 10)
                         {
+                            Main.PlaySound(SoundID.Item12);
                             float Speed = 3f;
                             Vector2 vector8 = npc.BottomRight;
                             int damage = 10;
-                            int type = 83;
+                            int type = mod.ProjectileType("EvaderLaser");
                             float rotation = npc.rotation + 135;
-                            int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
+                            int num54 = Projectile.NewProjectile(vector8.X, vector8.Y + 18, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                             npc.ai[1] = 0;
                             laserDelay = 0;
                         }
@@ -132,6 +142,80 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                         Timer = 0;
                     }
                 }
+            }
+        }
+        private const int Frame_Fall = 0;
+        private const int Frame_Run1 = 1;
+        private const int Frame_Run2 = 2;
+        private const int Frame_Run3 = 3;
+        private const int Frame_Run4 = 4;
+        private const int Frame_Run5 = 5;
+        private const int Frame_Run6 = 6;
+        private const int Frame_Pew1 = 7;
+        private const int Frame_Pew2 = 8;
+        private const int Frame_Pew3 = 9;
+        private const int Frame_Pew4 = 10;
+        public override void FindFrame(int frameHeight)
+        {
+            if (Timer < 120 && hasEvaded == false)
+            {
+                npc.frame.Y = Frame_Fall * frameHeight;
+            }
+            else if (Timer < 360 && hasEvaded == false)
+            {
+                runTimer++;
+                if (runTimer < 10)
+                {
+                    npc.frame.Y = Frame_Run1 * frameHeight;
+                }
+                else if (runTimer < 20)
+                {
+                    npc.frame.Y = Frame_Run2 * frameHeight;
+                }
+                else if (runTimer < 30)
+                {
+                    npc.frame.Y = Frame_Run3 * frameHeight;
+                }
+                else if (runTimer < 40)
+                {
+                    npc.frame.Y = Frame_Run4 * frameHeight;
+                }
+                else if (runTimer < 50)
+                {
+                    npc.frame.Y = Frame_Run5 * frameHeight;
+                }
+                else if (runTimer < 60)
+                {
+                    npc.frame.Y = Frame_Run6 * frameHeight;
+                }
+                else
+                {
+                    runTimer = 0;
+                }
+            }
+            else if (Timer < 850)
+            {
+                npc.frame.Y = Frame_Pew1 * frameHeight;
+            }
+            else if (Timer < 950)
+            {
+                if (laserDelay < 5)
+                {
+                    npc.frame.Y = Frame_Pew2 * frameHeight;
+                }
+                else if (laserDelay < 10)
+                {
+                    npc.frame.Y = Frame_Pew3 * frameHeight;
+                }
+                else if (laserDelay < 15)
+                {
+                    npc.frame.Y = Frame_Pew4 * frameHeight;
+                }
+            }
+            else
+            {
+                npc.frame.Y = Frame_Pew1 * frameHeight;
+                Timer = 0;
             }
         }
         public override bool CheckActive()

@@ -1,12 +1,8 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using static Terraria.ModLoader.ModContent;
+﻿using Terraria.ModLoader;
 
 namespace CastledsContent.Projectiles.RobotInvasion.FX
 {
-	public class CleanupShipBlur : ModProjectile
+	public class PistonBlur : ModProjectile
 	{
 		public override void SetStaticDefaults()
 		{
@@ -15,10 +11,9 @@ namespace CastledsContent.Projectiles.RobotInvasion.FX
 
 		public override void SetDefaults()
 		{
-			projectile.width = 100;
-			projectile.height = 92;
+			projectile.width = 28;
+			projectile.height = 38;
 			projectile.aiStyle = 0;
-			projectile.scale = 1.5f;
 			projectile.alpha = 80;
 			projectile.tileCollide = false;
 			projectile.penetrate = -1;
