@@ -37,11 +37,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Owner\\Desktop\\RepoHyperlinkV2\\CastledsContent.csproj",
+      "projectUniqueName": "C:\\Users\\Owner\\Desktop\\RealRepository\\CastledsContent\\CastledsContent.csproj",
       "projectName": "CastledsContent",
-      "projectPath": "C:\\Users\\Owner\\Desktop\\RepoHyperlinkV2\\CastledsContent.csproj",
+      "projectPath": "C:\\Users\\Owner\\Desktop\\RealRepository\\CastledsContent\\CastledsContent.csproj",
       "packagesPath": "C:\\Users\\Owner\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Owner\\Desktop\\RepoHyperlinkV2\\obj\\",
+      "outputPath": "C:\\Users\\Owner\\Desktop\\RealRepository\\CastledsContent\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
