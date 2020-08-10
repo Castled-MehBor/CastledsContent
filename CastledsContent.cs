@@ -1,9 +1,10 @@
-﻿using CastledsContent.Items.DualForce;
-using CastledsContent.Items.DualForce.Loot.Grakos;
-using CastledsContent.Items.DualForce.Loot.Nasha;
-using CastledsContent.Items.Placeable.MusicBox;
-using CastledsContent.NPCs.Boss.DualForce.LightMage;
-using CastledsContent.NPCs.Boss.DualForce.NightDemon;
+﻿using CastledsContent.Items.Placeable.MusicBox;
+using CastledsContent.Items.Summon;
+using CastledsContent.Items.Bags;
+using CastledsContent.Items.Bags.BossBags;
+using CastledsContent.Items.Weapons.Melee;
+using CastledsContent.Items.Weapons.Magic;
+using CastledsContent.Items.Weapons.Ranged;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
@@ -28,12 +29,12 @@ namespace CastledsContent
             Mod bossChecklist = ModLoader.GetMod("BossChecklist");
             if (bossChecklist != null)
             {
-                bossChecklist.Call("AddMiniBossWithInfo", "Bone Dweller", 5.5f, (Func<bool>)(() => CastledWorld.downedbossHead), "Can very rarely spawn in the Dungeon, or can alternitavely be detected using a [i:" + ModContent.ItemType<Items.BoneDweller.BoneDwellerSummon>() + "] inside the dungeon.");
-                bossChecklist.Call("AddBossWithInfo", "Corrupt Guardians", 6.5f, (Func<bool>)(() => CastledWorld.downedCorruptGuardians), "Their deep slumber can be broken by shattering an [i:" + ModContent.ItemType<Items.Epic.CorruptSummon>() + "] at the Corruption.");
-                bossChecklist.Call("AddBossWithInfo", "Crimtane Prisoners", 6.5f, (Func<bool>)(() => CastledWorld.downedCrimsonPrisoners), "They can be unleashed from their quarantine by using [i:" + ModContent.ItemType<Items.Epic.CrimsonSpawn>() + "] at the Crimson.");
+                bossChecklist.Call("AddMiniBossWithInfo", "Bone Dweller", 5.5f, (Func<bool>)(() => CastledWorld.downedbossHead), "Can very rarely spawn in the Dungeon, or can alternitavely be detected using a [i:" + ModContent.ItemType<BoneDwellerSummon>() + "] inside the dungeon.");
+                bossChecklist.Call("AddBossWithInfo", "Corrupt Guardians", 6.5f, (Func<bool>)(() => CastledWorld.downedCorruptGuardians), "Their deep slumber can be broken by shattering an [i:" + ModContent.ItemType<CorruptSummon>() + "] at the Corruption.");
+                bossChecklist.Call("AddBossWithInfo", "Crimtane Prisoners", 6.5f, (Func<bool>)(() => CastledWorld.downedCrimsonPrisoners), "They can be unleashed from their quarantine by using [i:" + ModContent.ItemType<CrimsonSpawn>() + "] at the Crimson.");
 
                 //DualForce
-                bossChecklist.Call("AddBoss", 5.9f, new List<int>() { ModContent.NPCType<LightNymph>(), ModContent.NPCType<NightHusk>() }, this, "Nasha and Grakos", (Func<bool>)(() => CastledWorld.downedDualForce), ModContent.ItemType<DualForceSummon>(), new List<int>() { ModContent.ItemType<MusicBox1>(), }, new List<int>() { ModContent.ItemType<CrystalSpear>(), ModContent.ItemType<OrbOfHallow>(), ModContent.ItemType<PinkPotion>(), ModContent.ItemType<NashaLockbox>(), ModContent.ItemType<NashaLockboxExpert>(), ModContent.ItemType<DeadeyeScroll>(), ModContent.ItemType<PreciousFlame>(), ModContent.ItemType<GrakosLockbox>(), ModContent.ItemType<GrakosLockboxExpert>() }, "Use a [i:" + ItemType("DualForceSummon") + "] anywhere", "You either win or learn, meaning you are never truley defeated.", "CastledsContent/NPCs/Boss/DualForce/DualForceBossLog");
+                bossChecklist.Call("AddBoss", 5.9f, new List<int>() { ModContent.NPCType<NPCs.Boss.DualForce.LightMage.LightNymph>(), ModContent.NPCType<NPCs.Boss.DualForce.NightDemon.NightHusk>() }, this, "Nasha and Grakos", (Func<bool>)(() => CastledWorld.downedDualForce), ModContent.ItemType<DualForceSummon>(), new List<int>() { ModContent.ItemType<MusicBox1>(), }, new List<int>() { ModContent.ItemType<CrystalSpear>(), ModContent.ItemType<OrbOfHallow>(), ModContent.ItemType<PinkPotion>(), ModContent.ItemType<NashaLockbox>(), ModContent.ItemType<NashaLockboxExpert>(), ModContent.ItemType<DeadeyeScroll>(), ModContent.ItemType<PreciousFlame>(), ModContent.ItemType<GrakosLockbox>(), ModContent.ItemType<GrakosLockboxExpert>() }, "Use a [i:" + ItemType("DualForceSummon") + "] anywhere", "You either win or learn, meaning you are never truley defeated.", "CastledsContent/NPCs/Boss/DualForce/DualForceBossLog");
             }
         }
         public override void Load()

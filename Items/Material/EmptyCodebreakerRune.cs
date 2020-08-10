@@ -32,6 +32,39 @@ namespace CastledsContent.Items.Material
 			recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(this);
+            recipe.AddIngredient(ItemID.Diamond, 3);
+            recipe.AddIngredient(ItemID.Ruby, 3);
+            recipe.AddIngredient(ItemID.Topaz, 5);
+            recipe.AddIngredient(ItemID.Sapphire, 5);
+            recipe.AddIngredient(ItemID.Emerald, 5);
+            recipe.AddIngredient(ItemID.Amethyst, 5);
+            recipe.needWater = true;
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(ItemType<Weapons.Magic.CodebreakerC>());
+            recipe.AddRecipe();
+
+			recipe = new ModRecipe(mod);
+			recipe.AddIngredient(this);
+			recipe.AddIngredient(ItemID.HellstoneBar, 8);
+			recipe.AddIngredient(ItemID.FlowerofFire);
+			recipe.AddIngredient(ItemID.Fireblossom, 5);
+			recipe.needLava = true;
+			recipe.AddTile(TileID.TinkerersWorkbench);
+			recipe.SetResult(ItemType<Weapons.Magic.CodebreakerF>());
+			recipe.AddRecipe();
+
+			recipe = new ModRecipe(mod);
+			recipe.AddIngredient(this);
+			recipe.AddIngredient(ItemID.HellstoneBar, 8);
+			recipe.AddIngredient(ItemID.Flamelash);
+			recipe.AddIngredient(ItemID.Fireblossom, 5);
+			recipe.needLava = true;
+			recipe.AddTile(TileID.TinkerersWorkbench);
+			recipe.SetResult(ItemType<Weapons.Magic.CodebreakerF>());
+			recipe.AddRecipe();
 		}
 	}
 }

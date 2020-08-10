@@ -33,8 +33,8 @@ namespace CastledsContent.Items.Bags.BossBags
         public override void RightClick(Player player)
         {
             player.QuickSpawnItem(ItemID.GoldCoin, 75);
-            player.QuickSpawnItem(ItemType<PreciousFlame>());
-            player.QuickSpawnItem(ItemType<DeadeyeScroll>());
+            player.QuickSpawnItem(ItemType<Weapons.Ranged.DeadeyeScroll>());
+            player.QuickSpawnItem(ItemType<Weapons.Magic.PreciousFlame>());
             player.QuickSpawnItem(ItemType<Placeable.MusicBox.MusicBox1>());
         }
     }

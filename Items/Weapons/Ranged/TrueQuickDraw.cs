@@ -47,14 +47,5 @@ namespace CastledsContent.Items.Weapons.Ranged
             }
             return true;
         }
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemType<QuickDraw>(), 1);
-            recipe.AddIngredient(ItemType<UsedHeroMagazine>(), 1);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
     }
 }

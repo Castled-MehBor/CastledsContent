@@ -1,4 +1,6 @@
-﻿using CastledsContent.Items.Epic;
+﻿using CastledsContent.Items.Weapons.Melee;
+using CastledsContent.Items.Weapons.Magic;
+using CastledsContent.Items.Weapons.Ranged;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -29,7 +31,7 @@ namespace CastledsContent.Items.Bags.BossBags
 
         public override void RightClick(Player player)
         {
-            player.QuickSpawnItem(ItemType<TitaniumCrystalBadge>());
+            player.QuickSpawnItem(ItemType<Accessories.TitaniumCrystalBadge>());
             player.QuickSpawnItem(ItemID.GoldCoin, 30);
             player.QuickSpawnItem(ItemID.CursedFlame, Main.rand.Next(28, 46));
             player.QuickSpawnItem(ItemID.SoulofNight, Main.rand.Next(13, 28));
@@ -55,7 +57,7 @@ namespace CastledsContent.Items.Bags.BossBags
 
             player.QuickSpawnItem(itemTypeToSpawn);
 
-            MiscUtilities.SpawnDropItem(player, 2, ItemType<EpicQuartz>());
+            MiscUtilities.SpawnDropItem(player, 2, ItemType<Material.EpicQuartz>());
             MiscUtilities.SpawnDropItem(player, 2, ItemType<BruhMomento>(), NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3);
             MiscUtilities.SpawnDropItem(player, 2, ItemType<BayonettaKiller>(), NPC.downedGolemBoss);
             MiscUtilities.SpawnDropItem(player, 2, ItemType<ShinyStaff>(), NPC.downedAncientCultist);

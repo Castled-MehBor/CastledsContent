@@ -47,7 +47,7 @@ namespace CastledsContent.Items.Weapons.Magic
             {
                 Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f; // Watch out for dividing by 0 if there is only 1 projectile.
                 Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
-                Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ProjectileType<DeathLaserFriendly>(), damage, knockBack, player.whoAmI);
+                Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ProjectileType<Projectiles.Friendly.DeathLaserFriendly>(), damage, knockBack, player.whoAmI);
                 Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ProjectileID.GreenLaser, damage, knockBack, player.whoAmI);
                 Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ProjectileID.GreenLaser, damage, knockBack, player.whoAmI);
                 Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ProjectileID.GreenLaser, damage, knockBack, player.whoAmI);

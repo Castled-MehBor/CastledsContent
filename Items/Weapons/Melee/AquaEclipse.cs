@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace CastledsContent.Items.Weapons.Magic
+namespace CastledsContent.Items.Weapons.Melee
 {
     public class AquaEclipse : ModItem
     {

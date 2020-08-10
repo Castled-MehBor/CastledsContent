@@ -68,21 +68,5 @@ namespace CastledsContent.Items.Weapons.Magic
 
             return false;
         }
-
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemType<EmptyCodebreakerRune>(), 1);
-            recipe.AddIngredient(ItemID.Diamond, 3);
-            recipe.AddIngredient(ItemID.Ruby, 3);
-            recipe.AddIngredient(ItemID.Topaz, 5);
-            recipe.AddIngredient(ItemID.Sapphire, 5);
-            recipe.AddIngredient(ItemID.Emerald, 5);
-            recipe.AddIngredient(ItemID.Amethyst, 5);
-            recipe.needWater = true;
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
     }
 }

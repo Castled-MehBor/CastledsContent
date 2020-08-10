@@ -31,7 +31,7 @@ namespace CastledsContent.Items.Weapons.Ranged
             item.rare = ItemRarityID.Pink;
             item.UseSound = SoundID.Item11;
             item.autoReuse = true;
-            item.shoot = ProjectileType<CursedBullet>();
+            item.shoot = ProjectileType<Projectiles.Friendly.CursedBullet>();
             item.shootSpeed = 2f;
         }
         public override Vector2? HoldoutOffset() => new Vector2(-9, -4);

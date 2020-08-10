@@ -32,7 +32,7 @@ namespace CastledsContent.Items.Weapons.Melee
                 item.rare = ItemRarityID.LightPurple;
                 item.UseSound = SoundID.Item1;
                 item.autoReuse = true;
-                item.shoot = ProjectileType<SlashRed>();
+                item.shoot = ProjectileType<Projectiles.Friendly.SlashRed>();
                 item.shootSpeed = 5f;
             
         }
@@ -46,7 +46,7 @@ namespace CastledsContent.Items.Weapons.Melee
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(this);
-            recipe.SetResult(ItemType<EpicQuartz>());
+            recipe.SetResult(ItemType<Material.EpicQuartz>());
             recipe.AddRecipe();
         }
     }

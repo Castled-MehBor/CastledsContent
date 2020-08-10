@@ -27,7 +27,7 @@ namespace CastledsContent.Items.Material
             recipe.AddIngredient(ItemID.BeamSword);
             recipe.AddIngredient(this);
             recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ItemType<EnchantedSwordbutBetter>());
+            recipe.SetResult(ItemType<Weapons.Melee.EnchantedSwordbutBetter>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
@@ -36,7 +36,7 @@ namespace CastledsContent.Items.Material
             recipe.AddIngredient(ItemID.Beenade, 50);
             recipe.AddIngredient(this);
             recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ItemType<QueenBee>());
+            recipe.SetResult(ItemType<Weapons.Ranged.QueenBee>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
@@ -44,7 +44,7 @@ namespace CastledsContent.Items.Material
             recipe.AddIngredient(ItemID.LaserRifle);
             recipe.AddIngredient(this);
             recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ItemType<LaserTron>());
+            recipe.SetResult(ItemType<Weapons.Magic.LaserTron>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
@@ -53,14 +53,14 @@ namespace CastledsContent.Items.Material
             recipe.AddIngredient(ItemID.MartianConduitPlating, 250);
             recipe.AddIngredient(this);
             recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ItemType<BayonettaKiller>());
+            recipe.SetResult(ItemType<Weapons.Ranged.BayonettaKiller>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.FetidBaghnakhs);
             recipe.AddIngredient(this);
             recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ItemType<BruhMomento>());
+            recipe.SetResult(ItemType<Weapons.Melee.BruhMomento>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
@@ -69,7 +69,7 @@ namespace CastledsContent.Items.Material
             recipe.AddIngredient(ItemID.FragmentVortex, 25);
             recipe.AddIngredient(this);
             recipe.AddTile(TileID.LunarCraftingStation);
-            recipe.SetResult(ItemType<ShinyStaff>());
+            recipe.SetResult(ItemType<Weapons.Magic.ShinyStaff>());
             recipe.AddRecipe();
         }
     }

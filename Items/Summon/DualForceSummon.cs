@@ -1,8 +1,4 @@
 ﻿using System;
-using CastledsContent.Items.DualForce.Loot.Nasha;
-using CastledsContent.NPCs.Boss.DualForce;
-using CastledsContent.NPCs.Boss.DualForce.LightMage;
-using CastledsContent.NPCs.Boss.DualForce.NightDemon;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -34,11 +30,11 @@ namespace CastledsContent.Items.Summon
         public override Vector2? HoldoutOffset() => new Vector2(9, 2);
 
         public override bool CanUseItem(Player player) 
-            => NPC.downedBoss3 && !NPC.AnyNPCs(NPCType<BossSummon>()) && !NPC.AnyNPCs(NPCType<LightMage>()) && !NPC.AnyNPCs(NPCType<NightDemon>()) && !NPC.AnyNPCs(NPCType<LightNymph>()) && !NPC.AnyNPCs(NPCType<NightHusk>());
+            => NPC.downedBoss3 && !NPC.AnyNPCs(NPCType<NPCs.Boss.DualForce.BossSummon>()) && !NPC.AnyNPCs(NPCType<NPCs.Boss.DualForce.LightMage.LightMage>()) && !NPC.AnyNPCs(NPCType<NPCs.Boss.DualForce.NightDemon.NightDemon>()) && !NPC.AnyNPCs(NPCType<NPCs.Boss.DualForce.LightMage.LightNymph>()) && !NPC.AnyNPCs(NPCType<NPCs.Boss.DualForce.NightDemon.NightHusk>());
 
         public override bool UseItem(Player player)
         {
-            NPC.SpawnOnPlayer(player.whoAmI, NPCType<BossSummon>());
+            NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.Boss.DualForce.BossSummon>());
             return true;
         }
 
@@ -57,41 +53,41 @@ namespace CastledsContent.Items.Summon
 
             //Orb of the Hallow
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemType<OrbOfHallow>());
+            recipe.AddIngredient(ItemType<Weapons.Ranged.OrbOfHallow>());
             recipe.needWater = true;
-            recipe.SetResult(ItemType<PinkPotion>());
+            recipe.SetResult(ItemType<Weapons.Magic.PinkPotion>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemType<OrbOfHallow>());
+            recipe.AddIngredient(ItemType<Weapons.Ranged.OrbOfHallow>());
             recipe.needWater = true;
-            recipe.SetResult(ItemType<CrystalSpear>());
+            recipe.SetResult(ItemType<Weapons.Melee.CrystalSpear>());
             recipe.AddRecipe();
 
             //Pink Potion
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemType<PinkPotion>());
+            recipe.AddIngredient(ItemType<Weapons.Magic.PinkPotion>());
             recipe.needWater = true;
-            recipe.SetResult(ItemType<OrbOfHallow>());
+            recipe.SetResult(ItemType<Weapons.Ranged.OrbOfHallow>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemType<PinkPotion>());
+            recipe.AddIngredient(ItemType<Weapons.Magic.PinkPotion>());
             recipe.needWater = true;
-            recipe.SetResult(ItemType<CrystalSpear>());
+            recipe.SetResult(ItemType<Weapons.Melee.CrystalSpear>());
             recipe.AddRecipe();
 
             //Crystal Spear
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemType<CrystalSpear>());
+            recipe.AddIngredient(ItemType<Weapons.Melee.CrystalSpear>());
             recipe.needWater = true;
-            recipe.SetResult(ItemType<OrbOfHallow>());
+            recipe.SetResult(ItemType<Weapons.Ranged.OrbOfHallow>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemType<CrystalSpear>());
+            recipe.AddIngredient(ItemType<Weapons.Melee.CrystalSpear>());
             recipe.needWater = true;
-            recipe.SetResult(ItemType<PinkPotion>());
+            recipe.SetResult(ItemType<Weapons.Magic.PinkPotion>());
             recipe.AddRecipe();
         }
     }

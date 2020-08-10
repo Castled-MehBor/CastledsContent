@@ -31,7 +31,7 @@ namespace CastledsContent.Items.Material
             recipe.AddIngredient(ItemID.SoulofLight, 5);
             recipe.AddIngredient(ItemID.SoulofNight, 5);
             recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ItemType<Hurricane>());
+            recipe.SetResult(ItemType<Weapons.Magic.Hurricane>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
@@ -42,7 +42,7 @@ namespace CastledsContent.Items.Material
             recipe.AddIngredient(ItemID.Bone, 75);
             recipe.AddIngredient(ItemID.Sapphire, 3);
             recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ItemType<AquaEclipse>());
+            recipe.SetResult(ItemType<Weapons.Melee.AquaEclipse>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
@@ -53,7 +53,7 @@ namespace CastledsContent.Items.Material
             recipe.AddIngredient(ItemID.Bone, 75);
             recipe.AddIngredient(ItemID.Sapphire, 3);
             recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ItemType<LockSmith>());
+            recipe.SetResult(ItemType<Weapons.Ranged.LockSmith> ());
             recipe.AddRecipe();
         }
     }

@@ -39,7 +39,7 @@ namespace CastledsContent.Items.Weapons.Magic
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             for (int i = 0; i < 24; i++)
-                Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ProjectileType<LightBolt>(), damage, knockBack, player.whoAmI);
+                Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ProjectileType<Projectiles.Friendly.LightBolt>(), damage, knockBack, player.whoAmI);
 
             return false;
         }

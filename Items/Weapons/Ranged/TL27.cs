@@ -53,15 +53,5 @@ namespace CastledsContent.Items.Weapons.Ranged
         {
             player.scope = true;
         }
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemType<TrueNightsBump>(), 1);
-            recipe.AddIngredient(ItemType<TrueQuickDraw>(), 1);
-            recipe.AddIngredient(ItemID.RifleScope, 1);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
     }
 }

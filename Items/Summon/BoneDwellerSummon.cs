@@ -39,13 +39,13 @@ namespace CastledsContent.Items.Summon
         {
             if (CastledWorld.downedbossHead)
             {
-                NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.Boss.BossHead>());
+                NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.Boss.BoneDweller.BossHead>());
                 Main.PlaySound(SoundID.Tink, player.position, 0);
                 return true;
             }
             else
             {
-                NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.Boss.BossHead>());
+                NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.Boss.BoneDweller.BossHead>());
                 Main.PlaySound(SoundID.Tink, player.position, 0);
                 Main.PlaySound(SoundID.Roar, player.position, 0);
                 return true;

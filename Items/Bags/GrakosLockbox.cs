@@ -1,6 +1,8 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using CastledsContent.Items.Weapons.Magic;
+using CastledsContent.Items.Weapons.Ranged;
 using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.Bags

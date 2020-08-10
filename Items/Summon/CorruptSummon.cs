@@ -36,8 +36,8 @@ namespace CastledsContent.Items.Summon
 
         public override bool UseItem(Player player)
         {
-            NPC.SpawnOnPlayer(player.whoAmI, NPCType<CorruptionBoss>());
-            NPC.SpawnOnPlayer(player.whoAmI, NPCType<BreatherHead>());
+            NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.Boss.CorruptBoss.BreatherHead>());
+            NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.Boss.CorruptBoss.CorruptionBoss>());
             Main.PlaySound(SoundID.Shatter, player.position, 0);
             return true;
         }

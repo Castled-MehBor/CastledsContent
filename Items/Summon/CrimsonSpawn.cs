@@ -35,8 +35,8 @@ namespace CastledsContent.Items.Summon
 
         public override bool UseItem(Player player)
         {
-            NPC.SpawnOnPlayer(player.whoAmI, NPCType<SkeletonGuard1>());
-            NPC.SpawnOnPlayer(player.whoAmI, NPCType<FleshGuard1>());
+            NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.Boss.CrimsonBoss.SkeletonGuard1>());
+            NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.Boss.CrimsonBoss.FleshGuard1>());
             Main.PlaySound(SoundID.Unlock, player.position, 0);
             return true;
         }

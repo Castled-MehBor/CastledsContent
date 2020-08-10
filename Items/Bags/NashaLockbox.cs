@@ -1,9 +1,12 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using CastledsContent.Items.Weapons.Magic;
+using CastledsContent.Items.Weapons.Ranged;
+using CastledsContent.Items.Weapons.Melee;
 using static Terraria.ModLoader.ModContent;
 
-namespace CastledsContent.Bags
+namespace CastledsContent.Items.Bags
 {
     public class NashaLockbox : ModItem
     {

@@ -137,7 +137,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                     if (motionBlurCounter > 4)
                     {
                         motionBlurCounter = 0;
-                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 26f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("BladeBotMotionBlur"), 0, 0f, 255, 0f, 0f);
+                        Projectile.NewProjectile(npc.Center.X - 9, npc.Center.Y - 40f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("BladeBotMotionBlur"), 0, 0f, 255, 0f, 0f);
                     }
                     npc.position.Y += 2;
                 }
@@ -239,7 +239,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                                 if (motionBlurCounter > 4)
                                 {
                                     motionBlurCounter = 0;
-                                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 26f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("BladeBotMotionBlur"), 0, 0f, 255, 0f, 0f);
+                                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 40f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("BladeBotMotionBlur"), 0, 0f, 255, 0f, 0f);
                                 }
                                 npc.position.X -= 16;
                                 if (attackDuration > 60)
@@ -279,7 +279,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                                 if (motionBlurCounter > 4)
                                 {
                                     motionBlurCounter = 0;
-                                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 26f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("BladeBotMotionBlur"), 0, 0f, 255, 0f, 0f);
+                                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 40f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("BladeBotMotionBlur"), 0, 0f, 255, 0f, 0f);
                                 }
                                 npc.position.X += 16;
                                 if (attackDuration > 60)
@@ -319,7 +319,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                                 if (motionBlurCounter > 4)
                                 {
                                     motionBlurCounter = 0;
-                                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 26f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("BladeBotMotionBlur"), 0, 0f, 255, 0f, 0f);
+                                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 40f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("BladeBotMotionBlur"), 0, 0f, 255, 0f, 0f);
                                 }
                                 npc.position.X += 8;
                                 npc.position.Y += 8;
@@ -360,7 +360,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                                 if (motionBlurCounter > 4)
                                 {
                                     motionBlurCounter = 0;
-                                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 26f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("BladeBotMotionBlur"), 0, 0f, 255, 0f, 0f);
+                                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 40f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("BladeBotMotionBlur"), 0, 0f, 255, 0f, 0f);
                                 }
                                 npc.position.Y += 8;
                                 if (attackDuration > 60)
@@ -400,7 +400,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                                 if (motionBlurCounter > 4)
                                 {
                                     motionBlurCounter = 0;
-                                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 26f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("BladeBotMotionBlur"), 0, 0f, 255, 0f, 0f);
+                                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 40f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("BladeBotMotionBlur"), 0, 0f, 255, 0f, 0f);
                                 }
                                 npc.position.X -= 8;
                                 npc.position.Y += 8;

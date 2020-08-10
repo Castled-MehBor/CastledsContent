@@ -28,7 +28,7 @@ namespace CastledsContent.Items.Unobtainable.ExampleDamageClass
             item.expert = true;
             item.useStyle = ItemUseStyleID.Stabbing;
             item.noUseGraphic = true;
-            item.shoot = ProjectileType<StickyReachP>();
+            item.shoot = ProjectileType<Projectiles.Friendly.StickyReachP>();
             item.shootSpeed = 4;
         }
 

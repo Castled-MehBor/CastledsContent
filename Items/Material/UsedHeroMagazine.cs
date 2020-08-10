@@ -1,7 +1,9 @@
 using Terraria.ID;
 using Terraria.ModLoader;
+using CastledsContent.Items.Weapons.Ranged;
+using static Terraria.ModLoader.ModContent;
 
-namespace CastledsContent.Material
+namespace CastledsContent.Items.Material
 {
 	public class UsedHeroMagazine : ModItem
 	{
@@ -19,5 +21,29 @@ namespace CastledsContent.Material
             item.value = 2000000;
             item.rare = 8;
 		}
-	}
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemType<QuickDraw>(), 1);
+            recipe.AddIngredient(this);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(ItemType<TrueQuickDraw>());
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemType<NightsBump>(), 1);
+            recipe.AddIngredient(this);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(ItemType<TrueNightsBump>());
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemType<TrueNightsBump>(), 1);
+            recipe.AddIngredient(ItemType<TrueQuickDraw>(), 1);
+            recipe.AddIngredient(ItemID.RifleScope, 1);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(ItemType<TL27>());
+            recipe.AddRecipe();
+        }
+    }
 }

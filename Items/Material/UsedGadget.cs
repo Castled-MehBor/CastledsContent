@@ -1,5 +1,6 @@
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.Material
 {
@@ -29,6 +30,15 @@ namespace CastledsContent.Items.Material
             recipe.AddRecipeGroup("IronBar", 5);
             recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this);
+			recipe.AddRecipe();
+
+			recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ItemID.BeeGun, 1);
+			recipe.AddIngredient(ItemID.Beenade, 600);
+			recipe.AddIngredient(ItemID.BeesKnees, 1);
+			recipe.AddIngredient(this);
+			recipe.AddTile(TileID.Anvils);
+			recipe.SetResult(ItemType<Weapons.Ranged.BeenadeLauncher>());
 			recipe.AddRecipe();
 		}
 	}

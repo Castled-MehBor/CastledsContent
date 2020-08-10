@@ -30,7 +30,7 @@ namespace CastledsContent.Items.Weapons.Ranged
             item.value = 10000;
             item.rare = ItemRarityID.LightRed;
             item.UseSound = SoundID.Item11;
-            item.shoot = ProjectileType<Projectiles.StellarKeyProj>();
+            item.shoot = ProjectileType<Projectiles.Friendly.StellarKeyProj>();
             item.shootSpeed = 32f;
             item.autoReuse = true;
         }

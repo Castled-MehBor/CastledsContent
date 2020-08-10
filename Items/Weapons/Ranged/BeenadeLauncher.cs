@@ -30,17 +30,5 @@ namespace CastledsContent.Items.Weapons.Ranged
             item.shootSpeed = 12f;
 			item.autoReuse = true;
 		}
-
-		public override void AddRecipes() 
-		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.BeeGun, 1);
-			recipe.AddIngredient(ItemID.Beenade, 600);
-			recipe.AddIngredient(ItemID.BeesKnees, 1);
-			recipe.AddIngredient(ItemType<UsedGadget>(), 1);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
-		}
 	}
 }

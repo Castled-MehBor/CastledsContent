@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace CastledsContent.NPCs.Boss
+namespace CastledsContent.NPCs.Boss.CorruptBoss
 {
     public class BreatherBody : ModNPC
     {

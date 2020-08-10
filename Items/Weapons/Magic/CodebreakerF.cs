@@ -74,28 +74,5 @@ namespace CastledsContent.Items.Weapons.Magic
 			}
 			return false;
 		}
-
-		public override void AddRecipes() 
-		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemType<EmptyCodebreakerRune>(), 1);
-			recipe.AddIngredient(ItemID.HellstoneBar, 8);
-			recipe.AddIngredient(ItemID.FlowerofFire);
-			recipe.AddIngredient(ItemID.Fireblossom, 5);
-			recipe.needLava = true;
-			recipe.AddTile(TileID.TinkerersWorkbench);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
-
-			recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemType<EmptyCodebreakerRune>(), 1);
-			recipe.AddIngredient(ItemID.HellstoneBar, 8);
-			recipe.AddIngredient(ItemID.Flamelash);
-			recipe.AddIngredient(ItemID.Fireblossom, 5);
-			recipe.needLava = true;
-			recipe.AddTile(TileID.TinkerersWorkbench);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
-		}
 	}
 }
