@@ -1,5 +1,6 @@
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.Techno
 {
@@ -18,7 +19,7 @@ namespace CastledsContent.Items.Techno
             item.height = 34;
             item.maxStack = 99;
             item.value = 35000;
-            item.rare = 4;
+            item.rare = ItemRarityID.LightRed;
         }
          
         public override void AddRecipes()
@@ -27,7 +28,7 @@ namespace CastledsContent.Items.Techno
 			recipe.AddIngredient(ItemID.Wire, 75);
             recipe.AddRecipeGroup("IronBar", 10);
             recipe.AddIngredient(ItemID.Timer1Second, 1);
-			recipe.AddIngredient(mod.ItemType("UsedGadget"), 2);
+			recipe.AddIngredient(ItemType<UsedGadget>(), 2);
 			recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

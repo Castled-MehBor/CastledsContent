@@ -1,6 +1,8 @@
-﻿using Terraria;
+﻿using CastledsContent.Projectiles.DualForce.Friendly;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.DualForce.Loot.Nasha
 {
@@ -30,7 +32,7 @@ namespace CastledsContent.Items.DualForce.Loot.Nasha
             item.rare = ItemRarityID.LightRed;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
-            item.shoot = mod.ProjectileType("HallowOrb1Friendly");
+            item.shoot = ProjectileType<HallowOrb1Friendly>();
             item.shootSpeed = 5f;
         }
         public override bool CanUseItem(Player player)
@@ -38,59 +40,23 @@ namespace CastledsContent.Items.DualForce.Loot.Nasha
             if (Main.hardMode && player.ZoneHoly)
             {
                 item.damage = 80;
-                item.ranged = true;
-                item.noUseGraphic = true;
-                item.width = 26;
-                item.height = 26;
                 item.useTime = 40;
                 item.useAnimation = 40;
-                item.useStyle = ItemUseStyleID.SwingThrow;
-                item.noMelee = true;
                 item.knockBack = 12;
-                item.value = 50000;
-                item.rare = ItemRarityID.LightRed;
-                item.UseSound = SoundID.Item1;
-                item.autoReuse = true;
-                item.shoot = mod.ProjectileType("HallowOrb1Friendly");
-                item.shootSpeed = 5f;
             }
             else if (Main.hardMode)
             {
                 item.damage = 70;
-                item.ranged = true;
-                item.noUseGraphic = true;
-                item.width = 26;
-                item.height = 26;
                 item.useTime = 50;
                 item.useAnimation = 50;
-                item.useStyle = ItemUseStyleID.SwingThrow;
-                item.noMelee = true;
                 item.knockBack = 9;
-                item.value = 50000;
-                item.rare = ItemRarityID.LightRed;
-                item.UseSound = SoundID.Item1;
-                item.autoReuse = true;
-                item.shoot = mod.ProjectileType("HallowOrb1Friendly");
-                item.shootSpeed = 5f;
             }
             else
             {
                 item.damage = 60;
-                item.noUseGraphic = true;
-                item.ranged = true;
-                item.width = 26;
-                item.height = 26;
                 item.useTime = 60;
                 item.useAnimation = 60;
-                item.useStyle = ItemUseStyleID.SwingThrow;
-                item.noMelee = true;
                 item.knockBack = 8;
-                item.value = 50000;
-                item.rare = ItemRarityID.LightRed;
-                item.UseSound = SoundID.Item1;
-                item.autoReuse = true;
-                item.shoot = mod.ProjectileType("HallowOrb1Friendly");
-                item.shootSpeed = 5f;
             }
             return true;
         }

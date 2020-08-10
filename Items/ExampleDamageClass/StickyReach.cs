@@ -1,7 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CastledsContent.Buffs;
+using CastledsContent.Projectiles;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.ExampleDamageClass
@@ -26,22 +26,12 @@ namespace CastledsContent.Items.ExampleDamageClass
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
             item.expert = true;
-            item.useStyle = 3;
+            item.useStyle = ItemUseStyleID.Stabbing;
             item.noUseGraphic = true;
-            item.shoot = mod.ProjectileType("StickyReachP");
+            item.shoot = ProjectileType<StickyReachP>();
             item.shootSpeed = 4;
         }
 
-        public override bool CanUseItem(Player player)
-        {
-            if (player.HasBuff(mod.BuffType("KingSlimeBuff")))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        public override bool CanUseItem(Player player) => player.HasBuff(BuffType<KingSlimeBuff>());
     }
 }

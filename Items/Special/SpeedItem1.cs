@@ -1,6 +1,8 @@
-﻿using Terraria;
+﻿using CastledsContent.Items.Epic;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.Special
 {
@@ -54,8 +56,8 @@ namespace CastledsContent.Items.Special
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType("TitaniumCrystalBadge"), 3);
-            recipe.AddIngredient(mod.ItemType("CrimtaneScrap"), 3);
+            recipe.AddIngredient(ItemType<TitaniumCrystalBadge>(), 3);
+            recipe.AddIngredient(ItemType<CrimtaneScrap>(), 3);
             recipe.AddIngredient(ItemID.LifeFruit, 5);
             recipe.AddIngredient(ItemID.EyeoftheGolem);
             recipe.AddIngredient(ItemID.MartianConduitPlating, 250);

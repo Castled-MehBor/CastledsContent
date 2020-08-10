@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using static Terraria.ModLoader.ModContent;
 
@@ -26,16 +25,13 @@ namespace CastledsContent.Items.ExampleDamageClass
             item.useAnimation = 24;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
-            item.rare = 2;
-            item.useStyle = 1;
+            item.rare = ItemRarityID.Green;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.shoot = mod.ProjectileType("ExampleDamageProjectile");
             item.shootSpeed = 8;
         }
 
-        public override bool AltFunctionUse(Player player)
-        {
-            return true;
-        }
+        public override bool AltFunctionUse(Player player) => true;
 
         public override bool CanUseItem(Player player)
         {
@@ -50,10 +46,7 @@ namespace CastledsContent.Items.ExampleDamageClass
             }
             return base.CanUseItem(player);
         }
-        public override bool CanRightClick()
-        {
-            return true;
-        }
+        public override bool CanRightClick() => true;
 
         public override void RightClick(Player player)
         {

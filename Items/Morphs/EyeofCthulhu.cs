@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using CastledsContent.Buffs;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -28,7 +29,7 @@ namespace CastledsContent.Items.Morphs
         {
             if (!Main.dayTime)
             {
-                player.AddBuff(mod.BuffType("EyeofCthulhuBuff"), 1);
+                player.AddBuff(BuffType<EyeofCthulhuBuff>(), 1);
                 player.wingTimeMax = 9999;
             }
         }

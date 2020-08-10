@@ -1,4 +1,5 @@
 ﻿using System;
+using CastledsContent.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -23,20 +24,17 @@ namespace CastledsContent.Items.Epic
             item.height = 36;
             item.useTime = 85;
             item.useAnimation = 85;
-            item.useStyle = 5;
+            item.useStyle = ItemUseStyleID.HoldingOut;
             item.noMelee = true;
             item.knockBack = 4;
             item.value = 12500;
-            item.rare = 5;
+            item.rare = ItemRarityID.Pink;
             item.UseSound = SoundID.Item11;
             item.autoReuse = true;
-            item.shoot = mod.ProjectileType("CursedBullet");
+            item.shoot = ProjectileType<CursedBullet>();
             item.shootSpeed = 2f;
         }
-        public override Vector2? HoldoutOffset()
-        {
-            return new Vector2(-9, -4);
-        }
+        public override Vector2? HoldoutOffset() => new Vector2(-9, -4);
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {

@@ -1,7 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CastledsContent.Buffs;
+using CastledsContent.Projectiles;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.ExampleDamageClass
@@ -25,25 +26,22 @@ namespace CastledsContent.Items.ExampleDamageClass
             item.useAnimation = 45;
             item.autoReuse = true;
             item.expert = true;
-            item.useStyle = 3;
+            item.useStyle = ItemUseStyleID.Stabbing;
             item.noUseGraphic = true;
-            item.shoot = mod.ProjectileType("TackleP");
+            item.shoot = ProjectileType<TackleP>();
             item.shootSpeed = 2;
         }
 
         public override bool CanUseItem(Player player)
         {
-            if (player.HasBuff(mod.BuffType("EyeofCthulhuBuff")))
+            if (player.HasBuff(BuffType<EyeofCthulhuBuff>()))
             {
                 Main.PlaySound(SoundID.Roar, player.position, 0);
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
-            public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             int numberProjectiles = 15;
             for (int i = 0; i < numberProjectiles; i++)
@@ -56,12 +54,8 @@ namespace CastledsContent.Items.ExampleDamageClass
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
-            if (player.HasBuff(mod.BuffType("EmptySyringe")))
-            {
-                {
-                    player.AddBuff(mod.BuffType("AdrenalineBuff"), 180);
-                }
-            }
+            if (player.HasBuff(BuffType<EmptySyringe>()))
+                player.AddBuff(BuffType<AdrenalineBuff>(), 180);
         }
     }
 }

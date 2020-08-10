@@ -1,8 +1,8 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using CastledsContent.NPCs.Boss;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.Epic
 {
@@ -26,21 +26,18 @@ namespace CastledsContent.Items.Epic
             item.maxStack = 99;
             item.useTime = 9;
             item.useAnimation = 9;
-            item.useStyle = 1;
-            item.rare = 4;
+            item.useStyle = ItemUseStyleID.SwingThrow;
+            item.rare = ItemRarityID.LightRed;
             item.UseSound = SoundID.Item1;
             item.consumable = true;
         }
 
-        public override bool CanUseItem(Player player)
-        {
-            return player.ZoneCorrupt && Main.hardMode;
-        }
+        public override bool CanUseItem(Player player) => player.ZoneCorrupt && Main.hardMode;
 
         public override bool UseItem(Player player)
         {
-            NPC.SpawnOnPlayer(player.whoAmI, mod.NPCType("CorruptionBoss"));
-            NPC.SpawnOnPlayer(player.whoAmI, mod.NPCType("BreatherHead"));
+            NPC.SpawnOnPlayer(player.whoAmI, NPCType<CorruptionBoss>());
+            NPC.SpawnOnPlayer(player.whoAmI, NPCType<BreatherHead>());
             Main.PlaySound(SoundID.Shatter, player.position, 0);
             return true;
         }

@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.Special
 {
@@ -83,7 +84,7 @@ namespace CastledsContent.Items.Special
                 recipe.AddIngredient(calamityMod.ItemType("BlazingCore"), 5);
                 recipe.AddIngredient(calamityMod.ItemType("ElysianWings"));
                 recipe.AddIngredient(calamityMod.ItemType("ElysianAegis"));
-                recipe.AddIngredient(mod.ItemType("SpeedItem1"));
+                recipe.AddIngredient(ItemType<SpeedItem1>());
                 recipe.AddTile(TileID.LunarCraftingStation);
                 recipe.SetResult(this);
                 recipe.AddRecipe();

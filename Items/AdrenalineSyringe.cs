@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using CastledsContent.Buffs;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
@@ -27,14 +28,14 @@ namespace CastledsContent.Items
             item.useTurn = true;
             item.consumable = false;
             item.expert = true;
-            item.buffType = BuffType<Buffs.EmptySyringe>();
+            item.buffType = BuffType<EmptySyringe>();
             item.buffTime = 1800;
         }
         public override bool CanUseItem(Player player)
         {
-            if (!player.HasBuff(mod.BuffType("EmptySyringe")))
+            if (!player.HasBuff(BuffType<EmptySyringe>()))
             {
-                item.buffType = BuffType<Buffs.EmptySyringe>();
+                item.buffType = BuffType<EmptySyringe>();
                 item.buffTime = 1800;
                 Main.PlaySound(SoundID.NPCHit, player.position, 0);
                 return true;

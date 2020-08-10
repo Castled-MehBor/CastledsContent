@@ -2,6 +2,8 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using static Terraria.ModLoader.ModContent;
+using CastledsContent.Projectiles.DualForce.Friendly;
 
 namespace CastledsContent.Items.DualForce.Loot.Nasha
 {
@@ -32,7 +34,7 @@ namespace CastledsContent.Items.DualForce.Loot.Nasha
             item.rare = ItemRarityID.LightRed;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
-            item.shoot = mod.ProjectileType("PinkBottleFriendly");
+            item.shoot = ProjectileType<PinkBottleFriendly>();
             item.shootSpeed = 8f;
         }
         public override bool CanUseItem(Player player)
@@ -40,66 +42,33 @@ namespace CastledsContent.Items.DualForce.Loot.Nasha
             if (Main.hardMode && player.ZoneHoly)
             {
                 item.damage = 60;
-                item.magic = true;
-                item.width = 24;
                 item.mana = 8;
-                item.height = 24;
                 item.useTime = 30;
                 item.useAnimation = 30;
-                item.useStyle = ItemUseStyleID.SwingThrow;
-                item.noMelee = true;
-                item.knockBack = 4;
-                item.value = 50000;
-                item.rare = ItemRarityID.LightRed;
-                item.UseSound = SoundID.Item1;
-                item.autoReuse = true;
-                item.shoot = mod.ProjectileType("PinkBottleFriendly");
                 item.shootSpeed = 12f;
             }
             else if (Main.hardMode)
             {
                 item.damage = 50;
-                item.magic = true;
-                item.width = 24;
-                item.height = 24;
                 item.useTime = 40;
                 item.mana = 8;
                 item.useAnimation = 40;
-                item.useStyle = ItemUseStyleID.SwingThrow;
-                item.noMelee = true;
-                item.knockBack = 4;
-                item.value = 50000;
-                item.rare = ItemRarityID.LightRed;
-                item.UseSound = SoundID.Item1;
-                item.autoReuse = true;
-                item.shoot = mod.ProjectileType("PinkBottleFriendly");
                 item.shootSpeed = 9f;
             }
             else
             {
                 item.damage = 40;
-                item.magic = true;
-                item.width = 24;
-                item.height = 24;
                 item.useTime = 45;
                 item.mana = 8;
                 item.useAnimation = 45;
-                item.useStyle = ItemUseStyleID.SwingThrow;
-                item.noMelee = true;
-                item.knockBack = 4;
-                item.value = 50000;
-                item.rare = ItemRarityID.LightRed;
-                item.UseSound = SoundID.Item1;
-                item.autoReuse = true;
-                item.shoot = mod.ProjectileType("PinkBottleFriendly");
                 item.shootSpeed = 8f;
             }
             return true;
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("PinkBottleFriendly"), damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X - 75, position.Y, speedX, speedY, mod.ProjectileType("PinkBottleFriendly"), damage, knockBack, player.whoAmI);
+            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ProjectileType<PinkBottleFriendly>(), damage, knockBack, player.whoAmI);
+            Projectile.NewProjectile(position.X - 75, position.Y, speedX, speedY, ProjectileType<PinkBottleFriendly>(), damage, knockBack, player.whoAmI);
             return false;
         }
     }

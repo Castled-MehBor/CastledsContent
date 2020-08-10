@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.Techno
 {
@@ -22,7 +23,7 @@ namespace CastledsContent.Items.Techno
             item.height = 34;
             item.useTime = 24;
             item.useAnimation = 24;
-            item.useStyle = 5;
+            item.useStyle = ItemUseStyleID.HoldingOut;
             item.noMelee = true;
 			item.noUseGraphic = true;
             item.knockBack = 5;
@@ -31,7 +32,7 @@ namespace CastledsContent.Items.Techno
             item.mana = 6;
             item.UseSound = SoundID.Item8;           
             item.autoReuse = true;
-            item.shoot = 34;
+            item.shoot = ProjectileID.Flamelash;
             item.shootSpeed = 12f;  
 		}
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
@@ -77,7 +78,7 @@ namespace CastledsContent.Items.Techno
 		public override void AddRecipes() 
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(mod.ItemType("EmptyCodebreakerRune"), 1);
+			recipe.AddIngredient(ItemType<EmptyCodebreakerRune>(), 1);
 			recipe.AddIngredient(ItemID.HellstoneBar, 8);
 			recipe.AddIngredient(ItemID.FlowerofFire);
 			recipe.AddIngredient(ItemID.Fireblossom, 5);
@@ -87,7 +88,7 @@ namespace CastledsContent.Items.Techno
 			recipe.AddRecipe();
 
 			recipe = new ModRecipe(mod);
-			recipe.AddIngredient(mod.ItemType("EmptyCodebreakerRune"), 1);
+			recipe.AddIngredient(ItemType<EmptyCodebreakerRune>(), 1);
 			recipe.AddIngredient(ItemID.HellstoneBar, 8);
 			recipe.AddIngredient(ItemID.Flamelash);
 			recipe.AddIngredient(ItemID.Fireblossom, 5);

@@ -1,8 +1,8 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using CastledsContent.NPCs.Boss;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.Epic
 {
@@ -25,21 +25,18 @@ namespace CastledsContent.Items.Epic
             item.maxStack = 99;
             item.useTime = 15;
             item.useAnimation = 15;
-            item.useStyle = 5;
-            item.rare = 4;
+            item.useStyle = ItemUseStyleID.HoldingOut;
+            item.rare = ItemRarityID.LightRed;
             item.UseSound = SoundID.Item1;
             item.consumable = true;
         }
 
-        public override bool CanUseItem(Player player)
-        {
-            return player.ZoneCrimson && Main.hardMode;
-        }
+        public override bool CanUseItem(Player player) => player.ZoneCrimson && Main.hardMode;
 
         public override bool UseItem(Player player)
         {
-            NPC.SpawnOnPlayer(player.whoAmI, mod.NPCType("SkeletonGuard1"));
-            NPC.SpawnOnPlayer(player.whoAmI, mod.NPCType("FleshGuard1"));
+            NPC.SpawnOnPlayer(player.whoAmI, NPCType<SkeletonGuard1>());
+            NPC.SpawnOnPlayer(player.whoAmI, NPCType<FleshGuard1>());
             Main.PlaySound(SoundID.Unlock, player.position, 0);
             return true;
         }

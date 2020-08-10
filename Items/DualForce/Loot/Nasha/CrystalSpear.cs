@@ -1,6 +1,8 @@
-﻿using Terraria;
+﻿using CastledsContent.Projectiles.DualForce.Friendly;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.DualForce.Loot.Nasha
 {
@@ -30,7 +32,7 @@ namespace CastledsContent.Items.DualForce.Loot.Nasha
             item.rare = ItemRarityID.LightRed;
             item.UseSound = SoundID.DD2_WitherBeastHurt;
             item.autoReuse = true;
-            item.shoot = mod.ProjectileType("CrystalSpearFriendly");
+            item.shoot = ProjectileType<CrystalSpearFriendly>();
             item.shootSpeed = 8f;
         }
         public override bool CanUseItem(Player player)
@@ -38,58 +40,22 @@ namespace CastledsContent.Items.DualForce.Loot.Nasha
             if (Main.hardMode && player.ZoneHoly)
             {
                 item.damage = 90;
-                item.melee = true;
-                item.noUseGraphic = true;
-                item.width = 46;
-                item.height = 46;
                 item.useTime = 50;
                 item.useAnimation = 50;
-                item.useStyle = ItemUseStyleID.SwingThrow;
-                item.noMelee = true;
-                item.knockBack = 3;
-                item.value = 50000;
-                item.rare = ItemRarityID.LightRed;
-                item.UseSound = SoundID.DD2_WitherBeastHurt;
-                item.autoReuse = true;
-                item.shoot = mod.ProjectileType("CrystalSpearFriendly");
                 item.shootSpeed = 12f;
             }
             else if (Main.hardMode)
             {
                 item.damage = 80;
-                item.melee = true;
-                item.noUseGraphic = true;
-                item.width = 46;
-                item.height = 46;
                 item.useTime = 60;
                 item.useAnimation = 60;
-                item.useStyle = ItemUseStyleID.SwingThrow;
-                item.noMelee = true;
-                item.knockBack = 3;
-                item.value = 50000;
-                item.rare = ItemRarityID.LightRed;
-                item.UseSound = SoundID.DD2_WitherBeastHurt;
-                item.autoReuse = true;
-                item.shoot = mod.ProjectileType("CrystalSpearFriendly");
                 item.shootSpeed = 10f;
             }
             else
             {
                 item.damage = 70;
-                item.melee = true;
-                item.noUseGraphic = true;
-                item.width = 46;
-                item.height = 46;
                 item.useTime = 75;
                 item.useAnimation = 75;
-                item.useStyle = ItemUseStyleID.SwingThrow;
-                item.noMelee = true;
-                item.knockBack = 3;
-                item.value = 50000;
-                item.rare = ItemRarityID.LightRed;
-                item.UseSound = SoundID.DD2_WitherBeastHurt;
-                item.autoReuse = true;
-                item.shoot = mod.ProjectileType("CrystalSpearFriendly");
                 item.shootSpeed = 8f;
             }
             return true;

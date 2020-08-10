@@ -1,5 +1,6 @@
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.Techno
 {
@@ -36,7 +37,7 @@ namespace CastledsContent.Items.Techno
 			recipe.AddIngredient(ItemID.BeeGun, 1);
 			recipe.AddIngredient(ItemID.Beenade, 600);
 			recipe.AddIngredient(ItemID.BeesKnees, 1);
-			recipe.AddIngredient(mod.ItemType("UsedGadget"), 1);
+			recipe.AddIngredient(ItemType<UsedGadget>(), 1);
 			recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

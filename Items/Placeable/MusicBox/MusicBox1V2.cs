@@ -1,5 +1,7 @@
-﻿using Terraria.ID;
+﻿using CastledsContent.Tiles;
+using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.Placeable.MusicBox
 {
@@ -20,7 +22,7 @@ namespace CastledsContent.Items.Placeable.MusicBox
 			item.useTime = 10;
 			item.autoReuse = true;
 			item.consumable = true;
-			item.createTile = mod.TileType("MusicBoxEquality2");
+			item.createTile = TileType<MusicBoxEquality2>();
 			item.width = 32;
 			item.height = 22;
 			item.rare = ItemRarityID.LightRed;

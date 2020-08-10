@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using CastledsContent.Buffs;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,9 +28,7 @@ namespace CastledsContent.Items.Morphs
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (player.ZoneCorrupt)
-            {
-                player.AddBuff(mod.BuffType("EaterofWorldsBuff"), 1);
-            }
+                player.AddBuff(BuffType<EaterofWorldsBuff>(), 1);
         }
     }
 }

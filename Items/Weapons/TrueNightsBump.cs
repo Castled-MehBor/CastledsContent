@@ -2,6 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.Weapons
 {
@@ -53,8 +54,8 @@ namespace CastledsContent.Items.Weapons
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType("NightsBump"), 1);
-            recipe.AddIngredient(mod.ItemType("UsedHeroMagazine"), 1);
+            recipe.AddIngredient(ItemType<NightsBump>(), 1);
+            recipe.AddIngredient(ItemType<UsedHeroMagazine>(), 1);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();

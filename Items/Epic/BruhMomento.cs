@@ -1,6 +1,8 @@
-﻿using Terraria;
+﻿using CastledsContent.Projectiles;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.Epic
 {
@@ -27,17 +29,14 @@ namespace CastledsContent.Items.Epic
                 item.useStyle = 1;
                 item.knockBack = 1;
                 item.value = 75000;
-                item.rare = 6;
+                item.rare = ItemRarityID.LightPurple;
                 item.UseSound = SoundID.Item1;
                 item.autoReuse = true;
-                item.shoot = mod.ProjectileType("SlashRed");
+                item.shoot = ProjectileType<SlashRed>();
                 item.shootSpeed = 5f;
             
         }
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
-        {
-            target.immune[255] = 0;
-        }
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit) => target.immune[255] = 0;
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
@@ -47,7 +46,7 @@ namespace CastledsContent.Items.Epic
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(this);
-            recipe.SetResult(mod.ItemType("EpicQuartz"));
+            recipe.SetResult(ItemType<EpicQuartz>());
             recipe.AddRecipe();
         }
     }

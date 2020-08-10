@@ -1,4 +1,4 @@
-﻿using System;
+﻿using CastledsContent.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -29,42 +29,18 @@ namespace CastledsContent.Items.Epic
             item.noMelee = true;
             item.knockBack = 2;
             item.value = 50000;
-            item.rare = 10;
+            item.rare = ItemRarityID.Red;
             item.UseSound = SoundID.Item4;
             item.autoReuse = true;
-            item.shoot = 88;
+            item.shoot = ProjectileID.PurpleLaser;
             item.shootSpeed = 22f;
         }
-        public override Vector2? HoldoutOffset()
-        {
-            return new Vector2(-5, -2);
-        }
+        public override Vector2? HoldoutOffset() => new Vector2(-5, -2);
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("LightBolt"), damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("LightBolt"), damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("LightBolt"), damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("LightBolt"), damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("LightBolt"), damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("LightBolt"), damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("LightBolt"), damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("LightBolt"), damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("LightBolt"), damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("LightBolt"), damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("LightBolt"), damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("LightBolt"), damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("LightBolt"), damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("LightBolt"), damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("LightBolt"), damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("LightBolt"), damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("LightBolt"), damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("LightBolt"), damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("LightBolt"), damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("LightBolt"), damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("LightBolt"), damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("LightBolt"), damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("LightBolt"), damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("LightBolt"), damage, knockBack, player.whoAmI);
+            for (int i = 0; i < 24; i++)
+                Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ProjectileType<LightBolt>(), damage, knockBack, player.whoAmI);
+
             return false;
         }
     }

@@ -1,5 +1,7 @@
-﻿using Terraria.ID;
+﻿using CastledsContent.Tiles;
+using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.Placeable.MusicBox
 {
@@ -20,7 +22,7 @@ namespace CastledsContent.Items.Placeable.MusicBox
 			item.useTime = 10;
 			item.autoReuse = true;
 			item.consumable = true;
-			item.createTile = mod.TileType("MusicBoxEquality");
+			item.createTile = TileType<MusicBoxEquality>();
 			item.width = 32;
 			item.height = 22;
 			item.rare = ItemRarityID.LightRed;
@@ -32,11 +34,11 @@ namespace CastledsContent.Items.Placeable.MusicBox
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(this);
 			recipe.AddTile(TileID.TinkerersWorkbench);
-			recipe.SetResult(mod.ItemType("MusicBox1V2"));
+			recipe.SetResult(ItemType<MusicBox1V2>());
 			recipe.AddRecipe();
 
 			recipe = new ModRecipe(mod);
-			recipe.AddIngredient(mod.ItemType("MusicBox1V2"));
+			recipe.AddIngredient(ItemType<MusicBox1V2>());
 			recipe.AddTile(TileID.TinkerersWorkbench);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

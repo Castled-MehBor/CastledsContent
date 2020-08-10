@@ -1,4 +1,5 @@
 ﻿using System;
+using CastledsContent.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -29,16 +30,13 @@ namespace CastledsContent.Items.Epic
             item.noMelee = true;
             item.knockBack = 2;
             item.value = 50000;
-            item.rare = 4;
+            item.rare = ItemRarityID.LightRed;
             item.UseSound = SoundID.Item10;
             item.autoReuse = true;
-            item.shoot = 88;
+            item.shoot = ProjectileID.PurpleLaser;
             item.shootSpeed = 22f;
         }
-        public override Vector2? HoldoutOffset()
-        {
-            return new Vector2(-7, 0);
-        }
+        public override Vector2? HoldoutOffset() => new Vector2(-7, 0);
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
@@ -49,7 +47,7 @@ namespace CastledsContent.Items.Epic
             {
                 Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f; // Watch out for dividing by 0 if there is only 1 projectile.
                 Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
-                Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("DeathLaserFriendly"), damage, knockBack, player.whoAmI);
+                Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ProjectileType<DeathLaserFriendly>(), damage, knockBack, player.whoAmI);
                 Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ProjectileID.GreenLaser, damage, knockBack, player.whoAmI);
                 Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ProjectileID.GreenLaser, damage, knockBack, player.whoAmI);
                 Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ProjectileID.GreenLaser, damage, knockBack, player.whoAmI);

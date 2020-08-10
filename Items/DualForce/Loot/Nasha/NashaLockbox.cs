@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.DualForce.Loot.Nasha
 {
@@ -23,29 +24,25 @@ namespace CastledsContent.Items.DualForce.Loot.Nasha
             item.rare = ItemRarityID.LightRed;
         }
 
-        public override bool CanRightClick()
-        {
-            return true;
-        }
+        public override bool CanRightClick() => true;
 
         public override void RightClick(Player player)
         {
             player.QuickSpawnItem(ItemID.GoldCoin, 15);
-            int num = Main.rand.Next(3);
-            if (num == 0)
+            switch(Main.rand.Next(3))
             {
-                player.QuickSpawnItem(mod.ItemType("PinkPotion"));
-                player.QuickSpawnItem(mod.ItemType("OrbOfHallow"));
-            }
-            if (num == 1)
-            {
-                player.QuickSpawnItem(mod.ItemType("PinkPotion"));
-                player.QuickSpawnItem(mod.ItemType("CrystalSpear"));
-            }
-            if (num == 2)
-            {
-                player.QuickSpawnItem(mod.ItemType("OrbOfHallow"));
-                player.QuickSpawnItem(mod.ItemType("CrystalSpear"));
+                case 0:
+                    player.QuickSpawnItem(ItemType<PinkPotion>());
+                    player.QuickSpawnItem(ItemType<OrbOfHallow>());
+                    break;
+                case 1:
+                    player.QuickSpawnItem(ItemType<PinkPotion>());
+                    player.QuickSpawnItem(ItemType<CrystalSpear>());
+                    break;
+                case 2:
+                    player.QuickSpawnItem(ItemType<OrbOfHallow>());
+                    player.QuickSpawnItem(ItemType<CrystalSpear>());
+                    break;
             }
         }
     }

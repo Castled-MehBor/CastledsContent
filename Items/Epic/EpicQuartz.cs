@@ -1,5 +1,6 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.Epic
 {
@@ -17,7 +18,7 @@ namespace CastledsContent.Items.Epic
             item.height = 22;
             item.maxStack = 999;
             item.value = 100000;
-            item.rare = 8;
+            item.rare = ItemRarityID.Yellow;
         }
         public override void AddRecipes()
         {
@@ -26,7 +27,7 @@ namespace CastledsContent.Items.Epic
             recipe.AddIngredient(ItemID.BeamSword);
             recipe.AddIngredient(this);
             recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(mod.ItemType("EnchantedSwordbutBetter"));
+            recipe.SetResult(ItemType<EnchantedSwordbutBetter>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
@@ -35,7 +36,7 @@ namespace CastledsContent.Items.Epic
             recipe.AddIngredient(ItemID.Beenade, 50);
             recipe.AddIngredient(this);
             recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(mod.ItemType("QueenBee"));
+            recipe.SetResult(ItemType<QueenBee>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
@@ -43,7 +44,7 @@ namespace CastledsContent.Items.Epic
             recipe.AddIngredient(ItemID.LaserRifle);
             recipe.AddIngredient(this);
             recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(mod.ItemType("LaserTron"));
+            recipe.SetResult(ItemType<LaserTron>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
@@ -52,14 +53,14 @@ namespace CastledsContent.Items.Epic
             recipe.AddIngredient(ItemID.MartianConduitPlating, 250);
             recipe.AddIngredient(this);
             recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(mod.ItemType("BayonettaKiller"));
+            recipe.SetResult(ItemType<BayonettaKiller>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.FetidBaghnakhs);
             recipe.AddIngredient(this);
             recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(mod.ItemType("BruhMomento"));
+            recipe.SetResult(ItemType<BruhMomento>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
@@ -68,7 +69,7 @@ namespace CastledsContent.Items.Epic
             recipe.AddIngredient(ItemID.FragmentVortex, 25);
             recipe.AddIngredient(this);
             recipe.AddTile(TileID.LunarCraftingStation);
-            recipe.SetResult(mod.ItemType("ShinyStaff"));
+            recipe.SetResult(ItemType<ShinyStaff>());
             recipe.AddRecipe();
         }
     }

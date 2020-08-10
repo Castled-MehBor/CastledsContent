@@ -26,7 +26,7 @@ namespace CastledsContent.Items.Morphs
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.AddBuff(mod.BuffType("KingSlimeBuff"), 1);
+            player.AddBuff(BuffType<KingSlimeBuff>(), 1);
         }
     }
 }

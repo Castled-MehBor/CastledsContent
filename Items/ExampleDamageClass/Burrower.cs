@@ -1,7 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CastledsContent.Buffs;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.ExampleDamageClass
@@ -30,16 +29,6 @@ namespace CastledsContent.Items.ExampleDamageClass
             item.autoReuse = true;
         }
 
-        public override bool CanUseItem(Player player)
-        {
-            if (player.HasBuff(mod.BuffType("EaterofWorldsBuff")))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        public override bool CanUseItem(Player player) => player.HasBuff(BuffType<EaterofWorldsBuff>());
     }
 }
