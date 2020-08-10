@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using CastledsContent.Buffs;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 

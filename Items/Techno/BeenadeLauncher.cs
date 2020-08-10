@@ -20,13 +20,13 @@ namespace CastledsContent.Items.Techno
 			item.height = 22;
 			item.useTime = 40;
 			item.useAnimation = 40;
-			item.useStyle = 5;
+			item.useStyle = ItemUseStyleID.HoldingOut;
 			item.noMelee = true;
 			item.knockBack = 1;
 			item.value = 70000;
-			item.rare = 3;
+			item.rare = ItemRarityID.Orange;
 			item.UseSound = SoundID.Item11;
-			item.shoot = 183;
+			item.shoot = ProjectileID.Beenade;
             item.shootSpeed = 12f;
 			item.autoReuse = true;
 		}
