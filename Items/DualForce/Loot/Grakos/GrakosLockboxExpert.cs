@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.DualForce.Loot.Grakos
 {
@@ -32,9 +33,9 @@ namespace CastledsContent.Items.DualForce.Loot.Grakos
         public override void RightClick(Player player)
         {
             player.QuickSpawnItem(ItemID.GoldCoin, 75);
-            player.QuickSpawnItem(mod.ItemType("PreciousFlame"));
-            player.QuickSpawnItem(mod.ItemType("DeadeyeScroll"));
-            player.QuickSpawnItem(mod.ItemType("MusicBox1"));
+            player.QuickSpawnItem(ItemType<PreciousFlame>());
+            player.QuickSpawnItem(ItemType<DeadeyeScroll>());
+            player.QuickSpawnItem(ItemType<Placeable.MusicBox.MusicBox1>());
         }
     }
 }

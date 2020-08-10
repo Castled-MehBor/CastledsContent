@@ -1,6 +1,9 @@
-﻿using Terraria;
+﻿using CastledsContent.Items.Epic;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using CastledsContent.Utilities;
+using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.BossBags
 {
@@ -18,80 +21,46 @@ namespace CastledsContent.Items.BossBags
             item.consumable = true;
             item.width = 32;
             item.height = 32;
-            item.rare = 9;
+            item.rare = ItemRarityID.Cyan;
             item.expert = true;
         }
 
-        public override bool CanRightClick()
-        {
-            return true;
-        }
+        public override bool CanRightClick() => true;
 
         public override void RightClick(Player player)
         {
-            player.QuickSpawnItem(mod.ItemType("CrimtaneScrap"), 1);
+            player.QuickSpawnItem(ItemType<CrimtaneScrap>());
             player.QuickSpawnItem(ItemID.GoldCoin, 45);
             player.QuickSpawnItem(ItemID.Ichor, Main.rand.Next(30, 52));
             player.QuickSpawnItem(ItemID.SoulofNight, Main.rand.Next(18, 36));
-            int num = Main.rand.Next(4);
-            if (num == 0)
-            {
-                player.QuickSpawnItem(mod.ItemType("RapidBlaster"), 1);
-            }
-            if (num == 1)
-            {
-                player.QuickSpawnItem(ItemID.GoldenShower);
-            }
-            if (num == 2)
-            {
-                player.QuickSpawnItem(ItemID.ThePlan);
-            }
-            if (num == 3)
-            {
-                player.QuickSpawnItem(ItemID.MedicatedBandage);
-            }
-            if (Main.rand.Next(2) == 0)
-            {
-                player.QuickSpawnItem(mod.ItemType("EpicQuartz"));
-            }
-            if (Main.rand.Next(9) == 0)
-            {
-                player.QuickSpawnItem(mod.ItemType("EnchantedSwordbutBetter"), 1);
-            }
 
-            if (Main.rand.Next(9) == 0)
+            int itemTypeToSpawn = 0;
+            switch (Main.rand.Next(4))
             {
-                player.QuickSpawnItem(mod.ItemType("QueenBee"), 1);
+                case 0:
+                    itemTypeToSpawn = ItemType<RapidBlaster>();
+                    break;
+                case 1:
+                    itemTypeToSpawn = ItemID.GoldenShower;
+                    break;
+                case 2:
+                    itemTypeToSpawn = ItemID.ThePlan;
+                    break;
+                case 3:
+                    itemTypeToSpawn = ItemID.MedicatedBandage;
+                    break;
+                default:
+                    break;
             }
+            player.QuickSpawnItem(itemTypeToSpawn);
 
-            if (Main.rand.Next(9) == 0)
-            {
-                player.QuickSpawnItem(mod.ItemType("LaserTron"), 1);
-            }
-
-            if (Main.rand.Next(2) == 0)
-            {
-                if (Main.hardMode && NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
-                {
-                    player.QuickSpawnItem(mod.ItemType("BruhMomento"), 1);
-                }
-            }
-
-            if (Main.rand.Next(2) == 0)
-            {
-                if (Main.hardMode && NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3 && NPC.downedPlantBoss && NPC.downedGolemBoss)
-                {
-                    player.QuickSpawnItem(mod.ItemType("BayonettaKiller"), 1);
-                }
-            }
-
-            if (Main.rand.Next(2) == 0)
-            {
-                if (Main.hardMode && NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3 && NPC.downedPlantBoss && NPC.downedGolemBoss && NPC.downedAncientCultist)
-                {
-                    player.QuickSpawnItem(mod.ItemType("ShinyStaff"), 1);
-                }
-            }
+            MiscUtilities.SpawnDropItem(player, 2, ItemType<EpicQuartz>());
+            MiscUtilities.SpawnDropItem(player, 2, ItemType<BruhMomento>(), NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3);
+            MiscUtilities.SpawnDropItem(player, 2, ItemType<BayonettaKiller>(), NPC.downedGolemBoss);
+            MiscUtilities.SpawnDropItem(player, 2, ItemType<ShinyStaff>(), NPC.downedAncientCultist);
+            MiscUtilities.SpawnDropItem(player, 9, ItemType<EnchantedSwordbutBetter>());
+            MiscUtilities.SpawnDropItem(player, 9, ItemType<QueenBee>());
+            MiscUtilities.SpawnDropItem(player, 9, ItemType<LaserTron>());
         }
     }
 }

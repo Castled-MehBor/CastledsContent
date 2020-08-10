@@ -1,5 +1,6 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.BoneDweller
 {
@@ -17,7 +18,7 @@ namespace CastledsContent.Items.BoneDweller
             item.height = 38;
             item.maxStack = 99;
             item.value = 25000;
-            item.rare = 4;
+            item.rare = ItemRarityID.LightRed;
         }
 
         public override void AddRecipes()
@@ -30,7 +31,7 @@ namespace CastledsContent.Items.BoneDweller
             recipe.AddIngredient(ItemID.SoulofLight, 5);
             recipe.AddIngredient(ItemID.SoulofNight, 5);
             recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(mod.ItemType("Hurricane"));
+            recipe.SetResult(ItemType<Hurricane>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
@@ -41,7 +42,7 @@ namespace CastledsContent.Items.BoneDweller
             recipe.AddIngredient(ItemID.Bone, 75);
             recipe.AddIngredient(ItemID.Sapphire, 3);
             recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(mod.ItemType("AquaEclipse"));
+            recipe.SetResult(ItemType<AquaEclipse>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
@@ -52,7 +53,7 @@ namespace CastledsContent.Items.BoneDweller
             recipe.AddIngredient(ItemID.Bone, 75);
             recipe.AddIngredient(ItemID.Sapphire, 3);
             recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(mod.ItemType("LockSmith"));
+            recipe.SetResult(ItemType<LockSmith>());
             recipe.AddRecipe();
         }
     }

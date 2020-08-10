@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.BoneDweller
 {
@@ -21,10 +22,10 @@ namespace CastledsContent.Items.BoneDweller
             item.width = 44;
             item.height = 40;
             item.maxStack = 99;
-            item.rare = 3;
+            item.rare = ItemRarityID.Orange;
             item.useAnimation = 25;
             item.useTime = 25;
-            item.useStyle = 4;
+            item.useStyle = ItemUseStyleID.HoldingUp;
             item.UseSound = SoundID.Item14;
             item.consumable = true;
         }
@@ -38,13 +39,13 @@ namespace CastledsContent.Items.BoneDweller
         {
             if (CastledWorld.downedbossHead)
             {
-                NPC.SpawnOnPlayer(player.whoAmI, mod.NPCType("BossHead"));
+                NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.Boss.BossHead>());
                 Main.PlaySound(SoundID.Tink, player.position, 0);
                 return true;
             }
             else
             {
-                NPC.SpawnOnPlayer(player.whoAmI, mod.NPCType("BossHead"));
+                NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.Boss.BossHead>());
                 Main.PlaySound(SoundID.Tink, player.position, 0);
                 Main.PlaySound(SoundID.Roar, player.position, 0);
                 return true;

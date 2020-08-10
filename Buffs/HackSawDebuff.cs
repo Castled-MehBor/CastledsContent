@@ -15,7 +15,7 @@ namespace CastledsContent.Buffs
         }
         public override void Update(Player player, ref int buffIndex)
         {
-            if (player.HasBuff(mod.BuffType("EaterofWorldsBuff")))
+            if (player.HasBuff(ModContent.BuffType<EaterofWorldsBuff>()))
             {
                 player.lifeRegen -= 1875;
             }
