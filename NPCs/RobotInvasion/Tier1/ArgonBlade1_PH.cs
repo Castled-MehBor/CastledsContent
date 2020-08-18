@@ -35,7 +35,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
             npc.noTileCollide = true;
             npc.knockBackResist = 0f;
             npc.scale = 1f;
-            npc.lifeMax = 100;
+            npc.lifeMax = 250;
             npc.HitSound = SoundID.Item6;
             npc.HitSound = SoundID.DD2_LightningAuraZap;
             npc.width = 30;
@@ -97,71 +97,15 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                 npc.position = targetpos;
 
             bool validtarget = BladeBot.HasValidTarget(ownr.target);
-            if (initialize == false && Timer < 200)
-            {
-                isActive = false;
-            }
-            if (initialize == false && Timer > 200)
-            {
-                initialize = true;
-                isActive = true;
-            }
-            //If "alive"
-            if (isActive == true)
-            {
-                if (initialize == true && Timer > 2030 && startedCycle == false)
-                {
-                    spinSpeed = 1.95f;
-                    motionBlurCounter++;
-                    npc.damage = 50;
-                    if (motionBlurCounter > 4)
-                    {
-                        motionBlurCounter = 0;
-                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 26f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("ArgonMotionBlur"), 0, 0f, 255, 0f, 0f);
-                    }
-                }
-                if (initialize == true && Timer > 2300 && startedCycle == false)
-                {
-                    spinSpeed = 2.12f;
-                    startedCycle = true;
-                    Timer = 0;
-                }
-            }
-            //If "dead"
-            else if (isActive == false)
-            {
-                if (initialize == true && Timer > 2030 && startedCycle == false)
-                {
-                    spinSpeed = 1.95f;
-                    motionBlurCounter++;
-                    if (motionBlurCounter > 4)
-                    {
-                        motionBlurCounter = 0;
-                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 26f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("ArgonMotionBlurDead"), 0, 0f, 255, 0f, 0f);
-                    }
-                }
-                if (initialize == true && Timer > 2300 && startedCycle == false)
-                {
-                    spinSpeed = 2.12f;
-                    startedCycle = true;
-                    Timer = 0;
-                }
-            }
-            if (initialize == true && Timer > 2300 && startedCycle == false)
-            {
-                spinSpeed = 2.12f;
-                startedCycle = true;
-                Timer = 0;
-            }
+
             //Permanent cycle after first special spin
-            //if alive
-            if (isActive == true)
+            if (CastledWorld.spinMe)
             {
-                if (Timer > 1250 && startedCycle == true)
+                spinSpeed = 1.95f;
+                motionBlurCounter++;
+                npc.damage = 60;
+                if (isActive)
                 {
-                    spinSpeed = 1.95f;
-                    motionBlurCounter++;
-                    npc.damage = 60;
                     if (motionBlurCounter > 4)
                     {
                         motionBlurCounter = 0;
@@ -169,31 +113,20 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                     }
                     Dust.NewDust(new Vector2(npc.position.X, npc.position.Y), npc.width, npc.height, 60, 0f, 0f, 100, Color.Red, 1.25f);
                 }
-                if (Timer > 1550 && startedCycle == true)
+                if (!isActive)
                 {
-                    spinSpeed = 2.12f;
-                    Timer = 0;
-                }
-            }
-            //if dead
-            else if (isActive == false)
-            {
-                if (Timer > 1250 && startedCycle == true)
-                {
-                    spinSpeed = 1.95f;
-                    motionBlurCounter++;
                     if (motionBlurCounter > 4)
                     {
                         motionBlurCounter = 0;
                         Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 26f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("ArgonMotionBlurDead"), 0, 0f, 255, 0f, 0f);
                     }
                 }
-                if (Timer > 1550 && startedCycle == true)
-                {
-                    spinSpeed = 2.12f;
-                    Timer = 0;
-                }
             }
+            else
+            {
+                spinSpeed = 2.12f;
+            }
+
             if (npc.life < 1)
             {
                 npc.life = 0;
@@ -201,7 +134,6 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
             }
             if (isActive == false)
             {
-                npc.alpha = 100;
                 respawnCounter++;
                 npc.color = Color.White;
                 npc.dontTakeDamage = true;

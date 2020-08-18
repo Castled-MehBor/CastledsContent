@@ -22,17 +22,17 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
         public bool initialize = false;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Blade Drone");
+            DisplayName.SetDefault("Doomsday Drone");
             Main.npcFrameCount[npc.type] = 1;
         }
 
         public override void SetDefaults()
         {
             aiType = -1;
-            npc.lifeMax = 750;
+            npc.lifeMax = 1000;
             if (Main.expertMode)
             {
-                npc.lifeMax = 1250;
+                npc.lifeMax = 2000;
             }
             npc.defense = 10;
             npc.knockBackResist = 0f;
@@ -128,6 +128,16 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
 
             Timer++;
             npc.alpha = blink;
+            if (aiState == 3)
+            {
+                CastledWorld.spinMe = true;
+            }
+            if (aiState == 1 || aiState == 2)
+            {
+                CastledWorld.spinMe = false;
+            }
+            #region
+            //initial landing and animation stuff
             if (hasLanded == false)
             {
                 npc.dontTakeDamage = true;
@@ -139,7 +149,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                         motionBlurCounter = 0;
                         Projectile.NewProjectile(npc.Center.X - 9, npc.Center.Y - 40f, npc.velocity.X * 0.01f, 0f, mod.ProjectileType("BladeBotMotionBlur"), 0, 0f, 255, 0f, 0f);
                     }
-                    npc.position.Y += 2;
+                    npc.position.Y += 12;
                 }
                 if (Timer > 60)
                 {
@@ -165,6 +175,9 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                 Timer = 0;
                 blink = 0;
             }
+            #endregion
+            #region
+            //follow player, and then teleport in aiState 3
             {
                 if (aiState == 1)
                 {
@@ -209,6 +222,7 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                         }
                     }
                 }
+                #endregion
                 if (aiState == 3)
                 {
                     if (chargeType == 1)
@@ -413,6 +427,23 @@ namespace CastledsContent.NPCs.RobotInvasion.Tier1
                             }
                         }
                     }
+                }
+            }
+            if (npc.life < npc.lifeMax * 0.75)
+            {
+                CastledWorld.doomsdayCapsule = true;
+                CastledWorld.doomsdayCapsuleIntensity = 1299;
+                if (npc.life < npc.lifeMax * 0.5)
+                {
+                    CastledWorld.doomsdayCapsuleIntensity = 899;
+                }
+                if (npc.life < npc.lifeMax * 0.25)
+                {
+                    CastledWorld.doomsdayCapsuleIntensity = 699;
+                }
+                if (npc.life < npc.lifeMax * 0.1)
+                {
+                    CastledWorld.doomsdayCapsuleIntensity = 499;
                 }
             }
         }
