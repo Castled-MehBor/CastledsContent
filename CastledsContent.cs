@@ -5,6 +5,9 @@ using CastledsContent.Items.Bags.BossBags;
 using CastledsContent.Items.Weapons.Melee;
 using CastledsContent.Items.Weapons.Magic;
 using CastledsContent.Items.Weapons.Ranged;
+using CastledsContent.Items.Accessories;
+using CastledsContent.Items.Placeable.Trophy;
+using CastledsContent.Items.Vanity;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
@@ -35,16 +38,22 @@ namespace CastledsContent
 
                 //DualForce
                 bossChecklist.Call("AddBoss", 5.9f, new List<int>() { ModContent.NPCType<NPCs.Boss.DualForce.LightMage.LightNymph>(), ModContent.NPCType<NPCs.Boss.DualForce.NightDemon.NightHusk>() }, this, "Nasha and Grakos", (Func<bool>)(() => CastledWorld.downedDualForce), ModContent.ItemType<DualForceSummon>(), new List<int>() { ModContent.ItemType<MusicBox1>(), }, new List<int>() { ModContent.ItemType<CrystalSpear>(), ModContent.ItemType<OrbOfHallow>(), ModContent.ItemType<PinkPotion>(), ModContent.ItemType<NashaLockbox>(), ModContent.ItemType<NashaLockboxExpert>(), ModContent.ItemType<DeadeyeScroll>(), ModContent.ItemType<PreciousFlame>(), ModContent.ItemType<GrakosLockbox>(), ModContent.ItemType<GrakosLockboxExpert>() }, "Use a [i:" + ItemType("DualForceSummon") + "] anywhere", "You either win or learn, meaning you are never truley defeated.", "CastledsContent/NPCs/Boss/DualForce/DualForceBossLog");
+                //HarpyQueen
+                bossChecklist.Call("AddBoss", 4.9f, new List<int>() { ModContent.NPCType<NPCs.Boss.HarpyQueen.HarpyQueen>() }, this, "Harpy Queen", (Func<bool>)(() => CastledWorld.downedHarpyQueen), ModContent.ItemType<Items.Placeable.SkywareArtifact>(), new List<int>() { ModContent.ItemType<HQTrophy>(), ModContent.ItemType<HQMask>(), ModContent.ItemType<MusicBox1>(), }, new List<int>() { ModContent.ItemType<AvianHijack>(), ModContent.ItemType<QueenJudgement>(), ModContent.ItemType<MonarchPrecision>(), ModContent.ItemType<TreasureBag3>(), ModContent.ItemType<HarpyQueenCirclet>(), ModContent.ItemType<Items.Material.HarpyFeather>(), ItemID.Feather, ModContent.ItemType<HarpyBreastplate>(), ModContent.ItemType<HarpyLeggings>() }, "Can spawn sleeping in space after Queen Bee has been defeated, or you can put three feathers on a [i:" + ItemType("SkywareArtifact") + "]", "...", "CastledsContent/NPCs/Boss/HarpyQueen/HarpyQueenBossLog");
             }
         }
         public override void Load()
         {
+            #region Music Boxes
             //Music Box Trivial Equality Original
             AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/OST/TrivialEquality"), ItemType("MusicBox1"), TileType("MusicBoxEquality"));
             //Music Box Trivial Equality Remastered
             AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/OST/TrivialEqualityV2"), ItemType("MusicBox1V2"), TileType("MusicBoxEquality2"));
+            //Music Box Feather Gauntlet
+            AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/OST/HarpyQueenTheme"), ItemType("MusicBox2"), TileType("MusicBoxFG"));
+            #endregion
 
-            //YABHB Compatability
+            #region YABHB Compatability
             Mod yabhb = ModLoader.GetMod("FKBossHealthBar");
             if (yabhb != null)
             {
@@ -116,6 +125,16 @@ namespace CastledsContent
                 new Color(1f, 0f, 0f));
                 yabhb.Call("hbFinishSingle", NPCType("NightHusk"));
             }
+            #endregion
+
+            if (!Main.dedServ)
+            {
+                LoadClient();
+            }
+        }
+        private void LoadClient()
+        {
+            AddEquipTexture(null, (EquipType)2, "HarpyLeggings_FemaleLegs", "CastledsContent/Items/Vanity/HarpyLeggings_FemaleLegs", "", "");
         }
     }
 }

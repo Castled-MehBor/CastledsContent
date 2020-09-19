@@ -30,7 +30,7 @@ namespace CastledsContent
         public bool ShadowMelee;
         public bool ShadowMage;
         public bool ShadowSummon;
-        //Extra Bools
+        //Extra Values
         public bool antRage;
         public int antRageTimer = 0;
         public int antRageBuff = 0;
@@ -38,6 +38,9 @@ namespace CastledsContent
         public int provokeCorruptRange = 0;
         public int decayTimer = 0;
         public int purge = 0;
+        //Accessories
+        public bool harpyCrown;
+        public bool darkCrown;
 
         public override void ResetEffects()
         {
@@ -57,6 +60,8 @@ namespace CastledsContent
             ShadowMage = false;
             ShadowMelee = false;
             ShadowSummon = false;
+            harpyCrown = false;
+            darkCrown = false;
         }
         public override void PostUpdateEquips()
         {
@@ -152,6 +157,11 @@ namespace CastledsContent
                     antRage = false;
                 }
             }
+            //Arena Debuffs
+            if (NPC.AnyNPCs(mod.NPCType("HarpyQueen")))
+            {
+                player.AddBuff(BuffType<HarpyQueenDebuff>(), 2);
+            }
         }
 
         public void PickAmmo(Item sItem, ref int shoot, ref float speed, ref bool canShoot, ref int Damage, ref float KnockBack, bool dontConsume = false)
@@ -194,6 +204,48 @@ namespace CastledsContent
                     }
                 }
             }
+            if (harpyCrown)
+            {
+                if (Main.rand.Next(12) == 0)
+                {
+                    Main.PlaySound(SoundID.DD2_BallistaTowerShot.WithVolume(0.10f), player.position);
+                    Main.PlaySound(SoundID.Item32.WithVolume(15f), player.position);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y - 750, Main.rand.Next(-18, 18), 16f, mod.ProjectileType("HyperFeatherF"), (int)(proj.damage * 0.35), 0f, proj.owner, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y - 750, Main.rand.Next(-12, 12), 15f, mod.ProjectileType("GiantFeatherF"), (int)(proj.damage * 0.75), 0f, proj.owner, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y - 750, Main.rand.Next(-24, 24), 14f, mod.ProjectileType("HyperFeatherF"), (int)(proj.damage * 0.35), 0f, proj.owner, 0f, 0f);
+                }
+            }
+            if (darkCrown)
+            {
+                if (Main.rand.Next(9) == 0)
+                {
+                    Main.PlaySound(SoundID.Item74.WithVolume(0.25f), player.position);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y - 750, Main.rand.Next(-24, 24), 15f, mod.ProjectileType("DarkFireball"), (int)(proj.damage * 0.45), 0f, proj.owner, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y - 750, Main.rand.Next(-18, 18), 14f, mod.ProjectileType("DarkFireball"), (int)(proj.damage * 0.45), 0f, proj.owner, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 750, Main.rand.Next(-12, 12), -14f, mod.ProjectileType("DarkFireball"), (int)(proj.damage * 0.45), 0f, proj.owner, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 750, Main.rand.Next(-8, 8), -15f, mod.ProjectileType("DarkFireball"), (int)(proj.damage * 0.45), 0f, proj.owner, 0f, 0f);
+
+                    if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y - 750, Main.rand.Next(-40, 40), 8f, mod.ProjectileType("DarkBolt"), (int)(proj.damage * 0.35), 0f, proj.owner, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y - 750, Main.rand.Next(-30, 30), 10f, mod.ProjectileType("DarkBolt"), (int)(proj.damage * 0.35), 0f, proj.owner, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y + 750, Main.rand.Next(-20, 20), -10f, mod.ProjectileType("DarkBolt"), (int)(proj.damage * 0.35), 0f, proj.owner, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y + 750, Main.rand.Next(-10, 10), -8f, mod.ProjectileType("DarkBolt"), (int)(proj.damage * 0.35), 0f, proj.owner, 0f, 0f);
+                    }
+                    if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3 && NPC.downedPlantBoss)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y - 750, Main.rand.Next(-60, 60), 14f, mod.ProjectileType("DarkBolt"), (int)(proj.damage * 0.65), 0f, proj.owner, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y + 750, Main.rand.Next(-50, 50), -15f, mod.ProjectileType("DarkBolt"), (int)(proj.damage * 0.65), 0f, proj.owner, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y - 750, Main.rand.Next(-40, 40), 8f, mod.ProjectileType("DarkFireball"), (int)(proj.damage * 0.65), 0f, proj.owner, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y + 750, Main.rand.Next(-30, 30), -10f, mod.ProjectileType("DarkFireball"), (int)(proj.damage * 0.65), 0f, proj.owner, 0f, 0f);
+                    }
+                    if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3 && NPC.downedPlantBoss && NPC.downedGolemBoss)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y - 750, Main.rand.Next(-60, 60), 18f, mod.ProjectileType("CrowFlame"), (int)(proj.damage * 0.85), 0f, proj.owner, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y + 750, Main.rand.Next(-60, 60), -18f, mod.ProjectileType("CrowFlame"), (int)(proj.damage * 0.85), 0f, proj.owner, 0f, 0f);
+                    }
+                }
+            }
         }
         public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
         {
@@ -226,6 +278,48 @@ namespace CastledsContent
                 if (CrimMelee)
                 {
                     player.AddBuff(BuffType<CrimPurge>(), 180, false);
+                }
+            }
+            if (harpyCrown)
+            {
+                if (Main.rand.Next(3) == 0)
+                {
+                    Main.PlaySound(SoundID.DD2_BallistaTowerShot.WithVolume(0.10f), player.position);
+                    Main.PlaySound(SoundID.Item32.WithVolume(15f), player.position);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y - 750, Main.rand.Next(-18, 18), 16f, mod.ProjectileType("HyperFeatherF"), (int)(item.damage * 0.35), 0f, player.whoAmI, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y - 750, Main.rand.Next(-12, 12), 15f, mod.ProjectileType("GiantFeatherF"), (int)(item.damage * 0.75), 0f, player.whoAmI, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y - 750, Main.rand.Next(-24, 24), 14f, mod.ProjectileType("HyperFeatherF"), (int)(item.damage * 0.35), 0f, player.whoAmI, 0f, 0f);
+                }
+            }
+            if (darkCrown)
+            {
+                if (Main.rand.Next(6) == 0)
+                {
+                    Main.PlaySound(SoundID.Item74.WithVolume(0.25f), player.position);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y - 750, Main.rand.Next(-24, 24), 15f, mod.ProjectileType("DarkFireball"), (int)(item.damage * 0.45), 0f, player.whoAmI, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y - 750, Main.rand.Next(-18, 18), 14f, mod.ProjectileType("DarkFireball"), (int)(item.damage * 0.45), 0f, player.whoAmI, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 750, Main.rand.Next(-12, 12), -14f, mod.ProjectileType("DarkFireball"), (int)(item.damage * 0.45), 0f, player.whoAmI, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 750, Main.rand.Next(-8, 8), -15f, mod.ProjectileType("DarkFireball"), (int)(item.damage * 0.45), 0f, player.whoAmI, 0f, 0f);
+
+                    if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y - 750, Main.rand.Next(-40, 40), 8f, mod.ProjectileType("DarkBolt"), (int)(item.damage * 0.35), 0f, player.whoAmI, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y - 750, Main.rand.Next(-30, 30), 10f, mod.ProjectileType("DarkBolt"), (int)(item.damage * 0.35), 0f, player.whoAmI, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y + 750, Main.rand.Next(-20, 20), -10f, mod.ProjectileType("DarkBolt"), (int)(item.damage * 0.35), 0f, player.whoAmI, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y + 750, Main.rand.Next(-10, 10), -8f, mod.ProjectileType("DarkBolt"), (int)(item.damage * 0.35), 0f, player.whoAmI, 0f, 0f);
+                    }
+                    if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3 && NPC.downedPlantBoss)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y - 750, Main.rand.Next(-60, 60), 14f, mod.ProjectileType("DarkBolt"), (int)(item.damage * 0.65), 0f, player.whoAmI, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y + 750, Main.rand.Next(-50, 50), -15f, mod.ProjectileType("DarkBolt"), (int)(item.damage * 0.65), 0f, player.whoAmI, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y - 750, Main.rand.Next(-40, 40), 8f, mod.ProjectileType("DarkFireball"), (int)(item.damage * 0.65), 0f, player.whoAmI, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y + 750, Main.rand.Next(-30, 30), -10f, mod.ProjectileType("DarkFireball"), (int)(item.damage * 0.65), 0f, player.whoAmI, 0f, 0f);
+                    }
+                    if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3 && NPC.downedPlantBoss && NPC.downedGolemBoss)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y - 750, Main.rand.Next(-60, 60), 18f, mod.ProjectileType("CrowFlame"), (int)(item.damage * 0.85), 0f, player.whoAmI, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y + 750, Main.rand.Next(-60, 60), -18f, mod.ProjectileType("CrowFlame"), (int)(item.damage * 0.85), 0f, player.whoAmI, 0f, 0f);
+                    }
                 }
             }
         }
