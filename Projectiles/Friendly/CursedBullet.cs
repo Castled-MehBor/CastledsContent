@@ -6,6 +6,7 @@ namespace CastledsContent.Projectiles.Friendly
 {
     public class CursedBullet : ModProjectile
     {
+        public override string Texture => "Terraria/Projectile_" + ProjectileID.CursedBullet;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cursed Bullet");
