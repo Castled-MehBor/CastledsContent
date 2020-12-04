@@ -1,4 +1,4 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -6,6 +6,7 @@ namespace CastledsContent.Projectiles.Friendly
 {
     public class DeathLaserFriendly : ModProjectile
     {
+        public override string Texture = "Terraria/Projectile_100"; // death laser texture
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Death Laser");
