@@ -18,7 +18,7 @@ namespace CastledsContent.Projectiles.Friendly
             projectile.height = 2;
             projectile.CloneDefaults(ProjectileID.CursedBullet);
             aiType = ProjectileID.CursedBullet;
-            projectile.timeLeft = 60;
+            projectile.timeLeft = 300;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
@@ -28,6 +28,16 @@ namespace CastledsContent.Projectiles.Friendly
                 target.AddBuff(BuffID.CursedInferno, 360, false);
             }
         }
-
+        public override void AI()
+        {
+            if (projectile.timeLeft <= 51)
+            {
+                projectile.alpha += 5;
+            }
+            if (projectile.alpha >= 255)
+            {
+                projectile.Kill();
+            }
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace CastledsContent.Items.Weapons.Ranged
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Lunatic's Blaster");
+            DisplayName.SetDefault("Pandemic Blaster");
             Tooltip.SetDefault("'Why is it made out of worm teeth?'");
         }
 
