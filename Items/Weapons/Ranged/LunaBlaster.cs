@@ -19,11 +19,11 @@ namespace CastledsContent.Items.Weapons.Ranged
         public override void SetDefaults()
         {
             item.damage = 40;
-            item.ranged = true;
+            item.magic = true;
             item.width = 48;
             item.height = 36;
-            item.useTime = 85;
-            item.useAnimation = 85;
+            item.useTime = 75;
+            item.useAnimation = 75;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.noMelee = true;
             item.knockBack = 4;
@@ -32,7 +32,7 @@ namespace CastledsContent.Items.Weapons.Ranged
             item.UseSound = SoundID.Item11;
             item.autoReuse = true;
             item.shoot = ProjectileType<Projectiles.Friendly.CursedBullet>();
-            item.shootSpeed = 2f;
+            item.shootSpeed = 3f;
         }
         public override Vector2? HoldoutOffset() => new Vector2(-9, -4);
 
