@@ -1,28 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Owner\\Desktop\\RealRepository\\CastledsContent\\CastledsContent.csproj": {}
+    "C:\\Users\\Owner\\Desktop\\RepoCastled\\CastledsContent.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Owner\\Desktop\\RealRepository\\CastledsContent\\CastledsContent.csproj": {
+    "C:\\Users\\Owner\\Desktop\\RepoCastled\\CastledsContent.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Owner\\Desktop\\RealRepository\\CastledsContent\\CastledsContent.csproj",
+        "projectUniqueName": "C:\\Users\\Owner\\Desktop\\RepoCastled\\CastledsContent.csproj",
         "projectName": "CastledsContent",
-        "projectPath": "C:\\Users\\Owner\\Desktop\\RealRepository\\CastledsContent\\CastledsContent.csproj",
+        "projectPath": "C:\\Users\\Owner\\Desktop\\RepoCastled\\CastledsContent.csproj",
         "packagesPath": "C:\\Users\\Owner\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Owner\\Desktop\\RealRepository\\CastledsContent\\obj\\",
+        "outputPath": "C:\\Users\\Owner\\Desktop\\RepoCastled\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Owner\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Owner\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net45"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
