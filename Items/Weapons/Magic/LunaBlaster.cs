@@ -6,7 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace CastledsContent.Items.Weapons.Ranged
+namespace CastledsContent.Items.Weapons.Magic
 {
     public class LunaBlaster : ModItem
     {
