@@ -1,0 +1,9 @@
+.suo
+.vs
+.vscode
+*.csproj
+.vs/
+bin
+bin/
+obj
+obj/
