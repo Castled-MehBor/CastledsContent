@@ -17,7 +17,7 @@ namespace CastledsContent.Projectiles.Friendly
         public override void SetDefaults()
         {
             projectile.width = 14;
-            projectile.height = 28;
+            projectile.height = 14;
             projectile.light = 1.5f;
             projectile.hostile = false;
             projectile.friendly = true;
@@ -30,7 +30,9 @@ namespace CastledsContent.Projectiles.Friendly
         public override void Kill(int timeLeft)
         {
             base.Kill(timeLeft);
-            Projectile.NewProjectile(new Vector2(projectile.position.X + Main.rand.Next(40) - 20f, projectile.position.Y + Main.rand.NextFloat(40) - 20f), Vector2.Zero, ProjectileType<RainCloud>(), projectile.damage, projectile.knockBack, projectile.owner);
+            for(int i = 0; i < 5 + Main.rand.Next(3); i++) {
+                Projectile.NewProjectile(new Vector2(projectile.position.X + Main.rand.Next(40) - 20f, projectile.position.Y + Main.rand.NextFloat(40) - 20f), Vector2.Zero, ProjectileType<RainCloud>(), projectile.damage, projectile.knockBack, projectile.owner);
+            }
         }
     }
 }
