@@ -27,10 +27,7 @@ namespace CastledsContent
                     player.addDPS(damage);
                 }
             }
-            if (projectile.GetGlobalProjectile<CastledProjectile>().returnLightful() == true)
-            {
-                npc.StrikeNPC(9999, knockback, npc.direction, crit, false, false);
-            }
+
         }
 
     }
