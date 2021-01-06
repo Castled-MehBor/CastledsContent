@@ -46,7 +46,7 @@ namespace CastledsContent.Projectiles.Friendly
             } 
             if (projectile.ai[0] > 20 && shoot)
             {
-                Projectile.NewProjectile(projectile.Center, (Vector2.UnitX * 10).RotatedByRandom(Math.PI * 2), ModContent.ProjectileType<Projectiles.Antibodies>(), projectile.damage * (int)0.6, projectile.knockBack, projectile.owner);
+                Projectile.NewProjectile(projectile.Center, (Vector2.UnitX * 10).RotatedByRandom(Math.PI * 2), ModContent.ProjectileType<Antibodies>(), projectile.damage * (int)0.6, projectile.knockBack, projectile.owner);
                 projectile.ai[0] = 0;
             }
             DelegateMethods.v3_1 = new Vector3(0.8f, 0.8f, 1f);
@@ -66,6 +66,5 @@ namespace CastledsContent.Projectiles.Friendly
             }
             Main.PlaySound(SoundID.NPCHit19, projectile.Center);
         }
-    }
     }
 }

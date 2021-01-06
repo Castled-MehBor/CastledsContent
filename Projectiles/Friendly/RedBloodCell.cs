@@ -42,7 +42,7 @@ namespace CastledsContent.Projectiles.Friendly
             int amount = 16;
             for (int i = 0; i <= amount; i++)
             {
-                double spread = (Math.PI * 2) / amount;
+                double spread = (MathHelper.Pi * 2) / amount;
                 Vector2 vel = new Vector2(5f, 0).RotatedBy(spread * i);
                 int d = Dust.NewDust(projectile.Center, 4, 4, type, vel.X, vel.Y, 0, Color.Red);
                 Main.dust[d].noGravity = true;
