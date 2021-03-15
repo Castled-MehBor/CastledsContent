@@ -1,40 +1,20 @@
-Welcome to Castled's Content, a mod which was once my personal playground for testing the quirks of modding, is now turning into a full-on content mod!
+Disclaimer: This update was rushed at the last moment, due to both unfortunate circumstances.
+Sorry if so much was removed and so little was added, we will try to fully complete the update whenever we can.
 
+Current Major Update: Feathers & Metal (v.0.9.1)
 
-- [c/aaee21: 40+ new items!]
+Castled's Equilibrium is a passion project that started two years ago, which was to create a content mod with abstract elements.
 
-- 3 new bosses:
-> Nasha and Grakos
-> Corrupt Guardians
-> Crimtane Prisoners
+Current Contents:
+- A handful of items (including weapons, accessories and armor)
+- Two Bosses; Nasha & Grakos, and the Harpy Queen
+- Superintendent: An item-based lottery minigame where you put your inventory at stake for a possible fortune.
+- Vanity Presets: A vanity helper that helps to save and provide quick access to modifying the looks of your character,
+allowing you to save up to five presets, and give names to each of them.
+- The Tarr; a ravenous, rainbow hued sludgeball from the Far, Far Range, that will ignore nearly any attempt of harming it, while eat everything in it's way, replicating itself until it conquers the world...
 
-1 new "event"
+In this update, several older features from a year/so ago were removed, due to them either being
+too lazily made, or being outdated; including several items and all bosses besides Nasha and Grakos.
 
-* D E A T H (Requires Calamity Mod)
-Use the Forbidden Beans item to summon it.
-
-I also have a QOL mod called Castled's Token Addon. Check it out!
-
-Credits:
-====
-Castled : Main mod Creator
-
-Flazmey : Composer
-
-Æterna : Modder
-====
-
-Change log:
--------------------------------------
-> 0.5: Large Update: Added Nasha and Grakos and a large overhaul to all of the content.
-Includes cross mod comp. with more mods and features.
-
-> 0.5.0.2: Fixed a bug related to YABHB formatting
-
-> 0.5.0.3: Updated theme and boss checklist names. The Theme has been updated with a more fitting theme, rather than a jumble of random notes.
-
-> 0.5.0.4: Achnowledgement of the attempt that I did at protecting this mod.
-
-> 0.5.0.5: The final update for this specific addition: Added music boxes for both versions of Trivial
-Equality, being crafted at a Tinkerers Workshop and updated mod icon.
-
+Thanks to everyone who contributed:
+Akocis, Aria, Atomic Renegade, AYO BRUH, (basically, i am fox), Beepbopbop, Cookiecraft_, Darkpuppey, Invalid Pyrossal, Invasive, Jokey, Lewis /ˈluːɪs/, mango, Septimus Maximus the Third, SpicySpaceSnake, SupremeShadow, TacoBurritoGuacamole, token, Universe, Woodio, Wyvern, yelloface, Yhariel

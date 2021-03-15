@@ -23,9 +23,9 @@ namespace CastledsContent.Projectiles.DualForce.NightDemon
         public override void Kill(int timeLeft)
         {
             Main.PlaySound(SoundID.Shatter, (int)projectile.position.X, (int)projectile.position.Y, 14, 1f, 0f);
-            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 10f, -10f, 288, (int)((double)projectile.damage * 0.8), 3f, projectile.owner, 0f, 0f);
-            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -10f, -10f, 288, (int)((double)projectile.damage * 0.8), 3f, projectile.owner, 0f, 0f);
-            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 12f, 288, (int)((double)projectile.damage * 0.8), 3f, projectile.owner, 0f, 0f);
+            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 10f, -10f, ProjectileID.GoldenShowerHostile, (int)((double)projectile.damage * 0.8), 3f, projectile.owner, 0f, 0f);
+            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -10f, -10f, ProjectileID.GoldenShowerHostile, (int)((double)projectile.damage * 0.8), 3f, projectile.owner, 0f, 0f);
+            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 12f, ProjectileID.GoldenShowerHostile, (int)((double)projectile.damage * 0.8), 3f, projectile.owner, 0f, 0f);
         }
     }
 }

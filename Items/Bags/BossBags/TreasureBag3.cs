@@ -42,13 +42,13 @@ namespace CastledsContent.Items.Bags.BossBags
             switch (Main.rand.Next(3))
             {
                 case 0:
-                    itemTypeToSpawn = ItemType<Weapons.Magic.AvianHijack>();
+                    itemTypeToSpawn = ItemType<Weapons.Magic.HarpyStaff>();
                     break;
                 case 1:
-                    itemTypeToSpawn = ItemType<Weapons.Ranged.MonarchPrecision>();
+                    itemTypeToSpawn = ItemType<Weapons.Ranged.HarpyGun>();
                     break;
                 case 2:
-                    itemTypeToSpawn = ItemType<Weapons.Melee.QueenJudgement>();
+                    itemTypeToSpawn = ItemType<Weapons.Melee.HarpyArm>();
                     break;
                 default:
                     break;

@@ -16,7 +16,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
         public int rotationAxis;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Nasha, the Nymph of Light");
+            DisplayName.SetDefault("Nasha the Nymph");
             Main.npcFrameCount[npc.type] = 27;
         }
 
@@ -68,7 +68,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
         {
             if (Main.rand.Next(12) == 0)
             {
-                Main.PlaySound(SoundID.FemaleHit);
+                Main.PlaySound(SoundID.FemaleHit, npc.position);
             }
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -232,7 +232,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                         }
                         if (Timer == 88)
                         {
-                            Main.PlaySound(SoundID.DD2_WitherBeastHurt);
+                            Main.PlaySound(SoundID.DD2_WitherBeastHurt, npc.position);
 
                             float Speed = 11f;
                             Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
@@ -267,7 +267,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                         }
                         if (Timer == 88)
                         {
-                            Main.PlaySound(SoundID.DD2_WitherBeastHurt);
+                            Main.PlaySound(SoundID.DD2_WitherBeastHurt, npc.position);
 
                             float Speed = 11f;
                             Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
@@ -293,7 +293,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                         }
                         if (Timer == 60)
                         {
-                            Main.PlaySound(SoundID.Item1);
+                            Main.PlaySound(SoundID.Item1, npc.position);
                             float Speed = 3f;
                             Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                             int damage = 20;
@@ -305,7 +305,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                         }
                         if (Timer == 61)
                         {
-                            Main.PlaySound(SoundID.Item1);
+                            Main.PlaySound(SoundID.Item1, npc.position);
                             float Speed = 6f;
                             Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                             int damage = 20;
@@ -317,7 +317,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                         }
                         if (Timer == 62)
                         {
-                            Main.PlaySound(SoundID.Item1);
+                            Main.PlaySound(SoundID.Item1, npc.position);
                             float Speed = 9f;
                             Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                             int damage = 20;
@@ -330,7 +330,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                         }
                         if (Timer == 62)
                         {
-                            Main.PlaySound(SoundID.Item1);
+                            Main.PlaySound(SoundID.Item1, npc.position);
                             float Speed = 12f;
                             Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                             int damage = 20;
@@ -343,7 +343,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                         }
                         if (Timer == 62)
                         {
-                            Main.PlaySound(SoundID.Item1);
+                            Main.PlaySound(SoundID.Item1, npc.position);
                             float Speed = 15f;
                             Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                             int damage = 20;
@@ -367,7 +367,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                         }
                         if (Timer == 58)
                         {
-                            Main.PlaySound(SoundID.Item8);
+                            Main.PlaySound(SoundID.Item8, npc.position);
 
                             float Speed = 5f;
                             Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
@@ -381,7 +381,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                         }
                         if (Timer == 58)
                         {
-                            Main.PlaySound(SoundID.Item8);
+                            Main.PlaySound(SoundID.Item8, npc.position);
 
                             float Speed = 10f;
                             Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
@@ -407,7 +407,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                         }
                         if (Timer == 298)
                         {
-                            Main.PlaySound(SoundID.Item88);
+                            Main.PlaySound(SoundID.Item88, npc.position);
 
                             float Speed = 10f;
                             Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
@@ -445,7 +445,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                             }
                             if (Timer == 298)
                             {
-                                Main.PlaySound(SoundID.Item88);
+                                Main.PlaySound(SoundID.Item88, npc.position);
 
                                 float Speed = 11f;
                                 Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
@@ -473,7 +473,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                             }
                             if (Timer == 116)
                             {
-                                Main.PlaySound(SoundID.Item8);
+                                Main.PlaySound(SoundID.Item8, npc.position);
 
                                 NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, mod.NPCType("HallowLantorch"));
 
@@ -537,7 +537,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                     else if (npc.frameCounter == 48)
                     {
                         npc.frame.Y = Frame_Throw4 * frameHeight;
-                        Main.PlaySound(SoundID.Item8);
+                        Main.PlaySound(SoundID.Item8, npc.position);
                         rotationAxis += 1;
 
                         Color color = new Color();
@@ -578,7 +578,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                     else if (npc.frameCounter == 58)
                     {
                         npc.frame.Y = Frame_Throw4 * frameHeight;
-                        Main.PlaySound(SoundID.Item8);
+                        Main.PlaySound(SoundID.Item8, npc.position);
                         rotationAxis += 1;
 
                         Color color = new Color();
@@ -1021,8 +1021,8 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                         Main.NewText("[c/53347a:As Nasha leaves, she leaves behind potions and a departure gift.]");
                         Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.HealingPotion, 15);
                         npc.DropBossBags();
-                        Main.PlaySound(SoundID.Item4);
-                        Main.PlaySound(SoundID.NPCDeath6);
+                        Main.PlaySound(SoundID.Item4, npc.position);
+                        Main.PlaySound(SoundID.NPCDeath6, npc.position);
                         Color color = new Color();
                         Rectangle rectangle = new Rectangle((int)npc.position.X, (int)(npc.position.Y + ((npc.height - npc.width) / 2)), npc.width, npc.width);
                         int count = 60;
@@ -1043,8 +1043,8 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
             if (NPC.AnyNPCs(mod.NPCType("NightDemon")))
             {
                 Main.NewText("[c/441919:You have to get past me if you want to be successful!]");
-                Main.PlaySound(SoundID.Item4);
-                Main.PlaySound(SoundID.NPCDeath6);
+                Main.PlaySound(SoundID.Item4, npc.position);
+                Main.PlaySound(SoundID.NPCDeath6, npc.position);
                 Color color = new Color();
                 Rectangle rectangle = new Rectangle((int)npc.position.X, (int)(npc.position.Y + ((npc.height - npc.width) / 2)), npc.width, npc.width);
                 int count = 60;
@@ -1060,8 +1060,8 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
             else if (NPC.AnyNPCs(mod.NPCType("NightHusk")))
             {
                 Main.NewText("[c/441919:You have to get past me if you want to be successful!]");
-                Main.PlaySound(SoundID.Item4);
-                Main.PlaySound(SoundID.NPCDeath6);
+                Main.PlaySound(SoundID.Item4, npc.position);
+                Main.PlaySound(SoundID.NPCDeath6, npc.position);
                 Color color = new Color();
                 Rectangle rectangle = new Rectangle((int)npc.position.X, (int)(npc.position.Y + ((npc.height - npc.width) / 2)), npc.width, npc.width);
                 int count = 60;

@@ -1,22 +1,21 @@
-﻿using Terraria;
+﻿using System.Collections.Generic;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.Accessories
 {
-    [AutoloadEquip(EquipType.Face)]
     public class HarpyQueenCirclet : ModItem
     {
         public int spaceBoost;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Circlet of the Avian Monarch");
-            Tooltip.SetDefault("'Now you're the ruler of the skies'"
-            + "\n2 defense"
+            DisplayName.SetDefault("Harpy Queen's Circlet");
+            Tooltip.SetDefault("2 defense"
             + "\n4% increased damage"
             + "\nImmunity to fall damage"
             + "\nIncreased jump speed"
+            + "\nIncreased rocket boot flight time"
             + "\nAll above effects are doubled in space"
             + "\nYour attacks have a chance to spawn feathers from the sky"
             + "\nToggle visibility to toggle feathers");
@@ -35,7 +34,7 @@ namespace CastledsContent.Items.Accessories
             int maxAccessoryIndex = 5 + player.extraAccessorySlots;
             for (int i = 3; i < 3 + maxAccessoryIndex; i++)
             {
-                if (slot != i && player.armor[i].type == ItemType<Suggested.DarkCrown>())
+                if (slot != i && player.armor[i].type == ModContent.ItemType<Suggested.DarkCrown>())
                 {
                     return false;
                 }
@@ -62,6 +61,24 @@ namespace CastledsContent.Items.Accessories
             player.noFallDmg = true;
             player.jumpSpeedBoost += 1 * spaceBoost;
             player.wingTimeMax += 50 * spaceBoost;
+            player.rocketTimeMax += 50 * spaceBoost;
+        }
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            Player player = Main.player[Main.myPlayer];
+            int num = -1;
+            int num2 = 0;
+            while (num2 < tooltips.Count)
+            {
+                if (!tooltips[num2].Name.Equals("ItemName"))
+                {
+                    num2++;
+                    continue;
+                }
+                num = num2;
+                break;
+            }
+            tooltips.Insert(num + 1, new TooltipLine(mod, "CircletGenderTooltip", player.Male ? "You're the king of the skies now!" : "You're the queen of the skies now!"));
         }
     }
 }

@@ -15,7 +15,7 @@ namespace CastledsContent.Projectiles.Friendly
         {
             projectile.width = 4;
             projectile.height = 4;
-            projectile.aiStyle = 48;
+            //projectile.aiStyle = 48;
             projectile.friendly = true;
             projectile.ranged = true;
             projectile.extraUpdates = 100;
@@ -52,7 +52,7 @@ namespace CastledsContent.Projectiles.Friendly
                     Vector2 projectilePosition = projectile.position;
                     projectilePosition -= projectile.velocity * ((float)i * 0.25f);
                     projectile.alpha = 255;
-					int dust = Dust.NewDust(projectilePosition, 1, 1, DustID.CrystalPulse, 0f, 0f, 0, default(Color), 1f);
+					int dust = Dust.NewDust(projectilePosition, 1, 1, DustID.AncientLight, 0f, 0f, 0, default(Color), 1f);
 					Main.dust[dust].noGravity = true;
 					Main.dust[dust].position = projectilePosition;
 					Main.dust[dust].scale = (float)Main.rand.Next(70, 110) * 0.013f;

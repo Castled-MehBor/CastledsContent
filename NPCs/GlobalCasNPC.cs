@@ -30,6 +30,12 @@ namespace CastledsContent.NPCs
                             shop.item[nextSlot].value = 27500;
                             nextSlot++;
                         }
+                        if (NPC.downedBoss3)
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemType<Items.PresetItem>());
+                            shop.item[nextSlot].value = 250000;
+                            nextSlot++;
+                        }
                     }
 
                     break;

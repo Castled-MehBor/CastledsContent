@@ -1,6 +1,5 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 using Terraria.ID;
 
 namespace CastledsContent.Items.Armor.Vanilla.Shadow
@@ -8,6 +7,7 @@ namespace CastledsContent.Items.Armor.Vanilla.Shadow
 	[AutoloadEquip(EquipType.Head)]
 	public class ShadowMask : ModItem
 	{
+		TempSetBonus setBonus = new TempSetBonus();
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Shadow Mask");
@@ -23,15 +23,13 @@ namespace CastledsContent.Items.Armor.Vanilla.Shadow
 			item.defense = 9;
 		}
 
-		public override bool IsArmorSet(Item head, Item body, Item legs)
-		{
-			return (body.type == ItemID.ShadowScalemail || body.type == ItemID.AncientShadowScalemail) && (legs.type == ItemID.ShadowGreaves || legs.type == ItemID.AncientShadowGreaves);
-		}
+		public override bool IsArmorSet(Item head, Item body, Item legs) => (body.type == ItemID.ShadowScalemail || body.type == ItemID.AncientShadowScalemail) && (legs.type == ItemID.ShadowGreaves || legs.type == ItemID.AncientShadowGreaves);
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "+15% increaesd movement speed\nAttacking with a weapon up close will grant 'Corrupt Purge'.\nThis buff increases melee crit chance and melee attack speed, and can be increasd by attacking more.\nA maximum of 15 purge can be attained.";
-			player.GetModPlayer<CastledPlayer>().ShadowMelee = true;
+			player.setBonus = "Increased movement speed by 15%\nYour melee damage scales with horizontal velocity, and your swing speed scales with vertical velocity";
+			//player.GetModPlayer<CastledPlayer>().ShadowMelee = true;
+			setBonus.BuffPlayer(player, "ShadowMelee");
 			player.moveSpeed += 0.15f;
 		}
 

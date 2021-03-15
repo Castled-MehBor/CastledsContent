@@ -7,15 +7,16 @@ namespace CastledsContent.Projectiles.Friendly.HarpyQueen
 {
     public class HyperFeatherF : ModProjectile
     {
+        public override string Texture => "CastledsContent/Projectiles/Friendly/HarpyQueen/GlazedFeatherSmall";
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Hyper Feather");
+            DisplayName.SetDefault("Small Glazed Feather");
         }
 
         public override void SetDefaults()
         {
-            projectile.width = 14;
-            projectile.height = 24;
+            projectile.width = 10;
+            projectile.height = 20;
             projectile.aiStyle = 1;
             projectile.friendly = true;
             projectile.penetrate = 2;

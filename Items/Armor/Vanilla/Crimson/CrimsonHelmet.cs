@@ -1,6 +1,5 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 using Terraria.ID;
 
 namespace CastledsContent.Items.Armor.Vanilla.Crimson
@@ -8,6 +7,7 @@ namespace CastledsContent.Items.Armor.Vanilla.Crimson
 	[AutoloadEquip(EquipType.Head)]
 	public class CrimsonHelmet : ModItem
 	{
+		TempSetBonus setBonus = new TempSetBonus();
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Crimson Helmet");
@@ -31,8 +31,9 @@ namespace CastledsContent.Items.Armor.Vanilla.Crimson
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "Greatly Increased life regen\nAttacking with a weapon up close will grant 'Crimtane Purge'.\nThis buff increases melee damage and defense, and can be increasd by attacking more.\nA maximum of 15 purge can be attained.";
-			player.GetModPlayer<CastledPlayer>().CrimMelee = true;
+			player.setBonus = "Greatly Increased life regen\nYour melee damage scales with life lost, and your swing speed scales with life regeneration";
+			//player.GetModPlayer<CastledPlayer>().CrimMelee = true;
+			setBonus.BuffPlayer(player, "CrimsonMelee");
 			player.crimsonRegen = true;
 		}
 

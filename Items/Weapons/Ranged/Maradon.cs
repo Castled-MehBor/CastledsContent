@@ -8,11 +8,12 @@ namespace CastledsContent.Items.Weapons.Ranged
 {
     public class Maradon : ModItem
     {
+        public int shots = 0;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Mar-adon");
             Tooltip.SetDefault("Fires a high-velocity bullet"
-            + "\nHas a chance to fire a homing Sharphyte tooth instead of a bullet");
+            + "\nEvery third shot fires a homing Sharphyte tooth instead of a bullet");
         }
 
         public override void SetDefaults()
@@ -41,15 +42,16 @@ namespace CastledsContent.Items.Weapons.Ranged
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
+            shots++;
             if (type == ProjectileID.Bullet)
             {
                 type = ProjectileID.BulletHighVelocity;
             }
-            if (Main.rand.Next(9) == 0)
+            if (shots > 2)
             {
-                Main.PlaySound(SoundID.NPCDeath13);
-                Main.PlaySound(SoundID.NPCDeath11);
+                Main.PlaySound(SoundID.NPCDeath11, player.position);
                 Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ProjectileType<Projectiles.Friendly.Sharkphyte>(), damage, knockBack, player.whoAmI);
+                shots = 0;
                 return false;
             }
             return true;

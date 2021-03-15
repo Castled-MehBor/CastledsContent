@@ -1,6 +1,5 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 using Terraria.ID;
 
 namespace CastledsContent.Items.Armor.Vanilla.Shadow
@@ -8,6 +7,7 @@ namespace CastledsContent.Items.Armor.Vanilla.Shadow
 	[AutoloadEquip(EquipType.Head)]
 	public class ShadowHeadgear : ModItem
 	{
+		TempSetBonus setBonus = new TempSetBonus();
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Shadow Headgear");
@@ -31,10 +31,10 @@ namespace CastledsContent.Items.Armor.Vanilla.Shadow
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "+15% increaesd movement speed\nYou will gain mana when hurt";
-			player.GetModPlayer<CastledPlayer>().ShadowMage = true;
+			player.setBonus = "Increased movement speed by 15%\nYour magic damage scales with horizontal velocity, and your mana usage scales with vertical velocity";
+			//player.GetModPlayer<CastledPlayer>().ShadowMage = true;
+			setBonus.BuffPlayer(player, "ShadowMage");
 			player.moveSpeed += 0.15f;
-			player.magicCuffs = true;
 		}
 
 		public override void UpdateEquip(Player player)

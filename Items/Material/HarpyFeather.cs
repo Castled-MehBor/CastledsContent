@@ -9,14 +9,14 @@ namespace CastledsContent.Items.Material
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Glazed Feather");
-			Tooltip.SetDefault("The delecate yet sharp remain of a sapian creature."
-			+ "\nIt's texture is invaluable in crafting clothing.");
+			Tooltip.SetDefault("'Much smoother than a regular harpy's feathers'"
+			+ "\nUsed to craft sashes and many vanity items");
 		}
 
 		public override void SetDefaults()
 		{
-			item.width = 26;
-			item.height = 24;
+			item.width = 18;
+			item.height = 28;
 			item.maxStack = 99;
 			item.value = 7500;
 			item.rare = ItemRarityID.Orange;

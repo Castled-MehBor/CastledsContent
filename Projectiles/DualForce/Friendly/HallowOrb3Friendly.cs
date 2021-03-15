@@ -62,7 +62,7 @@ namespace CastledsContent.Projectiles.DualForce.Friendly
         {
             if (attackStyle1 == true)
             {
-                Main.PlaySound(SoundID.DD2_WitherBeastDeath);
+                Main.PlaySound(SoundID.DD2_WitherBeastDeath, projectile.position);
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 13f, -13f, mod.ProjectileType("LightSparkFriendly"), (int)((double)projectile.damage * 1.5), 3f, projectile.owner, 0f, 0f);
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -13f, 13f, mod.ProjectileType("LightSparkFriendly"), (int)((double)projectile.damage * 1.5), 3f, projectile.owner, 0f, 0f);
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -13f, -13f, mod.ProjectileType("LightSparkFriendly"), (int)((double)projectile.damage * 1.5), 3f, projectile.owner, 0f, 0f);
@@ -70,7 +70,7 @@ namespace CastledsContent.Projectiles.DualForce.Friendly
             }
             else if (attackStyle2 == true)
             {
-                Main.PlaySound(SoundID.DD2_WitherBeastDeath);
+                Main.PlaySound(SoundID.DD2_WitherBeastDeath, projectile.position);
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 14f, mod.ProjectileType("LightSparkFriendly"), (int)((double)projectile.damage * 1.5), 3f, projectile.owner, 0f, 0f);
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 14f, 0f, mod.ProjectileType("LightSparkFriendly"), (int)((double)projectile.damage * 1.5), 3f, projectile.owner, 0f, 0f);
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, -14f, mod.ProjectileType("LightSparkFriendly"), (int)((double)projectile.damage * 1.5), 3f, projectile.owner, 0f, 0f);

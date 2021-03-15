@@ -11,10 +11,9 @@ namespace CastledsContent.Items.Summon
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Totem of the Spirits");
-            Tooltip.SetDefault("A totem made from the sturdiest of materials."
-            + "\nA speck of magic rests within..."
-            + "\nUnleashes two ancient spirits of light and dark when used.");
+            DisplayName.SetDefault("Unusual Totem");
+            Tooltip.SetDefault("'A guiding force led you to this very moment.'"
+            + "\nUnleashes Nasha the Nymph and Grakos the Warlord to test three elements of your soul.");
             ItemID.Sets.SortingPriorityBossSpawns[item.type] = 13;
         }
 
@@ -25,7 +24,7 @@ namespace CastledsContent.Items.Summon
             item.useTime = 600;
             item.useAnimation = 600;
             item.useStyle = ItemUseStyleID.HoldingUp;
-            item.rare = ItemRarityID.LightRed;
+            item.rare = ItemRarityID.Orange;
         }
         public override Vector2? HoldoutOffset() => new Vector2(9, 2);
 
@@ -41,10 +40,10 @@ namespace CastledsContent.Items.Summon
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Bone, 100);
-            recipe.AddRecipeGroup("IronBar", 15);
-            recipe.AddRecipeGroup("Wood", 250);
-            recipe.AddIngredient(ItemID.GuideVoodooDoll);
+            recipe.AddIngredient(ItemID.Bone, 75);
+            recipe.AddIngredient(ItemID.HellstoneBar, 8);
+            recipe.AddIngredient(ItemID.Daybloom, 3);
+            recipe.AddIngredient(ItemID.Deathweed, 3);
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -35,12 +35,6 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
 			get => npc.ai[0];
 			set => npc.ai[0] = value;
 		}
-
-		public override float SpawnChance(NPCSpawnInfo spawnInfo)
-		{
-			return SpawnCondition.OverworldNightMonster.Chance * 0.5f;
-		}
-
 		public override void AI()
 		{
 			npc.ai[0]++;
@@ -112,7 +106,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
 					if (Timer > 425)
 					{
 						npc.life = 0;
-						Main.PlaySound(SoundID.NPCDeath6);
+						Main.PlaySound(SoundID.NPCDeath6, npc.position);
 						Gore.NewGore(npc.position, npc.velocity, GoreID.ChimneySmoke1, 1.2f);
 						Gore.NewGore(npc.position, npc.velocity, GoreID.ChimneySmoke2, 1.2f);
 						Gore.NewGore(npc.position, npc.velocity, GoreID.ChimneySmoke3, 1.2f);

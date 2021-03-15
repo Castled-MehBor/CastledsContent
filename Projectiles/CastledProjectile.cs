@@ -12,7 +12,6 @@ namespace CastledsContent.Projectiles
 	{
         private int timer;
         private int rand;
-	public bool isLightful;
         public override bool InstancePerEntity
         {
             get { return true; }
@@ -28,17 +27,16 @@ namespace CastledsContent.Projectiles
                     rand = Main.rand.Next(60, 140);
                 }
             }
-	    isLightful = false;
         }
         public override void AI(Projectile projectile)
         {
-            if (projectile.type == ProjectileID.WoodenArrowFriendly)
+            if (projectile.type == ProjectileID.WoodenArrowFriendly && projectile.owner == Main.myPlayer)
             {
                 Player player = Main.player[projectile.owner];
 
                 if (timer >= rand)
                 {
-                    if (player.GetModPlayer<CastledPlayer>().aimBot && !player.GetModPlayer<CastledPlayer>().restrictAimbot)
+                    if (player.GetModPlayer<CastledPlayer>().aimBot)
                     {
                         #region Vanilla Chlorophyte Bullet AI
                         for (int i = 0; i < 200; i++)

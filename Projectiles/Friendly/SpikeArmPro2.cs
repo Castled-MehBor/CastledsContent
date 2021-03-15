@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Projectiles.Friendly
 {
@@ -106,7 +105,7 @@ namespace CastledsContent.Projectiles.Friendly
 					dust.noLight = false;
 					dust.fadeIn = 1f;
 				}
-				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, val2.X, val2.Y, ProjectileType<SpikeBall>(), projectile.damage * 3, projectile.knockBack * 3, projectile.owner, 1f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, val2.X, val2.Y, ModContent.ProjectileType<SpikeBall>(), projectile.damage * 3, projectile.knockBack * 3, projectile.owner, 1f, 0f);
 				plyr.GetModPlayer<CastledPlayer>().spikeArmCooldown = 180;
 			}
 		}

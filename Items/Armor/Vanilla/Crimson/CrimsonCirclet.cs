@@ -1,6 +1,5 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 using Terraria.ID;
 
 namespace CastledsContent.Items.Armor.Vanilla.Crimson
@@ -8,6 +7,7 @@ namespace CastledsContent.Items.Armor.Vanilla.Crimson
 	[AutoloadEquip(EquipType.Head)]
 	public class CrimsonCirclet : ModItem
 	{
+		TempSetBonus setBonus = new TempSetBonus();
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Crimson Circlet");
@@ -30,11 +30,10 @@ namespace CastledsContent.Items.Armor.Vanilla.Crimson
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "Greatly Increased life regen\nIncreases your max number of minions by 1\n6% increased minion damage";
-			player.GetModPlayer<CastledPlayer>().CrimSummon = true;
+			player.setBonus = "Greatly Increased life regen\nYour minion damage scales with life lost, and your damage reduction scales with life regeneration";
+			//player.GetModPlayer<CastledPlayer>().CrimSummon = true;
+			setBonus.BuffPlayer(player, "CrimsonSummon");
 			player.crimsonRegen = true;
-			player.minionDamage += 0.06f;
-			player.maxMinions += 1;
 		}
 
 		public override void UpdateEquip(Player player)

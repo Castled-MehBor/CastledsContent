@@ -46,21 +46,21 @@ namespace CastledsContent.Projectiles.DualForce.NightDemon
         {
             if (attackStyle1 == true)
             {
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 5f, 288, projectile.damage = 15, 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5f, 0f, 288, projectile.damage = 18, 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 4f, -4f, 288, projectile.damage = 15, 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4f, 4f, 288, projectile.damage = 15, 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4f, -4f, 288, projectile.damage = 15, 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 4f, 4f, 288, projectile.damage = 15, 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, -5f, 288, projectile.damage = 15, 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5f, 0f, 288, projectile.damage = 18, 3f, projectile.owner, 0f, 0f);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 5f, ProjectileID.GoldenShowerHostile, projectile.damage = 15, 3f, projectile.owner, 0f, 0f);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5f, 0f, ProjectileID.GoldenShowerHostile, projectile.damage = 18, 3f, projectile.owner, 0f, 0f);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 4f, -4f, ProjectileID.GoldenShowerHostile, projectile.damage = 15, 3f, projectile.owner, 0f, 0f);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4f, 4f, ProjectileID.GoldenShowerHostile, projectile.damage = 15, 3f, projectile.owner, 0f, 0f);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4f, -4f, ProjectileID.GoldenShowerHostile, projectile.damage = 15, 3f, projectile.owner, 0f, 0f);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 4f, 4f, ProjectileID.GoldenShowerHostile, projectile.damage = 15, 3f, projectile.owner, 0f, 0f);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, -5f, ProjectileID.GoldenShowerHostile, projectile.damage = 15, 3f, projectile.owner, 0f, 0f);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5f, 0f, ProjectileID.GoldenShowerHostile, projectile.damage = 18, 3f, projectile.owner, 0f, 0f);
             }
             else if (attackStyle2 == true)
             {
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 8f, 288, projectile.damage = 25, 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 8f, 0f, 288, projectile.damage = 25, 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, -7f, 288, projectile.damage = 25, 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -7f, 0f, 288, projectile.damage = 25, 3f, projectile.owner, 0f, 0f);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 8f, ProjectileID.GoldenShowerHostile, projectile.damage = 25, 3f, projectile.owner, 0f, 0f);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 8f, 0f, ProjectileID.GoldenShowerHostile, projectile.damage = 25, 3f, projectile.owner, 0f, 0f);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, -7f, ProjectileID.GoldenShowerHostile, projectile.damage = 25, 3f, projectile.owner, 0f, 0f);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -7f, 0f, ProjectileID.GoldenShowerHostile, projectile.damage = 25, 3f, projectile.owner, 0f, 0f);
             }
         }
     }

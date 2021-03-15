@@ -3,7 +3,6 @@ using Terraria;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 using System.Collections.Generic;
-using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.Weapons.Ranged
 {
@@ -12,16 +11,16 @@ namespace CastledsContent.Items.Weapons.Ranged
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Ray Gun");
-            Tooltip.SetDefault("'A discarded prototype of a handheld weapon'"
-            +"\nFires a purple ray that will slide off tiles and pierce a dozen foes"
-            +"\nThe ray will dimish in power the more enemies it pierces");
+            Tooltip.SetDefault("'Abstraction; light extraction'"
+            +"\nFires a piercing ray that slides off tiles"
+            +"\nThe ray deals less damage per enemy hit");
         }
         public override void SetDefaults()
         {
             item.damage = 15;
             item.ranged = true;
-            item.width = 32;
-            item.height = 16;
+            item.width = 30;
+            item.height = 20;
             item.useTime = 30;
             item.useAnimation = 30;
             item.useStyle = ItemUseStyleID.HoldingOut;
@@ -31,7 +30,7 @@ namespace CastledsContent.Items.Weapons.Ranged
             item.noMelee = false;
             item.rare = ItemRarityID.Blue;
             item.UseSound = SoundID.DD2_LightningAuraZap.WithVolume(2f);
-            item.shoot = ProjectileType<Projectiles.Friendly.RayGun>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Friendly.RayGun>();
             item.shootSpeed = 18f;
             item.autoReuse = true;
         }
@@ -48,6 +47,16 @@ namespace CastledsContent.Items.Weapons.Ranged
             }
             return true;
         }
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddRecipeGroup(RecipeGroupID.IronBar, 5);
+            recipe.AddIngredient(ModContent.ItemType<Accessories.RobotInvasion.RobotPlate>(), 8);
+            recipe.AddRecipeGroup("CastledsContent:RoboGemGroup", 3);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
         #region Robot Invasion Hook
         public override void ModifyTooltips(List<TooltipLine> list)
         {
@@ -56,7 +65,7 @@ namespace CastledsContent.Items.Weapons.Ranged
             {
                 if (item.mod == "Terraria" && item.Name == "ItemName")
                 {
-                    item.overrideColor = new Color(60, 60, 60);
+                    item.overrideColor = new Color(215, 135, 95);
                 }
             }
             int num = -1;
@@ -70,14 +79,6 @@ namespace CastledsContent.Items.Weapons.Ranged
                 }
                 num = num2;
                 break;
-            }
-            list.Insert(num + 1, new TooltipLine(mod, "RobotInvasionTag", "Robot Database"));
-            foreach (TooltipLine item2 in list)
-            {
-                if (item2.mod == "CastledsContent" && item2.Name == "RobotInvasionTag")
-                {
-                    item2.overrideColor = new Color(90, 25, 0);
-                }
             }
         }
         #endregion

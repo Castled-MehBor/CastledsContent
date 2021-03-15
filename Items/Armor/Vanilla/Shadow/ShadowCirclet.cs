@@ -1,6 +1,5 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 using Terraria.ID;
 
 namespace CastledsContent.Items.Armor.Vanilla.Shadow
@@ -8,6 +7,7 @@ namespace CastledsContent.Items.Armor.Vanilla.Shadow
 	[AutoloadEquip(EquipType.Head)]
 	public class ShadowCirclet : ModItem
 	{
+		TempSetBonus setBonus = new TempSetBonus();
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Shadow Crown");
@@ -30,11 +30,10 @@ namespace CastledsContent.Items.Armor.Vanilla.Shadow
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "+15% increaesd movement speed\nIncreases your max number of minions by 1\n25% increased mining speed";
-			player.GetModPlayer<CastledPlayer>().ShadowSummon = true;
-			player.moveSpeed += 0.15f;
-			player.pickSpeed += 0.25f;
-			player.maxMinions += 1;
+			player.setBonus = "Increased movement speed by 25%\nYour minion damage scales with horizontal velocity, and your damage reduction scales with vertical velocity";
+			//player.GetModPlayer<CastledPlayer>().ShadowSummon = true;
+			setBonus.BuffPlayer(player, "ShadowSummon");
+			player.moveSpeed += 0.25f;
 		}
 
 		public override void UpdateEquip(Player player)

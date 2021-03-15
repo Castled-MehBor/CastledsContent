@@ -2,11 +2,9 @@ Welcome to the CastledsContent repository!
 
 Before you do anything here, please read this file in it's entirety:
 
-- I am new to GitHub so if you see anything strange, it's my  fault v:
+- I am somewhat inexperienced to GitHub so if you see anything strange, it's most likely my  fault.
 
 - When you commit a change to this repo, precisely describe what you did in the message; it will make identifying and, if needed, fixing the new additions much easier
-
-- When you see something is wrong, please put it in "Issues". If it has been resolved, I will close it.
 
 - If you are changing something important, please mention me prior to the file update.
 

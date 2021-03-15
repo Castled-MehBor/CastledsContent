@@ -1,6 +1,5 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 using Terraria.ID;
 
 namespace CastledsContent.Items.Armor.Vanilla.Crimson
@@ -8,6 +7,7 @@ namespace CastledsContent.Items.Armor.Vanilla.Crimson
 	[AutoloadEquip(EquipType.Head)]
 	public class CrimsonHeadgear : ModItem
 	{
+		TempSetBonus setBonus = new TempSetBonus();
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Crimson Headgear");
@@ -30,10 +30,10 @@ namespace CastledsContent.Items.Armor.Vanilla.Crimson
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "Greatly Increased life regen\n+15% increased ranged critical strike chance";
-			player.GetModPlayer<CastledPlayer>().CrimRange = true;
+			player.setBonus = "Greatly Increased life regen\nYour ranged damage scales with life lost\nReduced ammo consumption if you have enough life regeneration";
+			//player.GetModPlayer<CastledPlayer>().CrimRange = true;
+			setBonus.BuffPlayer(player, "CrimsonRanged");
 			player.crimsonRegen = true;
-			player.rangedCrit += 15;
 		}
 
 		public override void UpdateEquip(Player player)

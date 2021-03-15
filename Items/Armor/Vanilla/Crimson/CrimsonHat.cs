@@ -1,6 +1,5 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 using Terraria.ID;
 
 namespace CastledsContent.Items.Armor.Vanilla.Crimson
@@ -8,6 +7,7 @@ namespace CastledsContent.Items.Armor.Vanilla.Crimson
 	[AutoloadEquip(EquipType.Head)]
 	public class CrimsonHat : ModItem
 	{
+		TempSetBonus setBonus = new TempSetBonus();
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Crimson Hat");
@@ -31,10 +31,10 @@ namespace CastledsContent.Items.Armor.Vanilla.Crimson
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "Greatly Increased life regen\nYou will gain mana when hurt";
-			player.GetModPlayer<CastledPlayer>().CrimMage = true;
+			player.setBonus = "Greatly Increased life regen\nYour magic damage scales with life lost, and your mana usage scales with life regeneration";
+			//player.GetModPlayer<CastledPlayer>().CrimMage = true;
+			setBonus.BuffPlayer(player, "CrimsonMage");
 			player.crimsonRegen = true;
-			player.magicCuffs = true;
 		}
 
 		public override void UpdateEquip(Player player)

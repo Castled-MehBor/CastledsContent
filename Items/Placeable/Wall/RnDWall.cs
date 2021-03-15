@@ -1,5 +1,6 @@
 ﻿using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
+using Terraria;
+using Terraria.ID;
 
 namespace CastledsContent.Items.Placeable.Wall
 {
@@ -19,9 +20,32 @@ namespace CastledsContent.Items.Placeable.Wall
 			item.autoReuse = true;
 			item.useAnimation = 15;
 			item.useTime = 7;
-			item.useStyle = 1;
+			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.consumable = true;
-			item.createWall = WallType<Walls.DnRWall>();
+			item.createWall = ModContent.WallType<Walls.DnRWall>();
+		}
+		public override void ModifyTooltips(System.Collections.Generic.List<TooltipLine> tooltips)
+		{
+			foreach (TooltipLine item2 in tooltips)
+			{
+				if (item2.mod == "Terraria" && item2.Name == "ItemName")
+				{
+					item2.overrideColor = new Microsoft.Xna.Framework.Color(Main.DiscoR + 35, 35, 60);
+				}
+			}
+			int num = -1;
+			int num2 = 0;
+			while (num2 < tooltips.Count)
+			{
+				if (!tooltips[num2].Name.Equals("ItemName"))
+				{
+					num2++;
+					continue;
+				}
+				num = num2;
+				break;
+			}
+			tooltips.Insert(num + 1, new TooltipLine(mod, "UnfinishedTooltip", "[c/ff0000:Unfinished]"));
 		}
 	}
 }

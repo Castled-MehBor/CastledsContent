@@ -4,36 +4,59 @@ using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.Accessories.RobotInvasion
 {
+    [AutoloadEquip(EquipType.Waist)]
     public class AimbotArrow : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Auto Aim Nanobots");
-            Tooltip.SetDefault("'Curious magnet-like devices that direct projectiles to a target'"
+            DisplayName.SetDefault("Arrow-Magnetic Nanobits");
+            Tooltip.SetDefault("'Don't mistake them for breath mints'"
             + "\nAll friendly wooden arrows will home in towards targets"
-            + "\nYou cannot have this effect if any of the following items are in your inventory:"
+            + "\nThis effect is disabled if any of the following items are in your inventory:"
             + $"\n[i/s1:{ItemID.DaedalusStormbow}] [i/s1:{ItemID.Tsunami}] [i/s1:{ItemID.ChlorophyteShotbow}] [i/s1:{ItemID.Phantasm}]");
         }
 
         public override void SetDefaults()
         {
-            item.width = 40;
-            item.width = 40;
-            item.value = 27500;
-            item.rare = ItemRarityID.Blue;
+            item.width = 22;
+            item.width = 34;
+            item.value = 75000;
+            item.rare = ItemRarityID.Orange;
             item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (!player.GetModPlayer<CastledPlayer>().restrictAimbot)
+            if (!RestrictAimbot(player))
             {
                 player.GetModPlayer<CastledPlayer>().aimBot = true;
             }
+        }
+
+        /*public override void UpdateInventory(Player player)
+        {
+            AccessoryInfo info = player.GetModPlayer<CastledPlayer>().info;
+            if (!RestrictAimbot(player) && info.active.Contains("ReinforcedExoskeleton") && Main.hardMode)
+                player.GetModPlayer<CastledPlayer>().aimBot = true;
+        }*/
+        bool RestrictAimbot(Player player)
+        {
+            List<int> restrict = new List<int>
+            {
+                ItemID.DaedalusStormbow,
+                ItemID.Tsunami,
+                ItemID.ChlorophyteShotbow,
+                ItemID.Phantasm
+            };
+            foreach(Item item in player.inventory)
+            {
+                if (restrict.Contains(item.type))
+                    return true;
+            }
+            return false;
         }
         #region Robot Invasion Hook
         public override void ModifyTooltips(List<TooltipLine> list)
@@ -43,30 +66,20 @@ namespace CastledsContent.Items.Accessories.RobotInvasion
             {
                 if (item.mod == "Terraria" && item.Name == "ItemName")
                 {
-                    item.overrideColor = new Color(60, 60, 60);
-                }
-            }
-            int num = -1;
-            int num2 = 0;
-            while (num2 < list.Count)
-            {
-                if (!list[num2].Name.Equals("ItemName"))
-                {
-                    num2++;
-                    continue;
-                }
-                num = num2;
-                break;
-            }
-            list.Insert(num + 1, new TooltipLine(mod, "RobotInvasionTag", "Robot Database"));
-            foreach (TooltipLine item2 in list)
-            {
-                if (item2.mod == "CastledsContent" && item2.Name == "RobotInvasionTag")
-                {
-                    item2.overrideColor = new Color(4, 60 + Main.DiscoB / 2, 35);
+                    item.overrideColor = new Color(215, 135, 95);
                 }
             }
         }
         #endregion
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddRecipeGroup(RecipeGroupID.IronBar, 16);
+            recipe.AddIngredient(ModContent.ItemType<RobotPlate>(), 8);
+            recipe.AddIngredient(ItemID.BeeWax, 12);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
     }
 }

@@ -8,17 +8,17 @@ namespace CastledsContent.Items.Weapons.Melee
 {
     public class CrystalSpear : ModItem
     {
+        public DualForceBuff buff = new DualForceBuff(false);
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Crystalline Spear");
-            Tooltip.SetDefault("'The divine and fragile spear of the legendary Nymph, gifted to you.'"
-            + "\nThrows a crystalline spear that will create light sparks either both ways horizontally, or vertically."
-            + "\nIs stronger in hardmode, and even stronger in the hallow.");
+            Tooltip.SetDefault("'Fragile, and fragmented; the properties a spear shouldn't have'"
+            + "\nThrows a crystalline spear that fires light sparks in two directions");
         }
 
         public override void SetDefaults()
         {
-            item.damage = 70;
+            item.damage = 45;
             item.melee = true;
             item.noUseGraphic = true;
             item.width = 46;
@@ -29,35 +29,35 @@ namespace CastledsContent.Items.Weapons.Melee
             item.noMelee = true;
             item.knockBack = 3;
             item.value = 50000;
-            item.rare = ItemRarityID.LightRed;
+            item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.DD2_WitherBeastHurt;
             item.autoReuse = true;
             item.shoot = ProjectileType<CrystalSpearFriendly>();
             item.shootSpeed = 8f;
         }
+        #region DualForce Hook
+        public override void ModifyTooltips(System.Collections.Generic.List<TooltipLine> list)
+        {
+
+            foreach (TooltipLine item in list)
+            {
+                if (item.mod == "Terraria" && item.Name == "ItemName")
+                {
+                    item.overrideColor = new Microsoft.Xna.Framework.Color(255, 100, 175);
+                }
+            }
+        }
+        #endregion
         public override bool CanUseItem(Player player)
         {
-            if (Main.hardMode && player.ZoneHoly)
-            {
-                item.damage = 90;
-                item.useTime = 50;
-                item.useAnimation = 50;
-                item.shootSpeed = 12f;
-            }
-            else if (Main.hardMode)
-            {
-                item.damage = 80;
-                item.useTime = 60;
-                item.useAnimation = 60;
-                item.shootSpeed = 10f;
-            }
-            else
-            {
-                item.damage = 70;
-                item.useTime = 75;
-                item.useAnimation = 75;
-                item.shootSpeed = 8f;
-            }
+            item.damage = 45;
+            item.useTime = 75;
+            item.useAnimation = 75;
+            item.shootSpeed = 8f;
+            item.damage = buff.BuffInt(item.damage, player, 1);
+            item.useTime = buff.BuffInt(item.useTime, player, 2);
+            item.useAnimation = buff.BuffInt(item.useAnimation, player, 2);
+            item.shootSpeed = buff.BuffFloat(item.shootSpeed, player);
             return true;
         }
     }

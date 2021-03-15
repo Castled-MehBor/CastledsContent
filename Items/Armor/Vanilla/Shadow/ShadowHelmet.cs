@@ -1,6 +1,5 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 using Terraria.ID;
 
 namespace CastledsContent.Items.Armor.Vanilla.Shadow
@@ -8,12 +7,13 @@ namespace CastledsContent.Items.Armor.Vanilla.Shadow
 	[AutoloadEquip(EquipType.Head)]
 	public class ShadowHelmet : ModItem
 	{
+		TempSetBonus setBonus = new TempSetBonus();
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Shadow Helmet");
 			Tooltip.SetDefault("12% increased ranged critical strike chance"
 				+ "\n7% increased movement speed"
-				 +"\n'Shadow Helmet, but awesome!'");
+				 +"\n'Shadow Helmet, but awesome.'");
 		}
 
 		public override void SetDefaults()
@@ -31,10 +31,10 @@ namespace CastledsContent.Items.Armor.Vanilla.Shadow
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "+15% increaesd movement speed\n+15% increased ranged critical strike chance";
-			player.GetModPlayer<CastledPlayer>().ShadowRange = true;
+			player.setBonus = "Increased movement speed by 15%\nYour ranged damage scales with horizontal velocity\nReduced ammo consumption above a specific vertical velocity";
+			//player.GetModPlayer<CastledPlayer>().ShadowRange = true;
+			setBonus.BuffPlayer(player, "ShadowRanged");
 			player.moveSpeed += 0.15f;
-			player.rangedCrit += 15;
 		}
 
 		public override void UpdateEquip(Player player)

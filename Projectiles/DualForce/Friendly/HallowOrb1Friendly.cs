@@ -46,7 +46,7 @@ namespace CastledsContent.Projectiles.DualForce.Friendly
         }
         public override void Kill(int timeLeft)
         {
-            Main.PlaySound(SoundID.Item8);
+            Main.PlaySound(SoundID.Item8, projectile.position);
             Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 0f, mod.ProjectileType("HallowOrb2Friendly"), (int)((double)projectile.damage * 1), 3f, projectile.owner, 0f, 0f);
         }
     }

@@ -8,7 +8,7 @@ namespace CastledsContent.Items.Placeable.Painting
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("The False Angel");
+			DisplayName.SetDefault("Ruler of Everything Above");
 			Tooltip.SetDefault("'M. Bar'");
 		}
 

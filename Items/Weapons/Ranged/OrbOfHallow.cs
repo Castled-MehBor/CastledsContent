@@ -8,56 +8,56 @@ namespace CastledsContent.Items.Weapons.Ranged
 {
     public class OrbOfHallow : ModItem
     {
+        public DualForceBuff buff = new DualForceBuff(false);
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("The Orb of Light");
-            Tooltip.SetDefault("'The wise and precise Orb of Light of the legendary Nymph, gifted to you.'"
-            + "\nThrows an Orb of Light that will travel for a little bit, stop in place and then explode in four different directions."
-            + "\nIs stronger in hardmode, and even stronger in the hallow.");
+            DisplayName.SetDefault("Orb of Light");
+            Tooltip.SetDefault("'Don't mistake it for a gobstopper'"
+            + "\nThrows an orb that grows in power until it explodes into four light sparks");
         }
 
         public override void SetDefaults()
         {
-            item.damage = 60;
+            item.damage = 40;
             item.ranged = true;
             item.noUseGraphic = true;
-            item.width = 26;
-            item.height = 26;
+            item.width = 22;
+            item.height = 30;
             item.useTime = 60;
             item.useAnimation = 60;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.noMelee = true;
             item.knockBack = 8;
             item.value = 50000;
-            item.rare = ItemRarityID.LightRed;
+            item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
             item.shoot = ProjectileType<HallowOrb1Friendly>();
             item.shootSpeed = 5f;
         }
+        #region DualForce Hook
+        public override void ModifyTooltips(System.Collections.Generic.List<TooltipLine> list)
+        {
+
+            foreach (TooltipLine item in list)
+            {
+                if (item.mod == "Terraria" && item.Name == "ItemName")
+                {
+                    item.overrideColor = new Microsoft.Xna.Framework.Color(255, 100, 175);
+                }
+            }
+        }
+        #endregion
         public override bool CanUseItem(Player player)
         {
-            if (Main.hardMode && player.ZoneHoly)
-            {
-                item.damage = 80;
-                item.useTime = 40;
-                item.useAnimation = 40;
-                item.knockBack = 12;
-            }
-            else if (Main.hardMode)
-            {
-                item.damage = 70;
-                item.useTime = 50;
-                item.useAnimation = 50;
-                item.knockBack = 9;
-            }
-            else
-            {
-                item.damage = 60;
-                item.useTime = 60;
-                item.useAnimation = 60;
-                item.knockBack = 8;
-            }
+            item.damage = 40;
+            item.useTime = 60;
+            item.useAnimation = 60;
+            item.shootSpeed = 5f;
+            item.damage = buff.BuffInt(item.damage, player, 1);
+            item.useTime = buff.BuffInt(item.useTime, player, 2);
+            item.useAnimation = buff.BuffInt(item.useAnimation, player, 2);
+            item.shootSpeed = buff.BuffFloat(item.shootSpeed, player);
             return true;
         }
     }

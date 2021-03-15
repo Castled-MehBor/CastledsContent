@@ -8,17 +8,18 @@ namespace CastledsContent.Projectiles.Friendly.HarpyQueen
 {
     public class GiantFeatherF : ModProjectile
     {
+        public override string Texture => "CastledsContent/Projectiles/Friendly/HarpyQueen/GlazedFeather";
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Giant Feather");
+            DisplayName.SetDefault("Glazed Feather");
             ProjectileID.Sets.TrailCacheLength[projectile.type] = 5;
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;
         }
 
         public override void SetDefaults()
         {
-            projectile.width = 14;
-            projectile.height = 34;
+            projectile.width = 12;
+            projectile.height = 26;
             projectile.aiStyle = 1;
             projectile.friendly = true;
             projectile.penetrate = 6;

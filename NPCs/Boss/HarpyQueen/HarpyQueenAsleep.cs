@@ -55,10 +55,11 @@ namespace CastledsContent.NPCs.Boss.HarpyQueen
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.player.ZoneSkyHeight && NPC.downedQueenBee && !NPC.AnyNPCs(NPCType<HarpyQueenAsleep>()) && !CastledWorld.downedHarpyQueen);
+            if (spawnInfo.player.ZoneSkyHeight && NPC.downedQueenBee && !NPC.AnyNPCs(NPCType<HarpyQueenAsleep>()) && !CastledWorld.downedHarpyQueen)
             {
                 return SpawnCondition.Sky.Chance * 0.025f;
             }
+            return 0f;
         }
     }
 }

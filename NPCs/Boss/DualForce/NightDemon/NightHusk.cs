@@ -16,7 +16,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
         public int chargeDistance;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Grakos, Manipulator of Magiks");
+            DisplayName.SetDefault("Grakos the Warlord");
             Main.npcFrameCount[npc.type] = 23;
         }
 
@@ -68,7 +68,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
         {
             if (Main.rand.Next(19) == 0)
             {
-                Main.PlaySound(SoundID.PlayerHit);
+                Main.PlaySound(SoundID.PlayerHit, npc.position);
                 Dust.NewDust(new Vector2(npc.position.X, npc.position.Y), npc.width, npc.height, 5, 0f, 0f, 0, default, 1f);
             }
         }
@@ -234,7 +234,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
                         }
                         if (Timer == 60)
                         {
-                            Main.PlaySound(SoundID.Item1);
+                            Main.PlaySound(SoundID.Item1, npc.position);
                             float Speed = 3f;
                             Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                             int damage = 22;
@@ -247,7 +247,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
                         }
                         if (Timer == 61)
                         {
-                            Main.PlaySound(SoundID.Item1);
+                            Main.PlaySound(SoundID.Item1, npc.position);
                             float Speed = 6f;
                             Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                             int damage = 22;
@@ -260,7 +260,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
                         }
                         if (Timer == 62)
                         {
-                            Main.PlaySound(SoundID.Item1);
+                            Main.PlaySound(SoundID.Item1, npc.position);
                             float Speed = 9f;
                             Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                             int damage = 22;
@@ -274,7 +274,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
                         }
                         if (Timer == 63)
                         {
-                            Main.PlaySound(SoundID.Item1);
+                            Main.PlaySound(SoundID.Item1, npc.position);
                             float Speed = 12f;
                             Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                             int damage = 22;
@@ -287,7 +287,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
                         }
                         if (Timer == 64)
                         {
-                            Main.PlaySound(SoundID.Item1);
+                            Main.PlaySound(SoundID.Item1, npc.position);
                             float Speed = 15f;
                             Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                             int damage = 22;
@@ -315,7 +315,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
                         {
                             if (npc.ai[1] >= 35)
                             {
-                                Main.PlaySound(SoundID.Grass);
+                                Main.PlaySound(SoundID.Grass, npc.position);
 
                                 float Speed = 8f;
                                 Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
@@ -330,7 +330,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
                         {
                             if (npc.ai[1] >= 35)
                             {
-                                Main.PlaySound(SoundID.Grass);
+                                Main.PlaySound(SoundID.Grass, npc.position);
 
                                 float Speed = 5f;
                                 Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
@@ -363,7 +363,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
                             {
                                 if (npc.ai[1] >= 35)
                                 {
-                                    Main.PlaySound(SoundID.Grass);
+                                    Main.PlaySound(SoundID.Grass, npc.position);
 
                                     float Speed = 8f;
                                     Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
@@ -378,7 +378,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
                             {
                                 if (npc.ai[1] >= 18)
                                 {
-                                    Main.PlaySound(SoundID.Grass);
+                                    Main.PlaySound(SoundID.Grass, npc.position);
 
                                     float Speed = 8f;
                                     Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
@@ -430,7 +430,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
                             {
                                 if (npc.ai[1] >= 18)
                                 {
-                                    Main.PlaySound(SoundID.DD2_WitherBeastAuraPulse);
+                                    Main.PlaySound(SoundID.DD2_WitherBeastAuraPulse, npc.position);
 
                                     float Speed = 8f;
                                     Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
@@ -482,7 +482,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
                             {
                                 if (npc.ai[1] >= 46)
                                 {
-                                    Main.PlaySound(SoundID.DD2_WitherBeastAuraPulse);
+                                    Main.PlaySound(SoundID.DD2_WitherBeastAuraPulse, npc.position);
 
                                     float Speed = 8f;
                                     Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
@@ -550,7 +550,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
                     else if (npc.frameCounter == 68)
                     {
                         npc.frame.Y = Frame_Throw4 * frameHeight;
-                        Main.PlaySound(SoundID.DD2_LightningBugZap);
+                        Main.PlaySound(SoundID.DD2_LightningBugZap, npc.position);
                         rotationAxis += 1;
 
                         Color color = new Color();
@@ -649,7 +649,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
             {
                 if (npc.frameCounter == 70)
                 {
-                    Main.PlaySound(SoundID.NPCDeath13);
+                    Main.PlaySound(SoundID.NPCDeath13, npc.position);
                 }
             }
             if (isAttacking == true && rotationAxis == 7)
@@ -878,8 +878,8 @@ namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
                         Main.NewText("[c/53347a:As Grakos leaves, he leaves behind potions and a departure gift.]");
                         Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.HealingPotion, 15);
                         npc.DropBossBags();
-                        Main.PlaySound(SoundID.DD2_DrakinDeath);
-                        Main.PlaySound(SoundID.NPCDeath6);
+                        Main.PlaySound(SoundID.DD2_DrakinDeath, npc.position);
+                        Main.PlaySound(SoundID.NPCDeath6, npc.position);
                         Color color = new Color();
                         Rectangle rectangle = new Rectangle((int)npc.position.X, (int)(npc.position.Y + ((npc.height - npc.width) / 2)), npc.width, npc.width);
                         int count = 60;
@@ -900,8 +900,8 @@ namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
             if (NPC.AnyNPCs(mod.NPCType("LightMage")))
             {
                 Main.NewText("[c/F38FFF:Terrarian, You're almost there!]");
-                Main.PlaySound(SoundID.DD2_DrakinDeath);
-                Main.PlaySound(SoundID.NPCDeath6);
+                Main.PlaySound(SoundID.DD2_DrakinDeath, npc.position);
+                Main.PlaySound(SoundID.NPCDeath6, npc.position);
                 Color color = new Color();
                 Rectangle rectangle = new Rectangle((int)npc.position.X, (int)(npc.position.Y + ((npc.height - npc.width) / 2)), npc.width, npc.width);
                 int count = 60;
@@ -917,8 +917,8 @@ namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
             else if (NPC.AnyNPCs(mod.NPCType("LightNymph")))
             {
                 Main.NewText("[c/F38FFF:Terrarian, You're almost there!]");
-                Main.PlaySound(SoundID.DD2_DrakinDeath);
-                Main.PlaySound(SoundID.NPCDeath6);
+                Main.PlaySound(SoundID.DD2_DrakinDeath, npc.position);
+                Main.PlaySound(SoundID.NPCDeath6, npc.position);
                 Color color = new Color();
                 Rectangle rectangle = new Rectangle((int)npc.position.X, (int)(npc.position.Y + ((npc.height - npc.width) / 2)), npc.width, npc.width);
                 int count = 60;

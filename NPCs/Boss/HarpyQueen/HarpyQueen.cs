@@ -1014,15 +1014,15 @@ namespace CastledsContent.NPCs.Boss.HarpyQueen
                 int num = Main.rand.Next(3);
                 if (num == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<Items.Weapons.Magic.AvianHijack>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<Items.Weapons.Magic.HarpyStaff>());
                 }
                 if (num == 1)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<Items.Weapons.Melee.QueenJudgement>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<Items.Weapons.Melee.HarpyArm>());
                 }
                 if (num == 2)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<Items.Weapons.Ranged.MonarchPrecision>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<Items.Weapons.Ranged.HarpyGun>());
                 }
 
                 if (Main.rand.Next(12) == 0)

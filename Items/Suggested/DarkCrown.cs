@@ -9,14 +9,13 @@ using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.Suggested
 {
-    [AutoloadEquip(EquipType.Face)]
     public class DarkCrown : ModItem
     {
         public int boost;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Crown of the Dark-Spawn");
-            Tooltip.SetDefault("[c/320032:'Darkness is everywhere, above and below...']"
+            DisplayName.SetDefault("Penumbral Crown");
+            Tooltip.SetDefault("[c/320032:Dark magic is always misunderstood.]"
             + "\nIncreases maximum life by 20"
             + "\n4 defense"
             + "\n8% increased damage"
@@ -29,14 +28,14 @@ namespace CastledsContent.Items.Suggested
             + "\nYour attacks have a chance to spawn dark-spawns from the sky or the ground"
             + "\nThe power, amount and variety of these dark-spawns scale with progression, up to Golem"
             + "\nToggle visibility to toggle dark-spawns");
-            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 4));
-            ItemID.Sets.AnimatesAsSoul[item.type] = true;
+            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 5));
+            //ItemID.Sets.AnimatesAsSoul[item.type] = true;
         }
 
         public override void SetDefaults()
         {
-            item.width = 32;
-            item.width = 34;
+            item.width = 50;
+            item.height = 40;
             item.value = 75000;
             item.expert = true;
             item.accessory = true;
@@ -76,6 +75,7 @@ namespace CastledsContent.Items.Suggested
             player.lifeRegen += 1 * boost;
             player.statLifeMax2 += 20 * boost;
             player.maxMinions += 1 * boost;
+            player.rocketTimeMax += 65 * boost;
         }
         #region Donator Hook
         public override void ModifyTooltips(List<TooltipLine> list)

@@ -74,13 +74,13 @@ namespace CastledsContent.Projectiles.DualForce.NightDemon
             if (attackStyle1 == true)
             {
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, -14f, mod.ProjectileType("TrueCursedFireball"), projectile.damage = 20, 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4f, -13f, 96, projectile.damage = 16, 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 4f, -13f, 96, projectile.damage = 16, 3f, projectile.owner, 0f, 0f);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4f, -13f, ProjectileID.CursedFlameHostile, projectile.damage = 16, 3f, projectile.owner, 0f, 0f);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 4f, -13f, ProjectileID.CursedFlameHostile, projectile.damage = 16, 3f, projectile.owner, 0f, 0f);
             }
             else if (attackStyle2 == true)
             {
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5f, -13f, 96, projectile.damage = 22, 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5f, -13f, 96, projectile.damage = 22, 3f, projectile.owner, 0f, 0f);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5f, -13f, ProjectileID.CursedFlameHostile, projectile.damage = 22, 3f, projectile.owner, 0f, 0f);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5f, -13f, ProjectileID.CursedFlameHostile, projectile.damage = 22, 3f, projectile.owner, 0f, 0f);
             }
         }
     }

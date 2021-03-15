@@ -2,63 +2,68 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using CastledsContent.Projectiles.DualForce.Friendly;
-using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.Items.Weapons.Ranged
 {
     public class DeadeyeScroll : ModItem
     {
+        public DualForceBuff buff = new DualForceBuff(true);
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Dead-Man's Deadeye Contract");
-            Tooltip.SetDefault("'The remains of a well-worth barter to the demonic overlord Grakos, gifted to you.'"
-            + "\nPosition your line of sight, and then fire away!"
-            + "\nIs stronger in hardmode, and even stronger in the Corruption.");
+            DisplayName.SetDefault("Dead Man's Deadeye Pact");
+            Tooltip.SetDefault("'How do you accidently give someone a pact?'"
+            + "\nFires a stream of blasts");
         }
 
         public override void SetDefaults()
         {
-            item.damage = 50;
+            item.damage = 15;
             item.ranged = true;
             item.noUseGraphic = true;
-            item.width = 20;
-            item.height = 20;
+            item.width = 34;
+            item.height = 50;
             item.useTime = 90;
-            item.UseSound = SoundID.DD2_KoboldIgnite;
             item.useAnimation = 45;
-            item.useStyle = ItemUseStyleID.HoldingOut;
+            item.UseSound = SoundID.DD2_KoboldIgnite;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.noMelee = true;
-            item.knockBack = 4;
+            item.knockBack = 3;
             item.value = 50000;
-            item.rare = ItemRarityID.LightRed;
+            item.rare = ItemRarityID.Orange;
             item.autoReuse = true;
-            item.shoot = ProjectileType<LineofSightFriendly>();
-            item.shootSpeed = 15f;
+            item.shoot = ModContent.ProjectileType<LineofSightFriendly>();
+            item.shootSpeed = 10f;
+        }
+        public override bool HoldItemFrame(Player player)
+        {
+            if (!UseItem(player))
+                player.bodyFrame.Y = player.bodyFrame.Height * 3;
+            return true;
         }
         public override bool CanUseItem(Player player)
         {
-            if (Main.hardMode && player.ZoneCorrupt)
-            {
-                item.damage = 70;
-                item.useTime = 50;
-                item.useAnimation = 50;
-                item.shootSpeed = 18f;
-            }
-            else if (Main.hardMode)
-            {
-                item.damage = 60;
-                item.useTime = 70;
-                item.useAnimation = 70;
-                item.shootSpeed = 18f;
-            }
-            else
-            {
-                item.damage = 50;
-                item.useTime = 90;
-                item.useAnimation = 45;
-                item.shootSpeed = 15f;
-            }
-            return true;
+            item.damage = 15;
+            item.useTime = 90;
+            item.useAnimation = 45;
+            item.shootSpeed = 10f;
+            item.damage = buff.BuffInt(item.damage, player, 1);
+            item.useTime = buff.BuffInt(item.useTime, player, 2);
+            item.useAnimation = buff.BuffInt(item.useAnimation, player, 2);
+            item.shootSpeed = buff.BuffFloat(item.shootSpeed, player);
+            return player.ownedProjectileCounts[ModContent.ProjectileType<LineofSightFriendly>()] < 1;
         }
+        #region DualForce Hook
+        public override void ModifyTooltips(System.Collections.Generic.List<TooltipLine> list)
+        {
+
+            foreach (TooltipLine item in list)
+            {
+                if (item.mod == "Terraria" && item.Name == "ItemName")
+                {
+                    item.overrideColor = new Microsoft.Xna.Framework.Color(175, 115, 255);
+                }
+            }
+        }
+        #endregion
     }
 }
