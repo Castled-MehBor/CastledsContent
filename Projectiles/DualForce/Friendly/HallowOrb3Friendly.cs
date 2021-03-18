@@ -7,8 +7,7 @@ namespace CastledsContent.Projectiles.DualForce.Friendly
 {
     public class HallowOrb3Friendly : ModProjectile
     {
-        public bool attackStyle1;
-        public bool attackStyle2;
+        readonly double[] rotation = new double[] { 0, 90, 180, 270 };
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Orb of Light");
@@ -29,53 +28,12 @@ namespace CastledsContent.Projectiles.DualForce.Friendly
             projectile.tileCollide = false;
             projectile.extraUpdates = 1;
         }
-        public float Timer
-        {
-            get => projectile.ai[0];
-            set => projectile.ai[0] = value;
-        }
-        public override bool PreAI()
-        {
-            if (Timer == 1)
-            {
-                int num = Main.rand.Next(2);
-                if (num == 0)
-                {
-                    attackStyle1 = true;
-                }
-                if (num == 1)
-                {
-                    attackStyle2 = true;
-                }
-            }
-            return true;
-        }
-        public override void AI()
-        {
-            Timer++;
-            if (Timer > 25)
-            {
-                projectile.Kill();
-            }
-        }
         public override void Kill(int timeLeft)
         {
-            if (attackStyle1 == true)
-            {
-                Main.PlaySound(SoundID.DD2_WitherBeastDeath, projectile.position);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 13f, -13f, mod.ProjectileType("LightSparkFriendly"), (int)((double)projectile.damage * 1.5), 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -13f, 13f, mod.ProjectileType("LightSparkFriendly"), (int)((double)projectile.damage * 1.5), 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -13f, -13f, mod.ProjectileType("LightSparkFriendly"), (int)((double)projectile.damage * 1.5), 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 13f, 13f, mod.ProjectileType("LightSparkFriendly"), (int)((double)projectile.damage * 1.5), 3f, projectile.owner, 0f, 0f);
-            }
-            else if (attackStyle2 == true)
-            {
-                Main.PlaySound(SoundID.DD2_WitherBeastDeath, projectile.position);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 14f, mod.ProjectileType("LightSparkFriendly"), (int)((double)projectile.damage * 1.5), 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 14f, 0f, mod.ProjectileType("LightSparkFriendly"), (int)((double)projectile.damage * 1.5), 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, -14f, mod.ProjectileType("LightSparkFriendly"), (int)((double)projectile.damage * 1.5), 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -14f, 0f, mod.ProjectileType("LightSparkFriendly"), (int)((double)projectile.damage * 1.5), 3f, projectile.owner, 0f, 0f);
-            }
+            int rotational = Main.rand.Next(-90, 90);
+            Main.PlaySound(SoundID.DD2_WitherBeastDeath, projectile.position);
+            for (int a = 0; a < 4; a++)
+                Projectile.NewProjectile(projectile.Center, new Vector2(0, -9).RotatedBy(rotation[a] + rotational, default), ModContent.ProjectileType<LightSparkFriendly>(), (int)(projectile.damage * 1.5), 1.5f, projectile.owner, 0f, 0f);
         }
     }
 }

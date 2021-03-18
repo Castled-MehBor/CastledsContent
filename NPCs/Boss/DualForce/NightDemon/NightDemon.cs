@@ -3,6 +3,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using CastledsContent.Projectiles.DualForce.NightDemon;
 
 namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
 {
@@ -175,7 +176,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
                                 float Speed = 5f;
                                 Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                                 int damage = 0;
-                                int type = mod.ProjectileType("LineofSight");
+                                int type = ModContent.ProjectileType<LineofSight>();
                                 float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                                 int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                                 npc.ai[1] = 0;
@@ -204,7 +205,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
                                 float Speed = 18f;
                                 Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                                 int damage = 0;
-                                int type = mod.ProjectileType("LineofSight");
+                                int type = ModContent.ProjectileType<LineofSight>();
                                 float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                                 int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                                 npc.ai[1] = 0;
@@ -234,7 +235,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
                                 float Speed = 6f;
                                 Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                                 int damage = 18;
-                                int type = mod.ProjectileType("FlaskIchor");
+                                int type = ModContent.ProjectileType<FlaskIchor>();
                                 float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                                 int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                                 npc.ai[1] = 0;
@@ -247,7 +248,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
                                 float Speed = 9f;
                                 Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                                 int damage = 18;
-                                int type = mod.ProjectileType("FlaskIchor");
+                                int type = ModContent.ProjectileType<FlaskIchor>();
                                 float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                                 int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                                 npc.ai[1] = 0;
@@ -260,7 +261,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
                                 float Speed = 12f;
                                 Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                                 int damage = 18;
-                                int type = mod.ProjectileType("FlaskIchor");
+                                int type = ModContent.ProjectileType<FlaskIchor>();
                                 float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                                 int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                                 npc.ai[1] = 0;
@@ -290,7 +291,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
                                 float Speed = 5f;
                                 Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                                 int damage = 0;
-                                int type = mod.ProjectileType("CursedFlameRot5");
+                                int type = ModContent.ProjectileType<CursedFlameRot5>();
                                 float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                                 int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                                 npc.ai[1] = 0;
@@ -323,7 +324,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.NightDemon
                                     float Speed = 5f;
                                     Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                                     int damage = 0;
-                                    int type = mod.ProjectileType("IchorRot8");
+                                    int type = ModContent.ProjectileType<IchorRot8>();
                                     float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                                     int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                                     npc.ai[1] = 0;

@@ -7,8 +7,9 @@ namespace CastledsContent.Projectiles.DualForce.LightMage
 {
     public class HallowOrb3 : ModProjectile
     {
-        public bool attackStyle1;
-        public bool attackStyle2;
+        bool warning = false;
+        int rotational = Main.rand.Next(-45, 45);
+        readonly double[] rotation = new double[] { 0, 45, 90, 135, 180, 225, 270, 315 };
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Orb of Light");
@@ -26,78 +27,20 @@ namespace CastledsContent.Projectiles.DualForce.LightMage
             projectile.tileCollide = false;
             projectile.extraUpdates = 1;
         }
-        public float Timer
-        {
-            get => projectile.ai[0];
-            set => projectile.ai[0] = value;
-        }
-        public override bool PreAI()
-        {
-            if (Timer == 1)
-            {
-                int num = Main.rand.Next(2);
-                if (num == 0)
-                {
-                    attackStyle1 = true;
-                }
-                if (num == 1)
-                {
-                    attackStyle2 = true;
-                }
-            }
-            return true;
-        }
         public override void AI()
         {
-            Timer++;
-            if (Timer == 2)
+            if (!warning)
             {
-                if (attackStyle1 == true)
-                {
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 14f, mod.ProjectileType("WarningProj"), (int)((double)projectile.damage * 0), 3f, projectile.owner, 0f, 0f);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 14f, 0f, mod.ProjectileType("WarningProj"), (int)((double)projectile.damage * 0), 3f, projectile.owner, 0f, 0f);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 13f, -13f, mod.ProjectileType("WarningProj"), (int)((double)projectile.damage * 0), 3f, projectile.owner, 0f, 0f);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -13f, 13f, mod.ProjectileType("WarningProj"), (int)((double)projectile.damage * 0), 3f, projectile.owner, 0f, 0f);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -13f, -13f, mod.ProjectileType("WarningProj"), (int)((double)projectile.damage * 0), 3f, projectile.owner, 0f, 0f);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 13f, 13f, mod.ProjectileType("WarningProj"), (int)((double)projectile.damage * 0), 3f, projectile.owner, 0f, 0f);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, -14f, mod.ProjectileType("WarningProj"), (int)((double)projectile.damage * 0), 3f, projectile.owner, 0f, 0f);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -14f, 0f, mod.ProjectileType("WarningProj"), (int)((double)projectile.damage * 0), 3f, projectile.owner, 0f, 0f);
-                }
-                else if (attackStyle2 == true)
-                {
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 14f, mod.ProjectileType("WarningProj"), (int)((double)projectile.damage * 0), 3f, projectile.owner, 0f, 0f);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 14f, 0f, mod.ProjectileType("WarningProj"), (int)((double)projectile.damage * 0), 3f, projectile.owner, 0f, 0f);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, -14f, mod.ProjectileType("WarningProj"), (int)((double)projectile.damage * 0), 3f, projectile.owner, 0f, 0f);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -14f, 0f, mod.ProjectileType("WarningProj"), (int)((double)projectile.damage * 0), 3f, projectile.owner, 0f, 0f);
-                }
-            }
-            if (Timer > 75)
-            {
-                projectile.Kill();
+                for (int a = 0; a < 8; a++)
+                    Projectile.NewProjectile(projectile.Center, new Vector2(0, -12).RotatedBy(rotation[a] + rotational, default), ModContent.ProjectileType<WarningProj>(), 0, 0, projectile.owner, 0f, 0f);
+                warning = true;
             }
         }
         public override void Kill(int timeLeft)
         {
-            if (attackStyle1 == true)
-            {
-                Main.PlaySound(SoundID.DD2_WitherBeastDeath);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 8f, mod.ProjectileType("LightSpark"), projectile.damage = 12, 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 8f, 0f, mod.ProjectileType("LightSpark"), projectile.damage = 12, 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 6f, -6f, mod.ProjectileType("LightSpark"), projectile.damage = 12, 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -6f, 6f, mod.ProjectileType("LightSpark"), projectile.damage = 12, 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -6f, -6f, mod.ProjectileType("LightSpark"), projectile.damage = 12, 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 6f, 6f, mod.ProjectileType("LightSpark"), projectile.damage = 12, 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, -8f, mod.ProjectileType("LightSpark"), projectile.damage = 12, 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8f, 0f, mod.ProjectileType("LightSpark"), projectile.damage = 12, 3f, projectile.owner, 0f, 0f);
-            }
-            else if (attackStyle2 == true)
-            {
-                Main.PlaySound(SoundID.DD2_WitherBeastDeath);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 12f, mod.ProjectileType("LightSpark"), projectile.damage = 20, 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 12f, 0f, mod.ProjectileType("LightSpark"), projectile.damage = 20, 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, -12f, mod.ProjectileType("LightSpark"), projectile.damage = 20, 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -12f, 0f, mod.ProjectileType("LightSpark"), projectile.damage = 20, 3f, projectile.owner, 0f, 0f);
-            }
+            Main.PlaySound(SoundID.DD2_WitherBeastDeath);
+            for (int a = 0; a < 8; a++)
+                Projectile.NewProjectile(projectile.Center, new Vector2(0, -12).RotatedBy(rotation[a] + rotational, default), ModContent.ProjectileType<LightSpark>(), 12, 3, projectile.owner, 0f, 0f);
         }
     }
 }

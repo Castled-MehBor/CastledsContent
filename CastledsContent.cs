@@ -27,38 +27,38 @@ namespace CastledsContent
     public class CastledsContent : Mod
     {
         public static Mod Instance;
-        internal static CastledsContent instance;
+        static internal CastledsContent instance;
         #region Values for DrawAnimationVertical Clones
-        public static int Frame1 = 0;
-        public static int FrameCounter1 = 0;
-        public static int Frame2 = 0;
-        public static int FrameCounter2 = 0;
-        public static int Frame3 = 0;
-        public static int FrameCounter3 = 0;
-        public static int Frame1Inv = 0;
-        public static int FrameCounter1Inv = 0;
-        public static int Frame2Inv = 0;
-        public static int FrameCounter2Inv = 0;
+        internal int Frame1 = 0;
+        internal int FrameCounter1 = 0;
+        internal int Frame2 = 0;
+        internal int FrameCounter2 = 0;
+        internal int Frame3 = 0;
+        internal int FrameCounter3 = 0;
+        internal int Frame1Inv = 0;
+        internal int FrameCounter1Inv = 0;
+        internal int Frame2Inv = 0;
+        internal int FrameCounter2Inv = 0;
         #endregion
         #region Variables
         private int packetNum = 0;
-        public static int titleAlpha = 0;
-        public static int title2Alpha = 0;
-        public static int title3Alpha = 0;
-        public static int timer1 = 0;
-        public static int sub1 = 0;
-        public static int sub2 = 0;
-        public static int sub3 = 0;
-        public static int sub1a = 0;
-        public static int sub2a = 0;
-        public static int ia = 0;
-        public static bool subT2 = false;
-        public static bool subT3 = false;
-        //public static bool subT1a = false;
-        public static bool subT2a = false;
-        public static bool hqtest = false;
-        public static int modCond = 3;
-        public static int changeType = 1;
+        internal int titleAlpha = 0;
+        internal int title2Alpha = 0;
+        internal int title3Alpha = 0;
+        internal int timer1 = 0;
+        internal int sub1 = 0;
+        internal int sub2 = 0;
+        internal int sub3 = 0;
+        internal int sub1a = 0;
+        internal int sub2a = 0;
+        internal int ia = 0;
+        internal bool subT2 = false;
+        internal bool subT3 = false;
+        //internal bool subT1a = false;
+        internal bool subT2a = false;
+        internal bool hqtest = false;
+        internal int modCond = 3;
+        internal int changeType = 1;
         internal static ModHotKey JoinMinigame;
         internal static ModHotKey PresetNavigate;
         internal static ModHotKey SpecialHotkey;
@@ -71,11 +71,6 @@ namespace CastledsContent
         public override void PostSetupContent()
         {
             Mod bossChecklist = ModLoader.GetMod("BossChecklist");
-            /*List<string> asdf = new List<string>() 
-            { 
-                "Sash",
-                "Harpy"
-            };*/
             if (bossChecklist != null)
             {
                 //DualForce
@@ -83,13 +78,6 @@ namespace CastledsContent
                 //HarpyQueen
                 bossChecklist.Call("AddBoss", 4.9f, new List<int>() { ModContent.NPCType<NPCs.Boss.HarpyQueen.HarpyQueen>() }, this, "Harpy Queen", (Func<bool>)(() => CastledWorld.downedHarpyQueen), ModContent.ItemType<Items.Placeable.SkywareArtifact>(), new List<int>() { ModContent.ItemType<HQTrophy>(), ModContent.ItemType<HQMask>(), ModContent.ItemType<MusicBox2>(), },  new List<int>() { ModContent.ItemType<HarpyGun>(), ModContent.ItemType<HarpyArm>(), ModContent.ItemType<HarpyStaff>(), ModContent.ItemType<TreasureBag3>(), ModContent.ItemType<HarpyQueenCirclet>(), ModContent.ItemType<Items.Material.HarpyFeather>(), ItemID.Feather, ModContent.ItemType<HarpyBreastplate>(), ModContent.ItemType<HarpyLeggings>() }, "Can spawn sleeping in space after Queen Bee has been defeated, or you can put three feathers on a [i:" + ItemType("SkywareArtifact") + "]", "...", "CastledsContent/NPCs/Boss/HarpyQueen/HarpyQueenBossLog");
                 bossChecklist.Call("AddEvent", 1.99f, new List<int>() { ModContent.NPCType<NPCs.ItemLotteryNPC.ItemLotteryNPC>() }, this, "Superintendent", (Func<bool>)(() => CastledWorld.downedAlgorithmo), ModContent.ItemType<Items.MinigameItem>(), ItemID.None, ItemID.None, "Use a fully-charged [i:" + ItemType("MinigameItem") + "].", "", "CastledsContent/NPCs/ItemLotteryNPC/ItemLotteryNPCBossLog", "CastledsContent/Content/RobotInvasion_Icon", (Func<bool>)(() => NPC.downedSlimeKing));            }
-                //Call(this, "Modcall Test", Color.Goldenrod, asdf);
-            /*
-             *      mod = args[0] as Mod,
-                    modtitle = args[1] as string,
-                    modColor = args[2] as Color?,
-                    conditions = args[3] as List<string>
-            */
 
         }
         public override void Load()
@@ -356,23 +344,6 @@ namespace CastledsContent
                 }
             }
             #endregion
-            #region Deadeye Crosshair
-            if (mP.deadeye.drawAim)
-            {
-                var aimLayer = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));
-                var aimState = new LegacyGameInterfaceLayer("CastledsContent: Interface Logic 1",
-                    delegate
-                    {
-                        DrawDeadeyeCrosshair(mP);
-                        //DrawLotteryText1();
-                        //DrawLotteryText2();
-                        //DrawLotteryText3();
-                        return true;
-                    },
-                    InterfaceScaleType.UI);
-                layers.Insert(aimLayer, aimState);
-            }
-            #endregion
             if (CastledWorld.waitParti)
             {
                 var waitLayer = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));
@@ -471,16 +442,16 @@ namespace CastledsContent
         private static void DrawLotteryBegin()
         {
             //Main.NewText(Main.hoverItemName);
-            timer1++;
+            instance.timer1++;
             int multiplier = 2;
             DynamicSpriteFont fontType = Main.fontMouseText;
             Color GetTitleAlpha(Color newColor)
             {
-                title2Alpha += 1 * multiplier;
-                int r = newColor.R + (int)((double)title2Alpha * (LMan.titleColor.R * 0.02));
-                int g = newColor.G + (int)((double)title2Alpha * (LMan.titleColor.G * 0.02));
-                int b = newColor.B + (int)((double)title2Alpha * (LMan.titleColor.B * 0.02));
-                int num = newColor.A + (int)((double)title2Alpha * 0.4);
+                instance.title2Alpha += 1 * multiplier;
+                int r = newColor.R + (int)((double)instance.title2Alpha * (LMan.titleColor.R * 0.02));
+                int g = newColor.G + (int)((double)instance.title2Alpha * (LMan.titleColor.G * 0.02));
+                int b = newColor.B + (int)((double)instance.title2Alpha * (LMan.titleColor.B * 0.02));
+                int num = newColor.A + (int)((double)instance.title2Alpha * 0.4);
                 if (num < 0)
                 {
                     num = 0;
@@ -489,17 +460,17 @@ namespace CastledsContent
                 {
                     num = 255;
                 }
-                if (title2Alpha > 255)
-                    title2Alpha = 255;
+                if (instance.title2Alpha > 255)
+                    instance.title2Alpha = 255;
                 return new Color(r, g, b, num);
             }
             Color GetTitleAlpha1(Color newColor)
             {
-                title3Alpha += 1 * multiplier;
-                int r = newColor.R + (int)((double)title3Alpha * (LMan.titleColor.R * 0.02));
-                int g = newColor.G + (int)((double)title3Alpha * (LMan.titleColor.G * 0.02));
-                int b = newColor.B + (int)((double)title3Alpha * (LMan.titleColor.B * 0.02));
-                int num = newColor.A + (int)((double)title3Alpha * 0.4);
+                instance.title3Alpha += 1 * multiplier;
+                int r = newColor.R + (int)((double)instance.title3Alpha * (LMan.titleColor.R * 0.02));
+                int g = newColor.G + (int)((double)instance.title3Alpha * (LMan.titleColor.G * 0.02));
+                int b = newColor.B + (int)((double)instance.title3Alpha * (LMan.titleColor.B * 0.02));
+                int num = newColor.A + (int)((double)instance.title3Alpha * 0.4);
                 if (num < 0)
                 {
                     num = 0;
@@ -508,27 +479,27 @@ namespace CastledsContent
                 {
                     num = 255;
                 }
-                if (title3Alpha > 255)
-                    title3Alpha = 255;
+                if (instance.title3Alpha > 255)
+                    instance.title3Alpha = 255;
                 return new Color(r, g, b, num);
             }
             string refrain = $"Refrain from possessing {LMan.groupContra} Contrabande in total.";
             string maintain = $"Maintain {LMan.minItemQuota} items in your inventory.";
             string personal = "Don't forget to check your personal storage!";
             DynamicSpriteFontExtensionMethods.DrawString(Main.spriteBatch, fontType, refrain, new Vector2((float)(Main.screenWidth / 2), (float)(Main.screenHeight / 2 - 210)), GetTitleAlpha(Color.Transparent), 0f, Main.fontMouseText.MeasureString(refrain) / 2, 2f, SpriteEffects.None, 0f);
-            if (timer1 > 300)
+            if (instance.timer1 > 300)
                 multiplier = -2;
-            if (timer1 > 180)
+            if (instance.timer1 > 180)
             {
                 DynamicSpriteFontExtensionMethods.DrawString(Main.spriteBatch, fontType, maintain, new Vector2((float)(Main.screenWidth / 2), (float)(Main.screenHeight / 2 - 160)), GetTitleAlpha1(Color.Transparent), 0f, Main.fontMouseText.MeasureString(maintain) / 2, 1f, SpriteEffects.None, 0f);
                 DynamicSpriteFontExtensionMethods.DrawString(Main.spriteBatch, fontType, personal, new Vector2((float)(Main.screenWidth / 2), (float)(Main.screenHeight / 2 - 140)), GetTitleAlpha1(Color.Transparent), 0f, Main.fontMouseText.MeasureString(personal) / 2, 0.75f, SpriteEffects.None, 0f);
             }
-            if (timer1 > 420)
+            if (instance.timer1 > 420)
             {
                 LMan.begin = false;
                 LMan.itemCheck = true;
                 LMan.start = true;
-                timer1 = 0;
+                instance.timer1 = 0;
             }
         }
         private static void DrawLotteryText()
@@ -548,9 +519,9 @@ namespace CastledsContent
                 if (!LMan.finalOutcome)
                 {
                     redColor = GetSubAlpha(Color.Transparent, 1);
-                    if (subT2)
+                    if (instance.subT2)
                         orangeColor = GetSubAlpha(Color.Transparent, 2);
-                    if (subT3)
+                    if (instance.subT3)
                         yellowColor = GetSubAlpha(Color.Transparent, 3);
                     if (LMan.displayAltTitles)
                     {
@@ -585,10 +556,10 @@ namespace CastledsContent
 
                 Color GetTitleAlpha(Color newColor)
                 {
-                    titleAlpha += 1;
-                    int r = newColor.R + (int)((double)titleAlpha * (LMan.titleColor.R / 100));
-                    int g = newColor.G + (int)((double)titleAlpha * (LMan.titleColor.G / 100));
-                    int b = newColor.B + (int)((double)titleAlpha * (LMan.titleColor.B / 100));
+                    instance.titleAlpha += 1;
+                    int r = newColor.R + (int)((double)instance.titleAlpha * (LMan.titleColor.R / 100));
+                    int g = newColor.G + (int)((double)instance.titleAlpha * (LMan.titleColor.G / 100));
+                    int b = newColor.B + (int)((double)instance.titleAlpha * (LMan.titleColor.B / 100));
                     #region Commented Alpha
                     /*
                     int num = newColor.A + (int)((double)titleAlpha * 0.4);
@@ -605,8 +576,8 @@ namespace CastledsContent
                         titleAlpha = 255;
                     */
                     #endregion
-                    if (titleAlpha > 100)
-                        titleAlpha = 100;
+                    if (instance.titleAlpha > 100)
+                        instance.titleAlpha = 100;
                     return new Color(r, g, b, 0);
                 }
                 Color GetSubAlpha(Color newColor, int type)
@@ -614,11 +585,11 @@ namespace CastledsContent
                     switch (type)
                     {
                         case 1:
-                            sub1 += 1;
-                            int r = newColor.R + (int)((double)sub1 * 2.5);
-                            int g = newColor.G + (int)((double)sub1 * 2.5);
-                            int b = newColor.B + (int)((double)sub1 * 2.5);
-                            int num = newColor.A + (int)((double)sub1 * 0.4);
+                            instance.sub1 += 1;
+                            int r = newColor.R + (int)((double)instance.sub1 * 2.5);
+                            int g = newColor.G + (int)((double)instance.sub1 * 2.5);
+                            int b = newColor.B + (int)((double)instance.sub1 * 2.5);
+                            int num = newColor.A + (int)((double)instance.sub1 * 0.4);
                             if (num < 0)
                             {
                                 num = 0;
@@ -627,15 +598,15 @@ namespace CastledsContent
                             {
                                 num = 255;
                             }
-                            if (sub1 > 255)
-                                sub1 = 255;
+                            if (instance.sub1 > 255)
+                                instance.sub1 = 255;
                             return new Color(r, g, b, num);
                         case 2:
-                            sub2 += 1;
-                            int r2 = newColor.R + (int)((double)sub2 * 2.5);
-                            int g2 = newColor.G + (int)((double)sub2 * 2.5);
-                            int b2 = newColor.B + (int)((double)sub2 * 2.5);
-                            int num2 = newColor.A + (int)((double)sub2 * 0.4);
+                            instance.sub2 += 1;
+                            int r2 = newColor.R + (int)((double)instance.sub2 * 2.5);
+                            int g2 = newColor.G + (int)((double)instance.sub2 * 2.5);
+                            int b2 = newColor.B + (int)((double)instance.sub2 * 2.5);
+                            int num2 = newColor.A + (int)((double)instance.sub2 * 0.4);
                             if (num2 < 0)
                             {
                                 num2 = 0;
@@ -644,15 +615,15 @@ namespace CastledsContent
                             {
                                 num2 = 255;
                             }
-                            if (sub2 > 255)
-                                sub2 = 255;
+                            if (instance.sub2 > 255)
+                                instance.sub2 = 255;
                             return new Color(r2, g2, b2, num2);
                         case 3:
-                            sub3 += 1;
-                            int r3 = newColor.R + (int)((double)sub3 * 2.5);
-                            int g3 = newColor.G + (int)((double)sub3 * 2.5);
-                            int b3 = newColor.B + (int)((double)sub3 * 2.5);
-                            int num3 = newColor.A + (int)((double)sub3 * 0.4);
+                            instance.sub3 += 1;
+                            int r3 = newColor.R + (int)((double)instance.sub3 * 2.5);
+                            int g3 = newColor.G + (int)((double)instance.sub3 * 2.5);
+                            int b3 = newColor.B + (int)((double)instance.sub3 * 2.5);
+                            int num3 = newColor.A + (int)((double)instance.sub3 * 0.4);
                             if (num3 < 0)
                             {
                                 num3 = 0;
@@ -661,15 +632,15 @@ namespace CastledsContent
                             {
                                 num3 = 255;
                             }
-                            if (sub3 > 255)
-                                sub3 = 255;
+                            if (instance.sub3 > 255)
+                                instance.sub3 = 255;
                             return new Color(r3, g3, b3, num3);
                         case 4:
-                            sub1a += 1;
-                            int r1a = newColor.R + (int)((double)sub1a * Main.rand.Next(0, 1));
-                            int g1a = newColor.G + (int)((double)sub1a * Main.rand.Next(0, 2));
-                            int b1a = newColor.B + (int)((double)sub1a * Main.rand.Next(0, 1));
-                            int num1a = newColor.A + (int)((double)sub1a * Main.rand.Next(0, 1));
+                            instance.sub1a += 1;
+                            int r1a = newColor.R + (int)((double)instance.sub1a * Main.rand.Next(0, 1));
+                            int g1a = newColor.G + (int)((double)instance.sub1a * Main.rand.Next(0, 2));
+                            int b1a = newColor.B + (int)((double)instance.sub1a * Main.rand.Next(0, 1));
+                            int num1a = newColor.A + (int)((double)instance.sub1a * Main.rand.Next(0, 1));
                             if (num1a < 0)
                             {
                                 num1a = 0;
@@ -678,15 +649,15 @@ namespace CastledsContent
                             {
                                 num1a = 255;
                             }
-                            if (sub1a > 255)
-                                sub1a = 255;
+                            if (instance.sub1a > 255)
+                                instance.sub1a = 255;
                             return new Color(r1a, g1a, b1a, num1a);
                         case 5:
-                            sub2a += 1;
-                            int r2a = newColor.R + (int)((double)sub2a * Main.rand.Next(0, 1));
-                            int g2a = newColor.G + (int)((double)sub2a * Main.rand.Next(0, 1));
-                            int b2a = newColor.B + (int)((double)sub2a * Main.rand.Next(0, 2));
-                            int num2a = newColor.A + (int)((double)sub2a * Main.rand.Next(0, 1));
+                            instance.sub2a += 1;
+                            int r2a = newColor.R + (int)((double)instance.sub2a * Main.rand.Next(0, 1));
+                            int g2a = newColor.G + (int)((double)instance.sub2a * Main.rand.Next(0, 1));
+                            int b2a = newColor.B + (int)((double)instance.sub2a * Main.rand.Next(0, 2));
+                            int num2a = newColor.A + (int)((double)instance.sub2a * Main.rand.Next(0, 1));
                             if (num2a < 0)
                             {
                                 num2a = 0;
@@ -695,8 +666,8 @@ namespace CastledsContent
                             {
                                 num2a = 255;
                             }
-                            if (sub2a > 255)
-                                sub2a = 255;
+                            if (instance.sub2a > 255)
+                                instance.sub2a = 255;
                             return new Color(r2a, g2a, b2a, num2a);
                     }
                     return Color.White;
@@ -765,7 +736,7 @@ namespace CastledsContent
                     }
                     return 0;
                 }
-                int inverse = titleAlpha;
+                int inverse = instance.titleAlpha;
                 Color GetTimerColor(Color newColor, int type)
                 {
                     if (LMan.alphaC > 0)
@@ -829,16 +800,16 @@ namespace CastledsContent
                         Update();
                         void Update()
                         {
-                            if (++FrameCounter1 >= TicksPerFrame)
+                            if (++instance.FrameCounter1 >= TicksPerFrame)
                             {
-                                FrameCounter1 = 0;
-                                if (++Frame1 >= FrameCount)
+                                instance.FrameCounter1 = 0;
+                                if (++instance.Frame1 >= FrameCount)
                                 {
-                                    Frame1 = 0;
+                                    instance.Frame1 = 0;
                                 }
                             }
                         }
-                        item1Rect = item1.Frame(1, FrameCount, 0, Frame1);
+                        item1Rect = item1.Frame(1, FrameCount, 0, instance.Frame1);
                     }
                     if (Main.itemAnimationsRegistered.Contains(LMan.synci2))
                     {
@@ -847,16 +818,16 @@ namespace CastledsContent
                         Update();
                         void Update()
                         {
-                            if (++FrameCounter2 >= TicksPerFrame)
+                            if (++instance.FrameCounter2 >= TicksPerFrame)
                             {
-                                FrameCounter2 = 0;
-                                if (++Frame2 >= FrameCount)
+                                instance.FrameCounter2 = 0;
+                                if (++instance.Frame2 >= FrameCount)
                                 {
-                                    Frame2 = 0;
+                                    instance.Frame2 = 0;
                                 }
                             }
                         }
-                        item2Rect = item2.Frame(1, FrameCount, 0, Frame2);
+                        item2Rect = item2.Frame(1, FrameCount, 0, instance.Frame2);
                     }
                     if (Main.itemAnimationsRegistered.Contains(LMan.synci3))
                     {
@@ -865,16 +836,16 @@ namespace CastledsContent
                         Update();
                         void Update()
                         {
-                            if (++FrameCounter3 >= TicksPerFrame)
+                            if (++instance.FrameCounter3 >= TicksPerFrame)
                             {
-                                FrameCounter3 = 0;
-                                if (++Frame3 >= FrameCount)
+                                instance.FrameCounter3 = 0;
+                                if (++instance.Frame3 >= FrameCount)
                                 {
-                                    Frame3 = 0;
+                                    instance.Frame3 = 0;
                                 }
                             }
                         }
-                        item3Rect = item3.Frame(1, FrameCount, 0, Frame3);
+                        item3Rect = item3.Frame(1, FrameCount, 0, instance.Frame3);
                     }
                     if (Main.itemAnimationsRegistered.Contains(LMan.ib1))
                     {
@@ -883,16 +854,16 @@ namespace CastledsContent
                         Update();
                         void Update()
                         {
-                            if (++FrameCounter1Inv >= TicksPerFrame)
+                            if (++instance.FrameCounter1Inv >= TicksPerFrame)
                             {
-                                FrameCounter1Inv = 0;
-                                if (++Frame1Inv >= FrameCount)
+                                instance.FrameCounter1Inv = 0;
+                                if (++instance.Frame1Inv >= FrameCount)
                                 {
-                                    Frame1Inv = 0;
+                                    instance.Frame1Inv = 0;
                                 }
                             }
                         }
-                        item1aRect = item1a.Frame(1, FrameCount, 0, Frame1Inv);
+                        item1aRect = item1a.Frame(1, FrameCount, 0, instance.Frame1Inv);
                     }
                     if (Main.itemAnimationsRegistered.Contains(LMan.ib2))
                     {
@@ -901,26 +872,26 @@ namespace CastledsContent
                         Update();
                         void Update()
                         {
-                            if (++FrameCounter2Inv >= TicksPerFrame)
+                            if (++instance.FrameCounter2Inv >= TicksPerFrame)
                             {
-                                FrameCounter2Inv = 0;
-                                if (++Frame2Inv >= FrameCount)
+                                instance.FrameCounter2Inv = 0;
+                                if (++instance.Frame2Inv >= FrameCount)
                                 {
-                                    Frame2Inv = 0;
+                                    instance.Frame2Inv = 0;
                                 }
                             }
                         }
-                        item2aRect = item2a.Frame(1, FrameCount, 0, Frame2Inv);
+                        item2aRect = item2a.Frame(1, FrameCount, 0, instance.Frame2Inv);
                     }
                     Main.spriteBatch.Draw(item1, itemPos, item1Rect, redColor, 0f, new Vector2(((item1Rect.Width + 60) / 2) + 25, ((item1Rect.Height + 90) / 2) + 50), 1f, SpriteEffects.None, 0f);
-                    if (subT2)
+                    if (instance.subT2)
                         Main.spriteBatch.Draw(item2, item2Pos, item2Rect, orangeColor, 0f, new Vector2(((item2Rect.Width + 60) / 2) + 35, ((item2Rect.Height + 90) / 2) + 50), 1f, SpriteEffects.None, 0f);
-                    if (subT3)
+                    if (instance.subT3)
                         Main.spriteBatch.Draw(item3, item3Pos, item3Rect, yellowColor, 0f, new Vector2(((item3Rect.Width + 60) / 2) + 30, ((item3Rect.Height + 90) / 2) + 50), 1f, SpriteEffects.None, 0f);
                     if (LMan.displayAltTitles)
                     {
                         Main.spriteBatch.Draw(item1a, item1aPos, item1aRect, greenColor, 0f, new Vector2(((item1aRect.Width + 60) / 2) + 90, ((item1aRect.Height + 90) / 2) - 20), 1f, SpriteEffects.None, 0f);
-                        if (subT2a)
+                        if (instance.subT2a)
                             Main.spriteBatch.Draw(item2a, item2aPos, item2aRect, blueColor, 0f, new Vector2(((item2aRect.Width + 60) / 2) - 150, ((item2aRect.Height + 90) / 2) - 60), 1f, SpriteEffects.None, 0f);
                     }
                     #endregion
@@ -934,14 +905,14 @@ namespace CastledsContent
                     DynamicSpriteFontExtensionMethods.DrawString(Main.spriteBatch, fontType, nextRound, new Vector2((float)(Main.screenWidth / 2), (float)(Main.screenHeight / 2 + VibrateTimer(null, 3))), GetTimerColor(Color.Transparent, 2), 0f, Main.fontMouseText.MeasureString(nextRound) / 2, 0.75f, SpriteEffects.None, 0f);
                 }
                 DynamicSpriteFontExtensionMethods.DrawString(Main.spriteBatch, fontType, value1, new Vector2((float)(Main.screenWidth / 2 - 150), (float)(Main.screenHeight / 2 - 35)), redColor, 0f, Main.fontMouseText.MeasureString(value1) / 2, 1f, SpriteEffects.None, 0f);
-                if (subT2)
+                if (instance.subT2)
                     DynamicSpriteFontExtensionMethods.DrawString(Main.spriteBatch, fontType, value2, new Vector2((float)(Main.screenWidth / 2 + 150), (float)(Main.screenHeight / 2 - 35)), orangeColor, 0f, Main.fontMouseText.MeasureString(value2) / 2, 1f, SpriteEffects.None, 0f);
-                if (subT3)
+                if (instance.subT3)
                     DynamicSpriteFontExtensionMethods.DrawString(Main.spriteBatch, fontType, value3, new Vector2((float)(Main.screenWidth / 2), (float)(Main.screenHeight / 2 - 105)), yellowColor, 0f, Main.fontMouseText.MeasureString(value3) / 2, 1f, SpriteEffects.None, 0f);
                 if (LMan.displayAltTitles)
                 {
                     DynamicSpriteFontExtensionMethods.DrawString(Main.spriteBatch, fontType, value4, new Vector2((float)(Main.screenWidth / 2 - 120), (float)(Main.screenHeight / 2 + 35)), greenColor, 0f, Main.fontMouseText.MeasureString(value4) / 2, 1f, SpriteEffects.None, 0f);
-                    if (subT2a)
+                    if (instance.subT2a)
                         DynamicSpriteFontExtensionMethods.DrawString(Main.spriteBatch, fontType, value5, new Vector2((float)(Main.screenWidth / 2 + 120), (float)(Main.screenHeight / 2 + 35)), blueColor, 0f, Main.fontMouseText.MeasureString(value5) / 2, 1f, SpriteEffects.None, 0f);
                 }
                 //Main.instance.DrawPlayer(player, vec, player.fullRotation, player.fullRotationOrigin, 0f);
@@ -957,11 +928,11 @@ namespace CastledsContent
             #region Draw Item
             Color GetTitleItemAlpha(Color newColor)
             {
-                ia += 5;
-                int r = newColor.R + (int)((double)ia * (Color.White.G * 0.02));
-                int g = newColor.G + (int)((double)ia * (Color.White.A * 0.02));
-                int b = newColor.B + (int)((double)ia * (Color.White.B * 0.02));
-                int num = newColor.A + (int)((double)ia * 0.4);
+                instance.ia += 5;
+                int r = newColor.R + (int)((double)instance.ia * (Color.White.G * 0.02));
+                int g = newColor.G + (int)((double)instance.ia * (Color.White.A * 0.02));
+                int b = newColor.B + (int)((double)instance.ia * (Color.White.B * 0.02));
+                int num = newColor.A + (int)((double)instance.ia * 0.4);
                 if (num < 0)
                 {
                     num = 0;
@@ -970,8 +941,8 @@ namespace CastledsContent
                 {
                     num = 255;
                 }
-                if (ia > 255)
-                    ia = 255;
+                if (instance.ia > 255)
+                    instance.ia = 255;
                 return new Color(r, g, b, num);
             }
             Texture2D item1 = Main.itemTexture[LMan.displayItemType];
@@ -984,16 +955,16 @@ namespace CastledsContent
                 Update();
                 void Update()
                 {
-                    if (++FrameCounter1 >= TicksPerFrame)
+                    if (++instance.FrameCounter1 >= TicksPerFrame)
                     {
-                        FrameCounter1 = 0;
-                        if (++Frame1 >= FrameCount)
+                        instance.FrameCounter1 = 0;
+                        if (++instance.Frame1 >= FrameCount)
                         {
-                            Frame1 = 0;
+                            instance.Frame1 = 0;
                         }
                     }
                 }
-                item1Rect = item1.Frame(1, FrameCount, 0, Frame1);
+                item1Rect = item1.Frame(1, FrameCount, 0, instance.Frame1);
             }
             Main.spriteBatch.Draw(item1, itemPos, item1Rect, GetTitleItemAlpha(Color.Transparent), 0f, new Vector2(((item1Rect.Width + 60) / 2) + 25, ((item1Rect.Height + 90) / 2) + 50), 1f, SpriteEffects.None, 0f);
             #endregion
@@ -1240,10 +1211,6 @@ namespace CastledsContent
             */
             #endregion
         }
-        private static void DrawDeadeyeCrosshair(CastledPlayer modP)
-        {
-
-        }
         #endregion
         public override void AddRecipes()
         {
@@ -1291,7 +1258,8 @@ namespace CastledsContent
 
         public override void Action(CommandCaller caller, string input, string[] args)
         {
-            Main.player[Main.myPlayer].GetModPlayer<CastledPlayer>().superintendentDelay = 0;
+            if (Main.player[Main.myPlayer].GetModPlayer<NPCs.Tarr.IncPlayer>().godMode)
+                Main.player[Main.myPlayer].GetModPlayer<CastledPlayer>().superintendentDelay = 0;
         }
     }
 }

@@ -14,8 +14,7 @@ namespace CastledsContent.Items.Bags
         {
             DisplayName.SetDefault("Cleansing Lockbox");
             Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}"
-            + "\n''The reward for completing a difficult test.'"
-            + "\nContains two weapons used by the legendary nymph, Nasha.");
+            + "\n'The reward for completing a difficult test.'");
         }
 
         public override void SetDefaults()

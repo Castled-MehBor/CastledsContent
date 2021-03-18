@@ -46,7 +46,7 @@ namespace CastledsContent.Projectiles.Friendly.HarpyQueen
 		{
 			Player val = Main.player[projectile.owner];
 			projectile.rotation = 0;
-			direction = val.direction == -1 ? -1 : 1;
+			direction = Main.MouseWorld.X < val.position.X ? -1 : 1;
 			projectile.spriteDirection = direction * -1;
 			if (!set)
 			{
@@ -56,6 +56,7 @@ namespace CastledsContent.Projectiles.Friendly.HarpyQueen
 				projectile.knockBack = 0;
 				set = true;
 			}
+			val.direction = projectile.spriteDirection * -1;
 			if (val.dead)
 			{
 				projectile.Kill();
@@ -163,7 +164,7 @@ namespace CastledsContent.Projectiles.Friendly.HarpyQueen
             {
 				Vector2 perturbedSpeed = new Vector2(val2.Y, val2.X).RotatedByRandom(MathHelper.ToRadians(precision));
 				perturbedSpeed = perturbedSpeed.RotatedBy(225, default);
-				Projectile.NewProjectileDirect(projectile.position, perturbedSpeed, ModContent.ProjectileType<HyperFeatherF>(), projectile.damage, projectile.knockBack, player.whoAmI);
+				Projectile.NewProjectileDirect(projectile.Center, perturbedSpeed, ModContent.ProjectileType<HyperFeatherF>(), projectile.damage, projectile.knockBack, player.whoAmI);
 			}
 			if (precision < 60)
             {
@@ -171,11 +172,11 @@ namespace CastledsContent.Projectiles.Friendly.HarpyQueen
 				{
 					Vector2 perturbedSpeed = new Vector2(val2.Y, val2.X).RotatedByRandom(MathHelper.ToRadians(precision));
 					perturbedSpeed = perturbedSpeed.RotatedBy(225, default);
-					Projectile.NewProjectileDirect(projectile.position, perturbedSpeed, ModContent.ProjectileType<GiantFeatherF>(), projectile.damage * 2, projectile.knockBack * 2, player.whoAmI);
+					Projectile.NewProjectileDirect(projectile.Center, perturbedSpeed, ModContent.ProjectileType<GiantFeatherF>(), projectile.damage * 2, projectile.knockBack * 2, player.whoAmI);
 				}
 			}
 
 			//Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, val2.X, val2.Y, ModContent.ProjectileType<FeatherBallNew>(), (int)values[0], (float)values[1], projectile.owner, 1f, 0f);
 		}
-	}
+    }
 }

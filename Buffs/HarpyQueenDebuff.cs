@@ -1,8 +1,5 @@
 ﻿// Tag #1: Skyware Boss
 using Terraria;
-using Terraria.ID;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 using Terraria.ModLoader;
 
 namespace CastledsContent.Buffs
@@ -11,15 +8,10 @@ namespace CastledsContent.Buffs
     {
         public override void SetDefaults()
         {
-            DisplayName.SetDefault("Avian Prescence");
-            Description.SetDefault("Her glare scares off even other harpies...");
+            DisplayName.SetDefault("Bird's Eye");
+            Description.SetDefault("Don't look down.");
             Main.buffNoTimeDisplay[Type] = true;
             Main.debuff[Type] = true;
-        }
-
-        public override void Update(Player player, ref int buffIndex)
-        {
-
         }
     }
 }

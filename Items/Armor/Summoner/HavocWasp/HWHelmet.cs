@@ -52,8 +52,7 @@ namespace CastledsContent.Items.Armor.Summoner.HavocWasp
 		}
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "All of your minions will either ignite or poison hit enemies\nA dead wasp will protect you";
-			player.GetModPlayer<CastledPlayer>().havocWasp = true;
+			player.setBonus = "Unfinished\n5 defense";
 			player.statDefense += 5;
 		}
 		public override void ArmorSetShadows(Player player)

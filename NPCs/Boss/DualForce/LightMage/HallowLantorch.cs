@@ -3,6 +3,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using CastledsContent.Projectiles.DualForce.LightMage;
 
 namespace CastledsContent.NPCs.Boss.DualForce.LightMage
 {
@@ -53,7 +54,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
 						float Speed = 44;
 						Vector2 vector8 = new Vector2(npc.position.X + (npc.width * Main.rand.Next(1, 5)), npc.position.Y * Main.rand.Next(1, 5));
 						int damage = 20;
-						int type = (mod.ProjectileType("HallowFireball"));
+						int type = ModContent.ProjectileType<HallowFireball>();
 						Main.PlaySound(SoundID.Grass, (int)npc.position.X, (int)npc.position.Y, 17);
 						float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
 						int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
@@ -64,7 +65,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
 						float Speed = 24f;
 						Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
 						int damage = 20;
-						int type = (mod.ProjectileType("HallowFireball"));
+						int type = ModContent.ProjectileType<HallowFireball>();
 						Main.PlaySound(SoundID.Grass, (int)npc.position.X, (int)npc.position.Y, 17);
 						float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
 						int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
@@ -75,7 +76,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
 						float Speed = 28f;
 						Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
 						int damage = 20;
-						int type = (mod.ProjectileType("HallowFireball"));
+						int type = ModContent.ProjectileType<HallowFireball>();
 						Main.PlaySound(SoundID.Grass, (int)npc.position.X, (int)npc.position.Y, 17);
 						float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
 						int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
@@ -86,7 +87,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
 						float Speed = 34f;
 						Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
 						int damage = 20;
-						int type = (mod.ProjectileType("HallowFireball"));
+						int type = ModContent.ProjectileType<HallowFireball>();
 						Main.PlaySound(SoundID.Grass, (int)npc.position.X, (int)npc.position.Y, 17);
 						float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
 						int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
@@ -97,7 +98,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
 						float Speed = 40f;
 						Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
 						int damage = 20;
-						int type = (mod.ProjectileType("HallowFireball"));
+						int type = ModContent.ProjectileType<HallowFireball>();
 						Main.PlaySound(SoundID.Grass, (int)npc.position.X, (int)npc.position.Y, 17);
 						float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
 						int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);

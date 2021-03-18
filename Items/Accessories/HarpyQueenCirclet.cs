@@ -12,10 +12,9 @@ namespace CastledsContent.Items.Accessories
         {
             DisplayName.SetDefault("Harpy Queen's Circlet");
             Tooltip.SetDefault("2 defense"
-            + "\n4% increased damage"
+            + "\n6% increased damage"
             + "\nImmunity to fall damage"
             + "\nIncreased jump speed"
-            + "\nIncreased rocket boot flight time"
             + "\nAll above effects are doubled in space"
             + "\nYour attacks have a chance to spawn feathers from the sky"
             + "\nToggle visibility to toggle feathers");
@@ -57,11 +56,10 @@ namespace CastledsContent.Items.Accessories
                 player.GetModPlayer<CastledPlayer>().harpyCrown = true;
             }
             player.statDefense += 2 * spaceBoost;
-            player.allDamage += 0.04f * spaceBoost;
+            player.allDamage += 0.06f * spaceBoost;
             player.noFallDmg = true;
-            player.jumpSpeedBoost += 1 * spaceBoost;
+            player.jumpSpeedBoost += 1.25f * spaceBoost;
             player.wingTimeMax += 50 * spaceBoost;
-            player.rocketTimeMax += 50 * spaceBoost;
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {

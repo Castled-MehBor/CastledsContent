@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using CastledsContent.Projectiles.DualForce.LightMage;
 
 namespace CastledsContent.Projectiles.DualForce.NightDemon
 {
@@ -54,14 +55,14 @@ namespace CastledsContent.Projectiles.DualForce.NightDemon
             {
                 if (attackStyle1 == true)
                 {
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 14f, mod.ProjectileType("WarningProj"), (int)((double)projectile.damage * 0), 3f, projectile.owner, 0f, 0f);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4f, 13f, mod.ProjectileType("WarningProj"), (int)((double)projectile.damage * 0), 3f, projectile.owner, 0f, 0f);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 4f, 13f, mod.ProjectileType("WarningProj"), (int)((double)projectile.damage * 0), 3f, projectile.owner, 0f, 0f);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 14f, ModContent.ProjectileType<WarningProj>(), (int)((double)projectile.damage * 0), 3f, projectile.owner, 0f, 0f);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4f, 13f, ModContent.ProjectileType<WarningProj>(), (int)((double)projectile.damage * 0), 3f, projectile.owner, 0f, 0f);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 4f, 13f, ModContent.ProjectileType<WarningProj>(), (int)((double)projectile.damage * 0), 3f, projectile.owner, 0f, 0f);
                 }
                 else if (attackStyle2 == true)
                 {
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5f, -13f, mod.ProjectileType("WarningProj"), (int)((double)projectile.damage * 0), 3f, projectile.owner, 0f, 0f);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5f, -13f, mod.ProjectileType("WarningProj"), (int)((double)projectile.damage * 0), 3f, projectile.owner, 0f, 0f);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5f, -13f, ModContent.ProjectileType<WarningProj>(), (int)((double)projectile.damage * 0), 3f, projectile.owner, 0f, 0f);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5f, -13f, ModContent.ProjectileType<WarningProj>(), (int)((double)projectile.damage * 0), 3f, projectile.owner, 0f, 0f);
                 }
             }
             if (Timer > 75)

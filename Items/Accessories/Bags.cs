@@ -14,7 +14,7 @@ namespace CastledsContent.Items.Accessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Leather Satchel");
-            Tooltip.SetDefault("'A simple looking bag, that hides more than the eye can perceive.'\nWhen equipped:\nIncreases all damage types by 2%\nIncreases maximum & general movement speed, as well as knockback dealt by 5%\nSlightly increased rocket boot flight time.\nWhile in inventory:\nPicks up any nearby items if your inventory is full\n10 item capacity\nRight Click to empty the bag");
+            Tooltip.SetDefault("'A simple looking bag, that hides more than the eye can perceive.'\nWhen equipped:\nIncreases all damage types by 4%\nIncreases maximum & general movement speed, as well as knockback dealt by 5%\nWhile in inventory:\nPicks up any nearby items if your inventory is full\n10 item capacity\nRight Click to empty the bag");
         }
         public override void SetDefaults()
         {
@@ -26,11 +26,10 @@ namespace CastledsContent.Items.Accessories
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.allDamage += 0.02f;
+            player.allDamage += 0.04f;
             player.moveSpeed += 0.05f;
             player.maxRunSpeed += 0.05f;
             player.GetWeaponKnockback(item, 1.05f);
-            player.rocketTimeMax += 10;
         }
         public override void RightClick(Player player)
         {
@@ -78,11 +77,11 @@ namespace CastledsContent.Items.Accessories
             DisplayName.SetDefault("Arcane Duffel-bag");
             Tooltip.SetDefault("'Commonly used as backpacks for aspiring wizards and witches'"
             + "\nWhen equipped:"
-            + "\nIncreases all damage types by 5%"
+            + "\nIncreases all damage types by 8%"
             + "\nIncreases maximum and general movement speed by 8%"
             + "\nIncreases knockback dealt by 10%"
             + "\nLife regeneration is increased"
-            + "\nIncreased rocket boot flight time\nWhile in inventory:\nPicks up any nearby items if your inventory is full\n25 item capacity\nRight Click to empty the bag");
+            + "\nWhile in inventory:\nPicks up any nearby items if your inventory is full\n25 item capacity\nRight Click to empty the bag");
         }
         public override void SetDefaults()
         {
@@ -94,11 +93,10 @@ namespace CastledsContent.Items.Accessories
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.allDamage += 0.05f;
+            player.allDamage += 0.08f;
             player.moveSpeed += 0.08f;
             player.maxRunSpeed += 0.08f;
             player.GetWeaponKnockback(item, 1.1f);
-            player.rocketTimeMax += 20;
             player.lifeRegen += 2;
         }
         public override void RightClick(Player player)

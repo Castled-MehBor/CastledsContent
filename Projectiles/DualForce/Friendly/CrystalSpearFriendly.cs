@@ -54,9 +54,14 @@ namespace CastledsContent.Projectiles.DualForce.Friendly
                 }
             }
         }
-        public override void Kill(int timeLeft)
+        public override bool OnTileCollide(Microsoft.Xna.Framework.Vector2 oldVelocity)
         {
-            Main.PlaySound(SoundID.Shatter, (int)projectile.position.X, (int)projectile.position.Y, 14, 1f, 0f);
+            if (projectile.velocity.X != oldVelocity.X)
+                projectile.velocity.X = oldVelocity.X * -1f;
+            if (projectile.velocity.Y != oldVelocity.Y)
+                projectile.velocity.Y = oldVelocity.Y * -1f;
+            return false;
         }
+        public override void Kill(int timeLeft) { Main.PlaySound(SoundID.Shatter, (int)projectile.position.X, (int)projectile.position.Y, 14, 1f, 0f); }
     }
 }

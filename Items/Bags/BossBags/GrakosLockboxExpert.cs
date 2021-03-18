@@ -11,8 +11,7 @@ namespace CastledsContent.Items.Bags.BossBags
         {
             DisplayName.SetDefault("Sacred Lockbox");
             Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}"
-            + "\n''The reward for completing an extreme test.'"
-            + "\nContains two weapons used by the demonic overlord, Grakos.");
+            + "\n'The reward for completing an extreme test.'");
         }
 
         public override void SetDefaults()

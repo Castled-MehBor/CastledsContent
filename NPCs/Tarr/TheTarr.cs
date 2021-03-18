@@ -559,15 +559,18 @@ namespace CastledsContent.NPCs.Tarr
                         NPC npcTarget = (NPC)npc.GetGlobalNPC<TarrHelper>().snaredTarget;
                         TarrHelper th = npcTarget.GetGlobalNPC<TarrHelper>();
                         th.grasped = true;
+                        if (a.active)
+                        {
+                            Main.PlaySound(SoundLoader.customSoundType, npc.Center, mod.GetSoundSlot(SoundType.Custom, "Sounds/Custom/Tarr_Bite"));
+                            Main.PlaySound(SoundLoader.customSoundType, npc.Center, mod.GetSoundSlot(SoundType.Custom, "Sounds/Custom/Tarr_Consume"));
+                        }
                         th.Consumed(npcTarget);
                         npc.ai[3] = 21f;
                         a.GetGlobalNPC<TarrHelper>().drawArm = false;
                         a.GetGlobalNPC<TarrHelper>().armRot = 0f;
                         npcTarget.rotation = 0f;
-                        Main.PlaySound(SoundLoader.customSoundType, npc.Center, mod.GetSoundSlot(SoundType.Custom, "Sounds/Custom/Tarr_Bite"));
-                        Main.PlaySound(SoundLoader.customSoundType, npc.Center, mod.GetSoundSlot(SoundType.Custom, "Sounds/Custom/Tarr_Consume"));
                     }
-                    if (target is Player)
+                    if (target is Player b)
                     {
                         Player pt = (Player)npc.GetGlobalNPC<TarrHelper>().snaredTarget;
                         List<string> messages = new List<string>()
@@ -582,14 +585,17 @@ namespace CastledsContent.NPCs.Tarr
                         };
                         if (pt.name == "Beatrix LeBeau" && !pt.Male)
                             messages.Add("was knocked out.");
+                        if (!b.dead)
+                        {
+                            Main.PlaySound(SoundLoader.customSoundType, npc.Center, mod.GetSoundSlot(SoundType.Custom, "Sounds/Custom/Tarr_Bite"));
+                            Main.PlaySound(SoundLoader.customSoundType, npc.Center, mod.GetSoundSlot(SoundType.Custom, "Sounds/Custom/Tarr_Consume"));
+                        }
                         PlayerDeathReason dR = new PlayerDeathReason
                         {
                             SourceCustomReason = $"{pt.name} {Main.rand.Next(messages)}"
                         };
                         pt.KillMe(dR, double.MaxValue, 0, false);
                         npc.ai[3] = 21f;
-                        Main.PlaySound(SoundLoader.customSoundType, npc.Center, mod.GetSoundSlot(SoundType.Custom, "Sounds/Custom/Tarr_Bite"));
-                        Main.PlaySound(SoundLoader.customSoundType, npc.Center, mod.GetSoundSlot(SoundType.Custom, "Sounds/Custom/Tarr_Consume"));
                         pt.GetModPlayer<SnareBoolean>().isSnared = false;
                         pt.GetModPlayer<SnareBoolean>().grasped = false;
                     }

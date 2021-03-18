@@ -34,26 +34,15 @@ namespace CastledsContent.Projectiles.DualForce.Friendly
             if (projectile.frameCounter < 45)
             {
                 projectile.frame++;
-            }
-            if (projectile.frameCounter < 90)
-            {
-                projectile.frame++;
-            }
-            if (projectile.frameCounter < 135)
-            {
-                projectile.frame++;
-            }
-            if (projectile.frameCounter < 180)
-            {
-                projectile.frame++;
+                projectile.frameCounter = 0;
+                if (projectile.frame > 3)
+                    projectile.frame = 3;
             }
         }
         public override void Kill(int timeLeft)
         {
             if (Main.rand.Next(39) == 0)
-            {
-                Main.PlaySound(SoundID.Item14, projectile.position);
-            }
+                Main.PlaySound(SoundID.Item14.WithVolume(0.75f), projectile.position);
             Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 0f, mod.ProjectileType("DeathPopFriendly"), projectile.damage = 50, 1.5f, projectile.owner, 0f, 0f);
         }
     }

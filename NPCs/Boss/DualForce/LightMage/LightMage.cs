@@ -3,6 +3,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using CastledsContent.Projectiles.DualForce.LightMage;
 
 namespace CastledsContent.NPCs.Boss.DualForce.LightMage
 {
@@ -176,7 +177,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                             float Speed = 18f;
                             Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                             int damage = 0;
-                            int type = mod.ProjectileType("WarningProj");
+                            int type = ModContent.ProjectileType<WarningProj>();
                             float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                             int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                             npc.ai[1] = 0;
@@ -188,7 +189,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                             float Speed = 7f;
                             Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                             int damage = 20;
-                            int type = mod.ProjectileType("CrystalSpear");
+                            int type = ModContent.ProjectileType<CrystalSpear>();
                             float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                             int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                             npc.ai[1] = 0;
@@ -213,7 +214,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                                 float Speed = 18f;
                                 Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                                 int damage = 0;
-                                int type = mod.ProjectileType("WarningProj");
+                                int type = ModContent.ProjectileType<WarningProj>();
                                 float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                                 int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                                 npc.ai[1] = 0;
@@ -225,7 +226,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                                 float Speed = 7f;
                                 Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                                 int damage = 20;
-                                int type = mod.ProjectileType("CrystalSpear");
+                                int type = ModContent.ProjectileType<CrystalSpear>();
                                 float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                                 int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                                 npc.ai[1] = 0;
@@ -253,7 +254,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                                 float Speed = 3f;
                                 Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                                 int damage = 14;
-                                int type = mod.ProjectileType("PinkBottle");
+                                int type = ModContent.ProjectileType<PinkBottle>();
                                 float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                                 int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                                 npc.ai[1] = 0;
@@ -264,7 +265,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                                 float Speed = 6f;
                                 Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                                 int damage = 14;
-                                int type = mod.ProjectileType("PinkBottle");
+                                int type = ModContent.ProjectileType<PinkBottle>();
                                 float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                                 int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                                 npc.ai[1] = 0;
@@ -275,7 +276,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                                 float Speed = 9f;
                                 Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                                 int damage = 14;
-                                int type = mod.ProjectileType("PinkBottle");
+                                int type = ModContent.ProjectileType<PinkBottle>();
                                 float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                                 int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                                 npc.ai[1] = 0;
@@ -302,7 +303,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                                 float Speed = 2f;
                                 Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                                 int damage = 14;
-                                int type = mod.ProjectileType("PinkBottle");
+                                int type = ModContent.ProjectileType<PinkBottle>();
                                 float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                                 int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                                 npc.ai[1] = 0;
@@ -313,7 +314,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                                 float Speed = 4f;
                                 Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                                 int damage = 14;
-                                int type = mod.ProjectileType("PinkBottle");
+                                int type = ModContent.ProjectileType<PinkBottle>();
                                 float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                                 int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                                 npc.ai[1] = 0;
@@ -324,7 +325,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                                 float Speed = 6f;
                                 Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                                 int damage = 14;
-                                int type = mod.ProjectileType("PinkBottle");
+                                int type = ModContent.ProjectileType<PinkBottle>();
                                 float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                                 int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                                 npc.ai[1] = 0;
@@ -350,7 +351,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                             float Speed = 3f;
                             Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                             int damage = 0;
-                            int type = mod.ProjectileType("HallowOrb1");
+                            int type = ModContent.ProjectileType<HallowOrb1>();
                             float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                             int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                             npc.ai[1] = 0;
@@ -377,7 +378,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                                 float Speed = 5f;
                                 Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                                 int damage = 14;
-                                int type = mod.ProjectileType("HallowBolt");
+                                int type = ModContent.ProjectileType<HallowBolt>();
                                 float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                                 int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                                 npc.ai[1] = 0;
@@ -389,7 +390,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                                 float Speed = 5f;
                                 Vector2 vector8 = new Vector2(npc.position.X + (npc.width), npc.position.Y + (npc.height));
                                 int damage = 14;
-                                int type = mod.ProjectileType("HallowBolt");
+                                int type = ModContent.ProjectileType<HallowBolt>();
                                 float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height)), vector8.X - (P.position.X + (P.width)));
                                 int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                                 npc.ai[1] = 0;
@@ -401,7 +402,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                                 float Speed = 5f;
                                 Vector2 vector8 = new Vector2(npc.position.X + (npc.width * 2), npc.position.Y + (npc.width * 2));
                                 int damage = 14;
-                                int type = mod.ProjectileType("HallowBolt");
+                                int type = ModContent.ProjectileType<HallowBolt>();
                                 float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 2f)), vector8.X - (P.position.X + (P.width * 2f)));
                                 int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                                 npc.ai[1] = 0;
@@ -427,7 +428,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                             float Speed = 5f;
                             Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 4), npc.position.Y + (npc.height / 4));
                             int damage = 12;
-                            int type = mod.ProjectileType("HallowPellet");
+                            int type = ModContent.ProjectileType<HallowPellet>();
                             float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.25f)), vector8.X - (P.position.X + (P.width * 0.25f)));
                             int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                             npc.ai[1] = 0;
@@ -439,7 +440,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                             float Speed = 5f;
                             Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
                             int damage = 12;
-                            int type = mod.ProjectileType("HallowPellet");
+                            int type = ModContent.ProjectileType<HallowPellet>();
                             float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                             int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                             npc.ai[1] = 0;
@@ -451,7 +452,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                             float Speed = 5f;
                             Vector2 vector8 = new Vector2(npc.position.X + (npc.width), npc.position.Y + (npc.height));
                             int damage = 12;
-                            int type = mod.ProjectileType("HallowPellet");
+                            int type = ModContent.ProjectileType<HallowPellet>();
                             float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height)), vector8.X - (P.position.X + (P.width)));
                             int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                             npc.ai[1] = 0;
@@ -463,7 +464,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                             float Speed = 5f;
                             Vector2 vector8 = new Vector2(npc.position.X + (npc.width * 2), npc.position.Y + (npc.width * 2));
                             int damage = 12;
-                            int type = mod.ProjectileType("HallowPellet");
+                            int type = ModContent.ProjectileType<HallowPellet>();
                             float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 2f)), vector8.X - (P.position.X + (P.width * 2f)));
                             int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                             npc.ai[1] = 0;
@@ -475,7 +476,7 @@ namespace CastledsContent.NPCs.Boss.DualForce.LightMage
                             float Speed = 5f;
                             Vector2 vector8 = new Vector2(npc.position.X + (npc.width * 4), npc.position.Y + (npc.width * 4));
                             int damage = 12;
-                            int type = mod.ProjectileType("HallowPellet");
+                            int type = ModContent.ProjectileType<HallowPellet>();
                             float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 4f)), vector8.X - (P.position.X + (P.width * 4f)));
                             int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                             npc.ai[1] = 0;

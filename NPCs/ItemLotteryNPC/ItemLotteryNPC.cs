@@ -305,7 +305,7 @@ namespace CastledsContent.NPCs.ItemLotteryNPC
                 if (LMan.stagType == 2)
                 {
                     LMan.sound2Mul += 0.02f;
-                    CastledsContent.subT2 = true;
+                    CastledsContent.instance.subT2 = true;
                     LMan.i3 = Main.rand.Next(LMan.finalList);
                     stagTimer++;
                     if (stagTimer >= LMan.slowdownMultiplier)
@@ -334,7 +334,7 @@ namespace CastledsContent.NPCs.ItemLotteryNPC
                 if (LMan.stagType == 3)
                 {
                     LMan.sound3Mul += 0.02f;
-                    CastledsContent.subT3 = true;
+                    CastledsContent.instance.subT3 = true;
                     stagTimer++;
                     if (stagTimer >= LMan.slowdownMultiplier)
                     {
@@ -432,7 +432,7 @@ namespace CastledsContent.NPCs.ItemLotteryNPC
                         }
                         if (LMan.stagType == 5)
                         {
-                            CastledsContent.subT2a = true;
+                            CastledsContent.instance.subT2a = true;
                             stagTimer++;
                             if (stagTimer >= LMan.slowdownMultiplier)
                             {
@@ -513,7 +513,7 @@ namespace CastledsContent.NPCs.ItemLotteryNPC
                         LMan.ClearData(2);
                         if (CastledWorld.determineContraSp)
                             CastledPlayer.PunishContra();
-                        CastledsContent.titleAlpha = 0;
+                        CastledsContent.instance.titleAlpha = 0;
                     }
                 }
                 if (!asdf)
@@ -796,7 +796,7 @@ namespace CastledsContent.NPCs.ItemLotteryNPC
                     action = 0;
                     rando = 3000;
                     LMan.displayItemType = -1;
-                    CastledsContent.ia = 0;
+                    CastledsContent.instance.ia = 0;
                 }
             }
             if (rando != -1)

@@ -30,8 +30,7 @@ namespace CastledsContent.Items.Armor.Summoner.Lunatic
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "+1 Defense\nHaving a minion summoned will greatly increase your movement speed";
-			player.GetModPlayer<CastledPlayer>().lunatic = true;
+			player.setBonus = "Unfinished\n1 defense";
 			player.statDefense += 1;
 		}
         public override void ModifyTooltips(List<TooltipLine> tooltips)

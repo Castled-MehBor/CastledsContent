@@ -1,7 +1,7 @@
 Disclaimer: This update was rushed at the last moment, due to both unfortunate circumstances.
 Sorry if so much was removed and so little was added, we will try to fully complete the update whenever we can.
 
-Current Major Update: Feathers & Metal (v.0.9.1)
+Current Major Update: Feathers & Metal
 
 Castled's Equilibrium is a passion project that started two years ago, which was to create a content mod with abstract elements.
 
@@ -13,8 +13,11 @@ Current Contents:
 allowing you to save up to five presets, and give names to each of them.
 - The Tarr; a ravenous, rainbow hued sludgeball from the Far, Far Range, that will ignore nearly any attempt of harming it, while eat everything in it's way, replicating itself until it conquers the world...
 
-In this update, several older features from a year/so ago were removed, due to them either being
+In this update (Version 0.9.1), several older features from a year/so ago were removed, due to them either being
 too lazily made, or being outdated; including several items and all bosses besides Nasha and Grakos.
+
+(Patch) Spring Cleaning:
+Mainly just refactoring of some visually messy code (circlet, dark crown, nasha & grakos, etc.), as well as improving and slightly modifying it, as well as some bug fixes.
 
 Thanks to everyone who contributed:
 Akocis, Aria, Atomic Renegade, AYO BRUH, (basically, i am fox), Beepbopbop, Cookiecraft_, Darkpuppey, Invalid Pyrossal, Invasive, Jokey, Lewis /ˈluːɪs/, mango, Septimus Maximus the Third, SpicySpaceSnake, SupremeShadow, TacoBurritoGuacamole, token, Universe, Woodio, Wyvern, yelloface, Yhariel

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System.Threading;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -33,19 +32,23 @@ namespace CastledsContent.Projectiles.DualForce.LightMage
         }
         public override void AI()
         {
-            int dust = Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 58, projectile.velocity.X * 0.025f, projectile.velocity.Y * 0.025f);
-
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 58, projectile.velocity.X * 0.025f, projectile.velocity.Y * 0.025f);
             Timer++;
             if (Timer > 45)
             {
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 3f, 0f, mod.ProjectileType("LightSpark"), (int)((double)projectile.damage * 0.5), 3f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -3f, 0f, mod.ProjectileType("LightSpark"), (int)((double)projectile.damage * 0.5), 3f, projectile.owner, 0f, 0f);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 3f, 0f, ModContent.ProjectileType<LightSpark>(), (int)((double)projectile.damage * 0.5), 3f, projectile.owner, 0f, 0f);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -3f, 0f, ModContent.ProjectileType<LightSpark>(), (int)((double)projectile.damage * 0.5), 3f, projectile.owner, 0f, 0f);
                 Timer = 0;
             }
         }
-        public override void Kill(int timeLeft)
+        public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            Main.PlaySound(SoundID.Shatter, (int)projectile.position.X, (int)projectile.position.Y, 14, 1f, 0f);
+            if (projectile.velocity.X != oldVelocity.X)
+                projectile.velocity.X = oldVelocity.X * -1f;
+            if (projectile.velocity.Y != oldVelocity.Y)
+                projectile.velocity.Y = oldVelocity.Y * -1f;
+            return false;
         }
+        public override void Kill(int timeLeft) { Main.PlaySound(SoundID.Shatter, (int)projectile.position.X, (int)projectile.position.Y, 14, 1f, 0f); }
     }
 }

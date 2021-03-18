@@ -18,18 +18,16 @@ namespace CastledsContent.Items.Suggested
             Tooltip.SetDefault("[c/320032:Dark magic is always misunderstood.]"
             + "\nIncreases maximum life by 20"
             + "\n4 defense"
-            + "\n8% increased damage"
+            + "\n10% increased damage"
             + "\n+1 life regen"
             + "\nIncreases maximum minions by 1"
             + "\nImmunity to fall damage"
             + "\nIncreased jump speed"
-            + "\nIncreased rocket boot flight time"
             + "\nAll above effects are doubled in space and hell"
-            + "\nYour attacks have a chance to spawn dark-spawns from the sky or the ground"
+            + "\nYour attacks have a chance to spawn dark-spawns from the ground"
             + "\nThe power, amount and variety of these dark-spawns scale with progression, up to Golem"
             + "\nToggle visibility to toggle dark-spawns");
             Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 5));
-            //ItemID.Sets.AnimatesAsSoul[item.type] = true;
         }
 
         public override void SetDefaults()
@@ -69,13 +67,12 @@ namespace CastledsContent.Items.Suggested
             }
             player.noFallDmg = true;
             player.maxFallSpeed += 12 * boost;
-            player.jumpSpeedBoost += 1 * boost;
+            player.jumpSpeedBoost += 1.35f * boost;
             player.statDefense += 4 * boost;
-            player.allDamage += 0.08f * boost;
+            player.allDamage += 0.1f * boost;
             player.lifeRegen += 1 * boost;
             player.statLifeMax2 += 20 * boost;
             player.maxMinions += 1 * boost;
-            player.rocketTimeMax += 65 * boost;
         }
         #region Donator Hook
         public override void ModifyTooltips(List<TooltipLine> list)

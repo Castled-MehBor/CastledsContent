@@ -11,7 +11,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Threading;
 using CastledsContent.Items.Vanity;
-using static Terraria.ModLoader.ModContent;
 
 namespace CastledsContent.NPCs.Boss.HarpyQueen
 {
@@ -79,7 +78,7 @@ namespace CastledsContent.NPCs.Boss.HarpyQueen
             npc.buffImmune[BuffID.Venom] = true;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/OST/HarpyQueenTheme");
             npc.dontTakeDamage = true;
-            bossBag = mod.ItemType("TreasureBag3");
+            bossBag = ModContent.ItemType<Items.Bags.BossBags.TreasureBag3>();
         }
         public float Timer
         {
@@ -101,23 +100,14 @@ namespace CastledsContent.NPCs.Boss.HarpyQueen
             if (npc.life <= 0)
             {
                 for (int k = 0; k < 60; k++)
-                {
-                    Dust.NewDust(npc.position, npc.width, npc.height, 5, 2.5f * (float)hitDirection, -2.5f, 0, default(Color), 1.2f);
-                }
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/HarpyQueen/HarpyQueenG1"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/HarpyQueen/HarpyQueenG2"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/HarpyQueen/HarpyQueenG3"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/HarpyQueen/HarpyQueenG4"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/HarpyQueen/HarpyQueenG5"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/HarpyQueen/HarpyQueenG6"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/HarpyQueen/HarpyQueenG7"), 1f);
+                    Dust.NewDust(npc.position, npc.width, npc.height, 5, 2.5f * hitDirection, -2.5f, 0, default, 1.2f);
+                for (int a = 0; a < 7; a++)
+                    Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot($"Gores/HarpyQueen/HarpyQueenG{a}"), 1f);
             }
             if (Main.rand.Next(9) == 0)
             {
                 for (int k = 0; k < 3; k++)
-                {
-                    Dust.NewDust(npc.position, npc.width, npc.height, 5, 2.5f * (float)hitDirection, -2.5f, 0, default(Color), 1f);
-                }
+                    Dust.NewDust(npc.position, npc.width, npc.height, 5, 2.5f * hitDirection, -2.5f, 0, default, 1f);
             }
         }
         public override void AI()
@@ -143,21 +133,15 @@ namespace CastledsContent.NPCs.Boss.HarpyQueen
                 if (aiState == 1 || aiState == 2)
                 {
                     if (npc.frameCounter == 90)
-                    {
                         DustCircle();
-                    }
                 }
                 #region Awaking
                 if (aiState == 0)
                 {
                     if (npc.frameCounter == 120)
-                    {
                         Projectile.NewProjectile(npc.Center.X, npc.Center.Y + 8f, npc.velocity.X * 0, 0f, mod.ProjectileType("HQAwakeProj"), 0, 0f, 255, 0f, 0f);
-                    }
                     if (npc.frameCounter == 296)
-                    {
                         FeatherStorm1();
-                    }
                 }
                 #endregion
                 #region Standard Flying
@@ -632,15 +616,6 @@ namespace CastledsContent.NPCs.Boss.HarpyQueen
                 }
                 if (Main.expertMode)
                 {
-                    if (aiState == 3 || aiState == 5)
-                    {
-                        npc.dontTakeDamage = true;
-                    }
-                    else if (P.ZoneSkyHeight)
-                    {
-                        npc.dontTakeDamage = false;
-                    }
-
                     if (aiState > 0)
                     {
                         if (chargenum > 0)
@@ -998,7 +973,7 @@ namespace CastledsContent.NPCs.Boss.HarpyQueen
             CastledWorld.downedHarpyQueen = true;
             if (Main.rand.Next(10) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<Items.Placeable.Trophy.HQTrophy>());
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Placeable.Trophy.HQTrophy>());
             }
             if (Main.expertMode)
             {
@@ -1009,33 +984,33 @@ namespace CastledsContent.NPCs.Boss.HarpyQueen
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SilverCoin, Main.rand.Next(400, 900));
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Feather, Main.rand.Next(3, 9));
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<Items.Material.HarpyFeather>(), Main.rand.Next(10, 20));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Material.HarpyFeather>(), Main.rand.Next(10, 20));
 
                 int num = Main.rand.Next(3);
                 if (num == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<Items.Weapons.Magic.HarpyStaff>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Weapons.Magic.HarpyStaff>());
                 }
                 if (num == 1)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<Items.Weapons.Melee.HarpyArm>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Weapons.Melee.HarpyArm>());
                 }
                 if (num == 2)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<Items.Weapons.Ranged.HarpyGun>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Weapons.Ranged.HarpyGun>());
                 }
 
                 if (Main.rand.Next(12) == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<HarpyBreastplate>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<HarpyBreastplate>());
                 }
                 if (Main.rand.Next(12) == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<HarpyLeggings>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<HarpyLeggings>());
                 }
                 if (Main.rand.Next(8) == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<HQMask>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<HQMask>());
                 }
             }
             #endregion
