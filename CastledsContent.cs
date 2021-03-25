@@ -28,6 +28,9 @@ namespace CastledsContent
     {
         public static Mod Instance;
         static internal CastledsContent instance;
+        internal int bagTagFlash = 0;
+        internal int bagTagMult = 1;
+        public static string placeHolderTooltip = "The uh the fuckin' uh";
         #region Values for DrawAnimationVertical Clones
         internal int Frame1 = 0;
         internal int FrameCounter1 = 0;
@@ -305,6 +308,13 @@ namespace CastledsContent
         }
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
+            bagTagFlash += 3 * bagTagMult;
+            if (bagTagFlash > 125)
+                bagTagMult = -1;
+            if (bagTagFlash < 0)
+                bagTagMult = 1;
+            if (Main.mouseItem != null && !Main.mouseItem.IsAir)
+            Main.mouseItem.GetGlobalItem<SGlobalItem>().bagTag = false;
             CastledPlayer mP = Main.player[Main.myPlayer].GetModPlayer<CastledPlayer>();
             #region PresetUI
             Mod mod = ModLoader.GetMod("ProjectB");

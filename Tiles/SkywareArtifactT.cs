@@ -47,13 +47,13 @@ namespace CastledsContent.Tiles
 			}
 		}
 		#region Remove this if necessary
-		public override void RightClick(int i, int j)
-		{
+        public override bool NewRightClick(int i, int j)
+        {
 			Player localPlayer = Main.LocalPlayer;
 			Tile val = Main.tile[i, j];
 			int num = localPlayer.FindItem(ItemID.Feather);
 			if (localPlayer.ZoneSkyHeight && NPC.downedQueenBee)
-            {
+			{
 				if (!NPC.AnyNPCs(mod.NPCType("HarpyQueen")))
 				{
 					for (int b = 0; b < 58; b++)
@@ -68,8 +68,9 @@ namespace CastledsContent.Tiles
 					}
 				}
 			}
-		}
-		public override void MouseOver(int i, int j)
+			return true;
+        }
+        public override void MouseOver(int i, int j)
 		{
 			Player player = Main.LocalPlayer;
 			player.noThrow = 2;

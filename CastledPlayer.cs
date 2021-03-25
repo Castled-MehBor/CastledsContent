@@ -22,10 +22,15 @@ namespace CastledsContent
         public AccessoryInfo info;
         public int spikeArmCooldown;
         public int superintendentDelay;
+        public int vaccuumDelay;
         //Accessories
         public bool harpyCrown;
         public bool darkCrown;
         public bool aimBot;
+        public List<Item> hoverStorage = new List<Item>();
+        public bool listMade = false;
+        public bool SLHighlighting = false;
+        //public string MBAddress;
         #region Spike Exo Vanity
         //public bool ExoAccessory;
         //public bool ExoHideVanity;
@@ -62,6 +67,7 @@ namespace CastledsContent
         #region Saving Stuff
         public override void Initialize()
         {
+            //MBAddress = "";
             contrabande = new List<Item>();
             superintendentDelay = 0;
             info = new AccessoryInfo();
@@ -82,7 +88,8 @@ namespace CastledsContent
                 {nameof(preset), preset },
                 {nameof(presets), presets },
                 {nameof(superintendentDelay), superintendentDelay },
-                {nameof(contrabande), contrabande }
+                {nameof(contrabande), contrabande },
+                //{nameof(MBAddress), MBAddress }
             };
         }
         public override void Load(TagCompound tag)
@@ -92,6 +99,7 @@ namespace CastledsContent
             preset = tag.GetInt(nameof(preset));
             if (tag.Get<List<PlayerPreset>>(nameof(presets)) != null && tag.Get<List<PlayerPreset>>(nameof(presets)).Count > 0)
                 presets = tag.Get<List<PlayerPreset>>(nameof(presets));
+            //MBAddress = tag.GetString(nameof(MBAddress));
         }
         #endregion
         public override void ResetEffects()
@@ -102,11 +110,18 @@ namespace CastledsContent
             harpyCrown = false;
             darkCrown = false;
             aimBot = false;
+            //hoverStorage = null;
         }
         public override void PostUpdateEquips()
         {
-            if (!Main.dedServ && superintendentDelay > 0)
+            if (!Main.playerInventory)
+                SLHighlighting = false;
+            if (Main.HoverItem == null || Main.HoverItem.IsAir)
+                listMade = false;
+            if (superintendentDelay > 0)
                 superintendentDelay -= Main.dayRate;
+            if (vaccuumDelay > 0)
+                vaccuumDelay -= Main.dayRate;
             info.UpdatePlayer(player);
             #region Superintendent Contarbande Setup
             //player.dead = false;
@@ -143,6 +158,12 @@ namespace CastledsContent
             }
 
         }
+        public void SetHoverStorage(List<Item> list)
+        {
+            hoverStorage.Clear();
+            foreach (Item i in list)
+                hoverStorage.Add(i.Clone());
+        }
         public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
         {
 
@@ -170,6 +191,7 @@ namespace CastledsContent
             if (darkCrown)
                 CrownAbility(player, proj.damage, true);
         }
+        #region Crown Hooks
         void CrownAbility(Player player, int damage, bool darkCrown)
         {
             if (darkCrown)
@@ -250,8 +272,10 @@ namespace CastledsContent
             }
             return bonus;
         }
+        #endregion
         public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
         {
+            int vacBoost = worldLayer == 0 ? 15 : 0;
             if (junk)
             {
                 return;
@@ -259,6 +283,22 @@ namespace CastledsContent
             if (player.ZoneBeach && NPC.downedBoss3 && liquidType == 0 && Main.rand.NextBool(89))
             {
                 caughtType = ModContent.ItemType<Items.Weapons.Ranged.Maradon>();
+            }
+            if (vaccuumDelay < 1 && Main.rand.NextBool(75 - vacBoost))
+            {
+                caughtType = ModContent.ItemType<Items.Storage.SealedVaccuum1>();
+                CombatText.NewText(player.getRect(), Color.SkyBlue, "Caught a Sealed Vaccuum!", false, false);
+                for (int i = 0; i < 20; i++)
+                {
+                    Vector2 position = player.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 20 * i));
+                    Dust dust = Dust.NewDustPerfect(position, DustID.AncientLight);
+                    dust.noGravity = true;
+                    dust.velocity = Vector2.Normalize(dust.position - player.Center) * 5;
+                    dust.noLight = false;
+                    dust.fadeIn = 1f;
+                }
+                Main.PlaySound(SoundID.Item92, player.position);
+                vaccuumDelay = 54000;
             }
         }
         public override void FrameEffects()

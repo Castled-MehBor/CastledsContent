@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -34,8 +35,7 @@ namespace CastledsContent.Projectiles.Friendly.HarpyQueen
 			projectile.timeLeft = 30;
 			Main.projFrames[projectile.type] = 5;
 		}
-
-		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
+        public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
 		{
 			projHitbox.Width += 16;
 			projHitbox.Height += 16;

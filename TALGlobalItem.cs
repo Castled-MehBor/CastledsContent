@@ -7,16 +7,21 @@ using Terraria.ModLoader;
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using CastledsContent.Items.Accessories;
+using CastledsContent.Items.Storage;
 
 namespace CastledsContent
 {
     public class SGlobalItem : GlobalItem
     {
         public bool addedSlot = false;
+        public bool SLHighlight = false;
         private int killTime;
+        public float tagExpire;
         //public int bagPickup;
         public bool flag;
+        bool canStack = false;
+        public bool bagTag;
+        public BagPickup storage;
         public BagPickup pickup;
         private Color orC;
         #region Tarr
@@ -45,6 +50,8 @@ namespace CastledsContent
         }
         public override void Update(Item item, ref float gravity, ref float maxFallSpeed)
         {
+            SLHighlight = false;
+            bagTag = false;
             if (LMan.pickupPrevent)
             {
                 killTime++;
@@ -58,16 +65,52 @@ namespace CastledsContent
         }
         public override bool ItemSpace(Item item, Player player)
         {
-            return pickup != null && pickup.contained.Count < pickup.limit;
+            if (pickup != null && BagPickup.NotStorage(item))
+            {
+                for (int a = 0; a < pickup.contained.Count; a++)
+                {
+                    if (pickup.contained[a].type == item.type && pickup.contained[a].prefix == item.prefix && BagPickup.EndlessStack(pickup, item.type, a))
+                    {
+                        canStack = true;
+                        break;
+                    }
+                }
+                if (!canStack)
+                    return pickup.contained.Count < pickup.limit;
+                else
+                    return true;
+            }
+            return base.ItemSpace(item, player);
         }
         public override bool OnPickup(Item item, Player player)
         {
-            if (pickup != null && pickup.contained.Count < pickup.limit)
+            if (pickup != null && BagPickup.NotStorage(item))
             {
-                Main.PlaySound(SoundID.Grab);
-                pickup.contained.Add(item.Clone());
-                ItemText.NewText(item, item.stack);
-                return false;
+                if (canStack)
+                {
+                    for (int a = 0; a < pickup.contained.Count; a++)
+                    {
+                        if (pickup.contained[a].type == item.type && pickup.contained[a].prefix == item.prefix && BagPickup.EndlessStack(pickup, item.type, a))
+                        {
+                            Main.PlaySound(SoundID.Grab);
+                            pickup.contained[a].stack += item.stack;
+                            ItemText.NewText(item, item.stack);
+                            item.SetDefaults(ItemID.None);
+                            canStack = false;
+                            break;
+                        }
+                    }
+                    BagPickup.SetList(new Item(), player.GetModPlayer<CastledPlayer>(), pickup);
+                    return false;
+                }
+                if (!canStack && pickup.contained.Count < pickup.limit)
+                {
+                    Main.PlaySound(SoundID.Grab);
+                    pickup.contained.Add(item.Clone());
+                    ItemText.NewText(item, item.stack);
+                    BagPickup.SetList(new Item(), player.GetModPlayer<CastledPlayer>(), pickup);
+                    return false;
+                }
             }
             return base.OnPickup(item, player);
         }
@@ -122,7 +165,15 @@ namespace CastledsContent
                 player.GetModPlayer<SnareBoolean>().useGrasp = true;
             return base.UseItem(item, player);
         }
-        public override void UpdateInventory(Item item, Player player) { ContraColor(item); }
+        public override void UpdateInventory(Item item, Player player) 
+        {
+            if (!Main.playerInventory || tagExpire < 1)
+            {
+                bagTag = false;
+                SLHighlight = false;
+            }
+            ContraColor(item); 
+        }
         public override void UpdateAccessory(Item item, Player player, bool hideVisual) { ContraColor(item); }
         public override void UpdateEquip(Item item, Player player) { ContraColor(item); }
         #endregion
@@ -209,10 +260,27 @@ namespace CastledsContent
             flag = true;
             //LMan.delayReset = true;
         }
+        public override Color? GetAlpha(Item item, Color lightColor)
+        {
+            if (tagExpire > 0)
+                tagExpire--;
+            if (!Main.playerInventory || tagExpire < 1)
+                bagTag = false;
+            if (!Main.playerInventory || !Main.player[Main.myPlayer].GetModPlayer<CastledPlayer>().SLHighlighting)
+                SLHighlight = false;
+            CastledsContent instance = CastledsContent.instance;
+            Color flashColor = new Color(130 + instance.bagTagFlash, 130 + instance.bagTagFlash, 130 + instance.bagTagFlash);
+            Color coolColor = new Color(195 + instance.bagTagFlash, 150 + instance.bagTagFlash, 255);
+            if (bagTag && !SLHighlight)
+                return flashColor;
+            if (SLHighlight && !bagTag)
+                return coolColor;
+            return base.GetAlpha(item, lightColor);
+        }
         #region Discard Contrabande
         public override bool CanRightClick(Item item)
         {
-            if (IsContrabande(item))
+            if (IsContrabande(item) || Main.player[Main.myPlayer].GetModPlayer<CastledPlayer>().SLHighlighting)
                 return true;
             return base.CanRightClick(item);
         }
@@ -220,6 +288,8 @@ namespace CastledsContent
         {
             bool addedSlot = false;
             CastledPlayer modP = player.GetModPlayer<CastledPlayer>();
+            if (player.GetModPlayer<CastledPlayer>().SLHighlighting)
+                SLHighlight = true;
             if (IsContrabande(item))
             {
                 for (int a = 0; a < 254; a++)

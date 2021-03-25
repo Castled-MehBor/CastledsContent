@@ -12,6 +12,7 @@ using Terraria.ModLoader.IO;
 using Terraria.World.Generation;
 using CastledsContent.Items.Placeable;
 using CastledsContent.Utilities;
+using CastledsContent.Items.Storage.Boxes;
 
 namespace CastledsContent
 {
@@ -47,6 +48,7 @@ namespace CastledsContent
         //public static bool lotteryIsAlive;
         public List<int> tarr1 = new List<int>();
         public List<Vector2> tarr2 = new List<Vector2>();
+        public static List<PackageData> packages = new List<PackageData>();
         public override void PostUpdate()
         {
             if (determineContraSp)
@@ -67,18 +69,11 @@ namespace CastledsContent
             }
             var downed = new List<string>();
             if (downedDualForce)
-            {
                 downed.Add("DualForce");
-            }
             if (downedHarpyQueen)
-            {
                 downed.Add("HarpyQueen");
-            }
             if (downedAlgorithmo)
-            {
                 downed.Add("Algorithmo");
-            }
-
 
             return new TagCompound
             {
@@ -86,7 +81,9 @@ namespace CastledsContent
                 ["tarr1"] = tarr1,
                 ["tarr2"] = tarr2,
                 ["botShop"] = LMan.setupShop,
-                [nameof(dualForceEncounter)] = dualForceEncounter
+                [nameof(dualForceEncounter)] = dualForceEncounter,
+                [nameof(packages)] = packages,
+                //[nameof(mailboxes)] = mailboxes
             };
         }
 
@@ -100,6 +97,8 @@ namespace CastledsContent
             tarr2 = tag.Get<List<Vector2>>("tarr2");
             LMan.setupShop = tag.Get<List<int>>("botShop");
             dualForceEncounter = tag.GetInt(nameof(dualForceEncounter));
+            //mailboxes = tag.Get<List<MailboxData>>(nameof(mailboxes));
+            //packages = tag.Get<List<PackageData>>(nameof(packages));
         }
 
         public override void LoadLegacy(BinaryReader reader)
