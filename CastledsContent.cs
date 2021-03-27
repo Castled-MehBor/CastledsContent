@@ -978,7 +978,7 @@ namespace CastledsContent
             }
             Main.spriteBatch.Draw(item1, itemPos, item1Rect, GetTitleItemAlpha(Color.Transparent), 0f, new Vector2(((item1Rect.Width + 60) / 2) + 25, ((item1Rect.Height + 90) / 2) + 50), 1f, SpriteEffects.None, 0f);
             #endregion
-            string refrain = $" {LMan.nameList[LMan.displayItemType]} has been materialized";
+            string refrain = $"An item has been materialized";
             DynamicSpriteFontExtensionMethods.DrawString(Main.spriteBatch, fontType, refrain, new Vector2((float)(Main.screenWidth / 2), (float)(Main.screenHeight / 2 - 250)), GetTitleItemAlpha(Color.Transparent), 0f, Main.fontMouseText.MeasureString(refrain) / 2, 1f, SpriteEffects.None, 0f);
         }
         private static void DrawPresetUI(CastledPlayer modP)

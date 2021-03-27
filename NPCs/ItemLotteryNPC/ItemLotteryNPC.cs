@@ -468,7 +468,7 @@ namespace CastledsContent.NPCs.ItemLotteryNPC
                             LMan.i1 = Main.rand.Next(LMan.finalList);
                             LMan.i2 = Main.rand.Next(LMan.finalList);
                             LMan.i3 = Main.rand.Next(LMan.finalList);
-                            if (LMan.roundNum > 20)
+                            if (LMan.roundNum > 20 && LMan.inventoryList.Count > 0)
                             {
                                 LMan.ib1 = Main.rand.Next(LMan.inventoryList);
                                 LMan.ib2 = Main.rand.Next(LMan.inventoryList);

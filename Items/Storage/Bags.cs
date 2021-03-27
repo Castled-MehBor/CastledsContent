@@ -118,9 +118,9 @@ namespace CastledsContent.Items.Storage
             bool view = ModContent.GetInstance<ClientConfig>().bagDoubleClick;
             CastledPlayer modPlayer = Main.player[Main.myPlayer].GetModPlayer<CastledPlayer>();
             Item item = Main.mouseItem;
-            if (item != null && !item.IsAir && NotStorage(item))
+            if (item != null && !item.IsAir && NotStorage(item) && !BagTag())
                 ContainItem(item);
-            if ((item == null || item.IsAir) && BagTag())
+            if (BagTag())
             {
                 foreach (Item i in player.inventory)
                     if (i != null && !i.IsAir && i.GetGlobalItem<SGlobalItem>().bagTag)

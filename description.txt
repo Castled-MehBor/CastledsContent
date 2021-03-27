@@ -16,8 +16,9 @@ allowing you to save up to five presets, and give names to each of them.
 In this update (Version 0.9.1), several older features from a year/so ago were removed, due to them either being
 too lazily made, or being outdated; including several items and all bosses besides Nasha and Grakos.
 
-(Patch) Spring Cleaning:
-Mainly just refactoring of some visually messy code (circlet, dark crown, nasha & grakos, etc.), as well as improving and slightly modifying it, as well as some bug fixes.
+(Small Content Update) - Storage Update
+Completely overhauled how the bag system worked, as well as making new bags, new features and mechanics for these bags, as well as cardboard packages, which you can put items in, place down, and pick right back up to get your stuff from.
+Also adressed an oversight on a Superintendent issue related to very late rounds that it would disappear if the quantum scan was unsuccessful.
 
 Thanks to everyone who contributed:
 Akocis, Aria, Atomic Renegade, AYO BRUH, (basically, i am fox), Beepbopbop, Cookiecraft_, Darkpuppey, Invalid Pyrossal, Invasive, Jokey, Lewis /ˈluːɪs/, mango, Septimus Maximus the Third, SpicySpaceSnake, SupremeShadow, TacoBurritoGuacamole, token, Universe, Woodio, Wyvern, yelloface, Yhariel

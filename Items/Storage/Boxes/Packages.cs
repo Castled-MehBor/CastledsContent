@@ -18,7 +18,7 @@ namespace CastledsContent.Items.Storage.Boxes
         public override bool MagicPickup { get => false; }
         public override bool IsPackage { get => true; }
         public override string Texture => "CastledsContent/Items/Storage/Boxes/TestBox";
-        public override void SetStaticDefaults() { DisplayName.SetDefault("Test Box"); }
+        public override void SetStaticDefaults() { DisplayName.SetDefault("Test Package"); Tooltip.SetDefault("A gray package, instead of a white square."); }
         public override void SetDefaults()
         {
 			item.useStyle = ItemUseStyleID.SwingThrow;
@@ -27,8 +27,8 @@ namespace CastledsContent.Items.Storage.Boxes
 			item.useTime = 10;
 			item.consumable = true;
 			item.createTile = ModContent.TileType<TestBoxTile>();
-			item.width = 18;
-			item.height = 18;
+			item.width = 22;
+			item.height = 20;
 			item.rare = ItemRarityID.Blue;
 		}
     }
@@ -241,6 +241,35 @@ namespace CastledsContent.Items.Storage.Boxes
 					CastledWorld.packages.Remove(d);
 					break;
 				}
+			}
+		}
+        public override bool NewRightClick(int i, int j)
+        {
+			Main.player[Main.myPlayer].PickTile(i, j, 100);
+			return true;
+        }
+		public override void MouseOver(int i, int j)
+		{
+			Player player = Main.LocalPlayer;
+			player.noThrow = 2;
+			player.showItemIcon = true;
+			player.showItemIcon2 = PTI(PackageType);
+			int PTI(int type)
+			{
+				switch (type)
+				{
+					case 0:
+						return ModContent.ItemType<TestBox>();
+					case 1:
+						return ModContent.ItemType<PackageTiny>();
+					case 2:
+						return ModContent.ItemType<PackageSmall>();
+					case 3:
+						return ModContent.ItemType<PackageMedium>();
+					case 4:
+						return ModContent.ItemType<PackageLarge>();
+				}
+				return ItemID.None;
 			}
 		}
 	}
