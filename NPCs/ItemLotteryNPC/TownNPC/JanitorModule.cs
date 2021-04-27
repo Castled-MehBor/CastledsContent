@@ -9,19 +9,21 @@ using CastledsContent.Utilities;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Utilities;
 using System.Collections.Generic;
+using Terraria.GameContent.UI;
 
 namespace CastledsContent.NPCs.ItemLotteryNPC.TownNPC
 {
     [AutoloadHead]
     public class JanitorModule : ModNPC
     {
-        private int cooldown = 0;
-        private int[] yArmTimer = new int[2];
-        private int[] yArm = new int[2];
-        private Rectangle[] yRect = new Rectangle[2];
-        private bool[] yDraw = new bool[2];
-        private float[] yRot = new float[2];
-        private bool arraysSetup = false;
+        int[] reaction = new int[2];
+        int cooldown = 0;
+        int[] yArmTimer = new int[2];
+        int[] yArm = new int[2];
+        Rectangle[] yRect = new Rectangle[2];
+        bool[] yDraw = new bool[2];
+        float[] yRot = new float[2];
+        bool arraysSetup = false;
         public override string Texture
         {
             get
@@ -56,10 +58,10 @@ namespace CastledsContent.NPCs.ItemLotteryNPC.TownNPC
             npc.width = 18;
             npc.height = 40;
             npc.aiStyle = 7;
+            npc.defDefense = 15;
             npc.damage = 10;
-            npc.defense = 25;
             npc.lifeMax = 250;
-            npc.knockBackResist = 0.45f;
+            npc.knockBackResist = 0.5f;
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath14;
             npc.knockBackResist = 1f;
@@ -74,7 +76,45 @@ namespace CastledsContent.NPCs.ItemLotteryNPC.TownNPC
                 Dust.NewDust(npc.position, npc.width, npc.height, DustID.Electric);
             }
         }
+        bool LineOfSight(Entity e)
+        {
+            Vector4 range = new Vector4(npc.position.X + (npc.direction == -1 ? -500 : 500), npc.position.Y - 250, npc.position.X + (npc.direction == -1 ? 50 : -50), npc.position.Y + 250);
+            if (Collision.CanHitLine(npc.position, npc.width, npc.height, e.position, e.width, e.height))
+            {
+                if (npc.direction == -1)
+                    return e.position.X > range.X && e.position.X <= range.Z;
+                if (npc.direction == 1)
+                    return e.position.X < range.X && e.position.X >= range.Z;
+            }
+            return false;
+        }
         public override bool CanTownNPCSpawn(int numTownNPCs, int money) => NPC.downedSlimeKing;
+        public override void AI()
+        {
+            Player player = Main.LocalPlayer;
+            if (player.GetModPlayer<CastledPlayer>().witchQuest[3] < 3)
+            {
+                if (NPC.AnyNPCs(NPCID.Stylist) && !NPC.AnyNPCs(ModContent.NPCType<NPCs.Witch.StylistWitch>()))
+                {
+                    if (LineOfSight(player))
+                    {
+                        npc.ai[0] = 0;
+                        npc.ai[1] = 300;
+                        npc.direction = player.position.X <= npc.position.X ? -1 : 1;
+                        if (reaction[1] < 1)
+                        {
+                            EmoteBubble.NewBubble(EmoteID.EmotionAlert, new WorldUIAnchor(npc), 60);
+                            reaction[1] = 1;
+                            reaction[0] = 300;
+                        }
+                    }
+
+                }
+                if ((!NPC.AnyNPCs(NPCID.Stylist) || NPC.AnyNPCs(ModContent.NPCType<NPCs.Witch.StylistWitch>()) || !LineOfSight(player)) && reaction[1] > 0)
+                    if (reaction[0]-- < 1)
+                        reaction[1] = 0;
+            }
+        }
         public override void PostAI()
         {
             if (cooldown > 0)
@@ -159,13 +199,23 @@ namespace CastledsContent.NPCs.ItemLotteryNPC.TownNPC
         }
         public override string TownNPCName()
         {
-            return $"Janitor Module #{Main.rand.Next(200)}";
+            List<string> ver = new List<string>
+            {
+                "TUR_",
+                "Intendee Ver. ",
+                "Chode. SERIAL ",
+                "Janitor Module ID:"
+
+            };
+            return $"{Main.rand.Next(ver)}{Main.rand.Next(200)}";
         }
         public override string GetChat()
         {
             Player player = Main.LocalPlayer;
             Item item = GetItem();
             string held = $"{item.Name} [i/1:{item.type}]";
+            string witch2 = ", presumably dampening their 'disguise', so to speak? But, before you do that, make sure that this person is actually a witch; look for clues, such as strange behavior, or nervousness";
+            string witch = $"Ah, you're here, {player.name}! Do you smell what I smell- or rather, detect? It reeks of cobwebs, cave water and dark magic. I do believe that one of your tenants might be holding an influx of malevolent energy! The best way to reveal this witch, from what I found in my archives, is to expose them to a " + (WorldGen.crimson ? $"[c/FF0000:sample of the uncleansed water of the vile lands] [i/1:{ItemID.BloodWater}]" : $"[c/FF00FF:sample of the uncleansed water of the vile lands] [i/1:{ItemID.UnholyWater}]") + witch2;
             WeightedRandom<string> chat = new WeightedRandom<string>();
             Dialogue();
             Item GetItem()
@@ -194,42 +244,50 @@ namespace CastledsContent.NPCs.ItemLotteryNPC.TownNPC
                     chat.Add("No, I do NOT sell Allen wrenches or gerbil feeders or toilet seats or electric heaters, nor do I sell trash compactors or juice extractors or shower rods or water meters or...", 0.25);
                 chat.Add($"Hold on, I'm looking at my watch... ah, it's {Main.time}", 0.85);
                 chat.Add("Check your chests, check your savings. You never know when it'll all vanish into thin air.", 1.0);
-                    if (DirtMan())
-                chat.Add("Filthy. Absolutely filthy.", 10.0);
-                if (item.melee)
+                if (DirtMan())
+                    chat.Add("Filthy. Absolutely filthy.", 10.0);
+                if (!item.accessory)
                 {
-                    if (item.shoot == ProjectileID.None)
-                        chat.Add($"That {item.Name} {held} is a primitive tool, unfit for the dangerous lifeforms of this strange planet.", 3.5);
-                    if (item.damage < 30)
-                        chat.Add($"The {item.Name} {held} in your possesion is uneffective against 87% of the lifeforms currently discovered in this planet.", 1.55);
-                    if (item.damage > 129)
-                        chat.Add($"That {item.Name} {held} in your possesion will be promptly confiscated if any attempts to attack me are taken.", 1.55);
-                }
-                if (item.magic)
-                {
-                    if (item.mana < 3)
-                        chat.Add($"That {item.Name} {held} emmanates miniscule amounts of energy; enough energy to spin a pinwheel approximately 2.37 times", 1.55);
-                    if (item.mana > 10)
-                        chat.Add($"That {item.Name} {held} emmanates massive amounts of energy; you're a walking tesla tower", 1.55);
-                    if (item.damage < 15)
-                        chat.Add($"Your {item.Name} {held} is a barely functional tool. You need to take it to an individual with proficiency in the field of mana.", 1.55);
-                    if (item.damage > 99)
-                        chat.Add($"This {item.Name} {held} is dangerous and unstable. The likelyhood of you succumbing to its volatile nature is 73%", 1.55);
-                }
-                if (item.ranged)
-                {
-                    int total = 0;
-                    for (int a = 0; a < player.inventory.Length; a++)
-                        if (player.inventory[a].ammo > 0)
-                            total += player.inventory[a].stack;
-                    if (total < 1998)
-                        chat.Add($"You have an insufficient amount of ammunition for your {held}, it is reccomended you acquire more.", 3.0);
-                    if (item.damage < 20 && item.useAmmo == AmmoID.Bullet && item.shootSpeed > 9)
-                        chat.Add($"That {item.Name} {held} is uneffcient, and uneffective, You need to spend your ammunition on a better firearm.", 1.55);
-                    if (item.useAmmo == AmmoID.Rocket)
-                        chat.Add($"Stay away, and put down your {item.Name} {held}. you are currently carrying a tremendously dangerous amount of explosives with you. Your shocking stupidity has made you into a living explosive.", 1.55);
+                    if (item.melee)
+                    {
+                        if (item.shoot == ProjectileID.None)
+                            chat.Add($"That {held} is a primitive tool, unfit for the dangerous lifeforms of this strange planet.", 3.5);
+                        if (item.damage < 30)
+                            chat.Add($"The {held} in your possesion is uneffective against 87% of the lifeforms currently discovered in this planet.", 1.55);
+                        if (item.damage > 129)
+                            chat.Add($"That {held} in your possesion will be promptly confiscated if any attempts to attack me are taken.", 1.55);
+                    }
+                    if (item.magic)
+                    {
+                        if (item.mana < 3)
+                            chat.Add($"That {held} emmanates miniscule amounts of energy; enough energy to spin a pinwheel approximately 2.37 times", 1.55);
+                        if (item.mana > 10)
+                            chat.Add($"That {held} emmanates massive amounts of energy; you're a walking tesla tower", 1.55);
+                        if (item.damage < 15)
+                            chat.Add($"Your {held} is a barely functional tool. You need to take it to an individual with proficiency in the field of magic.", 1.55);
+                        if (item.damage > 99)
+                            chat.Add($"This {held} is dangerous and unstable. The likelyhood of you succumbing to its volatile nature is 73%", 1.55);
+                    }
+                    if (item.ranged && item.notAmmo)
+                    {
+                        int total = 0;
+                        for (int a = 0; a < player.inventory.Length; a++)
+                            if (player.inventory[a].ammo > 0)
+                                total += player.inventory[a].stack;
+                        if (total < 1998)
+                            chat.Add($"You have an insufficient amount of ammunition for your {held}, it is reccomended you acquire more.", 3.0);
+                        if (item.damage < 20 && item.useAmmo == AmmoID.Bullet && item.shootSpeed > 9)
+                            chat.Add($"That {held} is uneffcient, and uneffective, You need to spend your ammunition on a better firearm.", 1.55);
+                        if (item.useAmmo == AmmoID.Rocket)
+                            chat.Add($"Stay away, and put down your {held}. you are currently carrying a tremendously dangerous amount of explosives with you. Your shocking stupidity has made you into a living explosive.", 1.55);
 
+                    }
                 }
+            }
+            if (reaction[1] > 0 && player.GetModPlayer<CastledPlayer>().witchQuest[3] < 3)
+            {
+                player.GetModPlayer<CastledPlayer>().witchQuest[3]++;
+                return witch;
             }
             return chat;
         }
@@ -292,7 +350,7 @@ namespace CastledsContent.NPCs.ItemLotteryNPC.TownNPC
             shop.item[nextSlot].value = 75000;
             nextSlot++;
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Accessories.RobotInvasion.RobotPlate>());
-            shop.item[nextSlot].value = 15000;
+            shop.item[nextSlot].value = 7500;
             nextSlot++;
             if (!NPC.AnyNPCs(mod.NPCType("ItemLotteryNPC")))
             {

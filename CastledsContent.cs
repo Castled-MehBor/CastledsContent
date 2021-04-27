@@ -31,6 +31,12 @@ namespace CastledsContent
         internal int bagTagFlash = 0;
         internal int bagTagMult = 1;
         public static string placeHolderTooltip = "The uh the fuckin' uh";
+        #region Mod Vars
+        public const int Calamity = 0;
+        public const int Thorium = 1;
+        public const int Fargo = 2;
+        public const int FargoSoul = 3;
+        #endregion
         #region Values for DrawAnimationVertical Clones
         internal int Frame1 = 0;
         internal int FrameCounter1 = 0;
@@ -87,6 +93,7 @@ namespace CastledsContent
         {
             Instance = this;
             instance = this;
+            //Main.instance.LoadProjectile(ModContent.ProjectileType<Items.Summon.DistortedFlask.DistortedFlaskExplosion>());
             LMan.ClearData(3);
             #region Prepare Packet Array
             int modCount = ModLoader.Mods.Length;
@@ -428,7 +435,6 @@ namespace CastledsContent
         {
             TabletState?.SetState(tabletUI);
         }
-
         internal void HideTabletUI()
         {
             TabletState?.SetState(null);
@@ -1252,7 +1258,65 @@ namespace CastledsContent
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(ItemID.Arkhalis);
             recipe.AddRecipe();
+
+            #region Angler Quest Accessories
+            #region Sextant
+            recipe = new ModRecipe(this);
+            recipe.AddIngredient(ItemID.Sextant);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(ItemID.WeatherRadio);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(this);
+            recipe.AddIngredient(ItemID.Sextant);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(ItemID.FishermansGuide);
+            recipe.AddRecipe();
+            #endregion
+            #region Weather Radio
+            recipe = new ModRecipe(this);
+            recipe.AddIngredient(ItemID.WeatherRadio);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(ItemID.Sextant);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(this);
+            recipe.AddIngredient(ItemID.WeatherRadio);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(ItemID.FishermansGuide);
+            recipe.AddRecipe();
+            #endregion
+            #region Fisherman's Pocket Guide
+            recipe = new ModRecipe(this);
+            recipe.AddIngredient(ItemID.FishermansGuide);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(ItemID.Sextant);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(this);
+            recipe.AddIngredient(ItemID.FishermansGuide);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(ItemID.WeatherRadio);
+            recipe.AddRecipe();
+            #endregion
+            #endregion
         }
+        public static string ModName(int type)
+        {
+            switch(type)
+            {
+                case 0:
+                    return "CalamityMod";
+                case 1:
+                    return "ThoriumMod";
+                case 2:
+                    return "Fargowiltas";
+                case 3:
+                    return "FargowiltasSouls";
+            }
+            return string.Empty;
+        }
+        public static bool ModLoaded(int type) => ModLoader.GetMod(ModName(type)) != null;
     }
     class RefreshDuration : ModCommand
     {
@@ -1270,6 +1334,40 @@ namespace CastledsContent
         {
             if (Main.player[Main.myPlayer].GetModPlayer<NPCs.Tarr.IncPlayer>().godMode)
                 Main.player[Main.myPlayer].GetModPlayer<CastledPlayer>().superintendentDelay = 0;
+        }
+    }
+    class QuestReset : ModCommand
+    {
+        public override CommandType Type
+        {
+            get { return CommandType.Chat; }
+        }
+
+        public override string Command
+        {
+            get { return "resetquests"; }
+        }
+
+        public override void Action(CommandCaller caller, string input, string[] args)
+        {
+            CastledPlayer player = Main.player[Main.myPlayer].GetModPlayer<CastledPlayer>();
+            for (int a = 0; a < player.witchQuest.Length; a++)
+                player.witchQuest[a] = 0;
+            Main.NewText("Quests have been reset");
+        }
+    }
+    public class CompatRecipes : GlobalRecipe
+    {
+        readonly Mod fargoS = ModLoader.GetMod(CastledsContent.ModName(CastledsContent.FargoSoul));
+        public override void OnCraft(Item item, Recipe recipe)
+        {
+            Player player = Main.player[Main.myPlayer];
+            if (CastledsContent.ModLoaded(CastledsContent.FargoSoul) && item.type == fargoS.ItemType("AnglerEnchantment"))
+            {
+                player.QuickSpawnItem(ItemID.AnglerHat);
+                player.QuickSpawnItem(ItemID.AnglerVest);
+                player.QuickSpawnItem(ItemID.AnglerPants);
+            }
         }
     }
 }

@@ -43,6 +43,7 @@ namespace CastledsContent.Projectiles.Friendly
 		public override void AI()
 		{
 			Player val = Main.player[projectile.owner];
+			projectile.direction = Main.MouseWorld.X > val.position.X ? 1 : -1;
 			if (val.dead || !val.channel)
 			{
 				projectile.Kill();

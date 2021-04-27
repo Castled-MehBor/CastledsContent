@@ -34,6 +34,8 @@ namespace CastledsContent.NPCs.Tarr
                     {
                         if (n.type != NPCID.TargetDummy)
                         {
+                            if (n.type == ModContent.NPCType<TheTarr>())
+                                n.wet = true;
                             n.life = int.MinValue;
                             n.HitEffect();
                             n.checkDead();

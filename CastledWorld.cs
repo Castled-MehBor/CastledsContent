@@ -44,6 +44,7 @@ namespace CastledsContent
         public static bool waitParti = false;
         public static bool finishParti = false;
         public static bool determineContraSp;
+        public static int[] pirateIndex = new int[2];
         //public static bool hasItemQuota;
         //public static bool lotteryIsAlive;
         public List<int> tarr1 = new List<int>();
@@ -83,6 +84,7 @@ namespace CastledsContent
                 ["botShop"] = LMan.setupShop,
                 [nameof(dualForceEncounter)] = dualForceEncounter,
                 [nameof(packages)] = packages,
+                [nameof(pirateIndex)] = pirateIndex
                 //[nameof(mailboxes)] = mailboxes
             };
         }
@@ -97,6 +99,8 @@ namespace CastledsContent
             tarr2 = tag.Get<List<Vector2>>("tarr2");
             LMan.setupShop = tag.Get<List<int>>("botShop");
             dualForceEncounter = tag.GetInt(nameof(dualForceEncounter));
+            packages = tag.Get<List<PackageData>>(nameof(packages));
+            pirateIndex = tag.GetIntArray(nameof(pirateIndex));
             //mailboxes = tag.Get<List<MailboxData>>(nameof(mailboxes));
             //packages = tag.Get<List<PackageData>>(nameof(packages));
         }

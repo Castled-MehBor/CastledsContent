@@ -303,7 +303,7 @@ namespace CastledsContent.NPCs.Tarr
             }
             else
             {
-                npc.NPCLoot();
+                //npc.NPCLoot();
                 npc.life = npc.lifeMax;
                 return false;
             }

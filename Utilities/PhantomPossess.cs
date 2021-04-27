@@ -6,8 +6,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Utilities;
 using Terraria.ModLoader;
+using System.Collections.Generic;
 
-namespace CastledsContent.NPCs
+namespace CastledsContent.Utilities
 {
     /*
     public class PhantomPossess : GlobalNPC
@@ -284,6 +285,13 @@ namespace CastledsContent.NPCs
         public bool restorative = false;
         public int rarity = 0;
         public int rarityType = 0;
+        public FilterInfo(Texture2D t, byte i, string e, bool r)
+        {
+            tex = t;
+            intensity = i;
+            effectType = e;
+            restorative = r;
+        }
 
         public const string Standard = "Standard";
         public const string Standard_Ignore = "StandardMiss";

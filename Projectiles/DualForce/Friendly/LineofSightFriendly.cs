@@ -7,6 +7,7 @@ namespace CastledsContent.Projectiles.DualForce.Friendly
 {
     public class LineofSightFriendly : ModProjectile
     {
+        int delay;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Line of Sight");
@@ -26,10 +27,12 @@ namespace CastledsContent.Projectiles.DualForce.Friendly
 
         public override void AI()
         {
-
+            if (++delay > 6)
+            {
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 0f, mod.ProjectileType("DeathCrosshairFriendly"), (int)((double)projectile.damage * 0), 3f, projectile.owner, 0f, 0f);
                 Gore.NewGore(projectile.position, projectile.velocity, GoreID.ChimneySmoke3, 0.8f);
-
+                delay = 0;
+            }
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {

@@ -7,6 +7,7 @@ using Terraria.ModLoader.IO;
 using System.Collections.Generic;
 using System;
 using Terraria.DataStructures;
+using Microsoft.Xna.Framework.Input;
 
 namespace CastledsContent.Items.Storage
 {
@@ -87,6 +88,9 @@ namespace CastledsContent.Items.Storage
         }
     }
     #endregion
+    /// <summary>
+    /// A class for simple custom item storage
+    /// </summary>
     public class BagPickup : TagSerializable
     {
         public static readonly Func<TagCompound, BagPickup> DESERIALIZER = Load;
@@ -99,6 +103,10 @@ namespace CastledsContent.Items.Storage
             limit = limit1;
             doPickup = pickup;
         }
+        /// <summary>
+        /// Performs MagicPickup
+        /// </summary>
+        /// <param name="player"></param>
         public void Pickup(Player player)
         {
             Vector4 points = new Vector4(player.position.X - 50, player.position.X + 50, player.position.Y - 50, player.position.Y + 50);
@@ -113,6 +121,11 @@ namespace CastledsContent.Items.Storage
             }
             bool InRange(Item e) => e.position.X > points.X && e.position.X < points.Y && e.position.Y > points.Z && e.position.Y < points.W;
         }
+        /// <summary>
+        /// Determines an action of what happens when this bag is right clicked
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="bag"></param>
         public void CheckRightClick(Player player, Item bag)
         {
             bool view = ModContent.GetInstance<ClientConfig>().bagDoubleClick;
@@ -128,34 +141,114 @@ namespace CastledsContent.Items.Storage
             }
             else if (item == null || item.IsAir)
             {
-                SetList(bag, modPlayer, this);
-                if (contained.Count > 0)
+                if (PotionPouch())
                 {
-                    if (CheckOpenCondition(bag.GetGlobalItem<SGlobalItem>().storage))
+                    bool used = false;
+                    bool[] canUse = new bool[3];
+                    List<Item> list = bag.GetGlobalItem<SGlobalItem>().storage.contained;
+                    for (int a = 0; a < list.Count; a++)
                     {
-                        for (int a = 0; a < player.inventory.Length - 9; a++)
+                        if (list[a].stack > 0)
                         {
-                            if (player.inventory[a] == null || player.inventory[a].IsAir)
+                            if (list[a].buffType > 0 && list[a].buffTime > 0)
                             {
-                                if (contained.Count > 0)
-                                {
-                                    Item slotItem = contained[0].Clone();
-                                    if (ModContent.GetInstance<ClientConfig>().bagTagBoolean)
-                                    player.inventory[a] = slotItem;
-                                    {
-                                        player.inventory[a].GetGlobalItem<SGlobalItem>().bagTag = true;
-                                        player.inventory[a].GetGlobalItem<SGlobalItem>().tagExpire = ModContent.GetInstance<ClientConfig>().bagTagExpire * 1000;
-                                    }
-                                    contained.RemoveAt(0);
-                                }
+                                if (PotionPouchType(2) && !player.HasBuff(list[a].buffType))
+                                    canUse[0] = true;
+                                else if (PotionPouchType(1))
+                                    canUse[0] = true;
+                            }
+                            if (list[a].healLife > 0 && !player.HasBuff(BuffID.PotionSickness))
+                                canUse[1] = true;
+                            if (list[a].healMana > 0)
+                                canUse[2] = true;
+                            if (canUse[0])
+                                player.AddBuff(list[a].buffType, list[a].buffTime);
+                            if (canUse[1])
+                            {
+                                player.HealEffect(list[a].healLife);
+                                player.AddBuff(BuffID.PotionSickness, player.pStone ? 2700 : 3600);
+                            }
+                            if (canUse[2])
+                            {
+                                player.ManaEffect(list[a].healMana);
+                                player.AddBuff(BuffID.ManaSickness, 300);
+                            }
+                            if (IsUseable())
+                            {
+                                if (list[a].consumable)
+                                    bag.GetGlobalItem<SGlobalItem>().storage.contained[a].stack--;
+                                if (list[a].stack < 1)
+                                    bag.GetGlobalItem<SGlobalItem>().storage.contained.RemoveAt(a);
+                                used = true;
+                            }
+                            for (int b = 0; b < canUse.Length; b++)
+                                canUse[b] = false;
+                            bool IsUseable()
+                            {
+                                foreach (bool b in canUse)
+                                    if (b)
+                                        return true;
+                                return false;
                             }
                         }
-                        //modPlayer.hoverStorage.Clear();
-                        SetList(bag, modPlayer, this);
-                        modPlayer.listMade = false;
+                        else
+                            bag.GetGlobalItem<SGlobalItem>().storage.contained.RemoveAt(a);
+                    }
+                    if (used)
+                        Main.PlaySound(SoundID.Item3);
+                    SetList(bag, modPlayer, this);
+                }
+                else
+                {
+                    SetList(bag, modPlayer, this);
+                    if (contained.Count > 0)
+                    {
+                        if (CheckOpenCondition(bag.GetGlobalItem<SGlobalItem>().storage))
+                        {
+                            for (int a = 0; a < player.inventory.Length - 9; a++)
+                            {
+                                if (player.inventory[a] == null || player.inventory[a].IsAir)
+                                {
+                                    if (contained.Count > 0)
+                                    {
+                                        Item slotItem = contained[0].Clone();
+                                        if (ModContent.GetInstance<ClientConfig>().bagTagBoolean)
+                                            player.inventory[a] = slotItem;
+                                        {
+                                            player.inventory[a].GetGlobalItem<SGlobalItem>().bagTag = true;
+                                            player.inventory[a].GetGlobalItem<SGlobalItem>().tagExpire = ModContent.GetInstance<ClientConfig>().bagTagExpire * 1000;
+                                        }
+                                        contained.RemoveAt(0);
+                                    }
+                                }
+                            }
+                            //modPlayer.hoverStorage.Clear();
+                            SetList(bag, modPlayer, this);
+                            modPlayer.listMade = false;
+                        }
+                    }
+                    modPlayer.listMade = true;
+                }
+            }
+            bool PotionPouch()
+            {
+                if (bag.type == ModContent.ItemType<NPCs.Witch.PotionPouch>())
+                    return PotionPouchType(1) || PotionPouchType(2);
+                return false;
+            }
+            bool PotionPouchType(int type)
+            {
+                if (bag.type == ModContent.ItemType<NPCs.Witch.PotionPouch>())
+                {
+                    switch(type)
+                    {
+                        case 1:
+                            return Main.keyState.IsKeyDown(Keys.LeftShift) || Main.keyState.IsKeyDown(Keys.RightShift);
+                        case 2:
+                            return Main.keyState.IsKeyDown(Keys.LeftControl) || Main.keyState.IsKeyDown(Keys.RightControl);
                     }
                 }
-                modPlayer.listMade = true;
+                return false;
             }
             void ContainItem(Item item1)
             {
@@ -196,6 +289,12 @@ namespace CastledsContent.Items.Storage
                     return true;
             }
         }
+        /// <summary>
+        /// Sets the display list of what is inside the bag; calls SetHoverStorage in CastledPlayer
+        /// </summary>
+        /// <param name="bag"></param>
+        /// <param name="modPlayer"></param>
+        /// <param name="bagg"></param>
         public static void SetList(Item bag, CastledPlayer modPlayer, BagPickup bagg)
         {
             if (bag != null && !bag.IsAir && bag.GetGlobalItem<SGlobalItem>().storage != null)
@@ -244,10 +343,29 @@ namespace CastledsContent.Items.Storage
         {
             if (!swag.infStack.Contains(type))
                 return swag.contained[index].stack < swag.contained[index].maxStack;
-            else
-                return true;
+            return true;
         }
+        /// <summary>
+        /// Determines if the item is a storage item or not; necessary for preventing users from putting storage items within storage items.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public static bool NotStorage(Item item) => item != null && !item.IsAir && item.GetGlobalItem<SGlobalItem>().storage == null;
+        public static Item[] GetBank(Item bag, Player player)
+        {
+            switch (bag.type)
+            {
+                case ItemID.PiggyBank:
+                    return player.bank.item;
+                case ItemID.MoneyTrough:
+                    return player.bank.item;
+                case ItemID.Safe:
+                    return player.bank2.item;
+                case ItemID.DefendersForge:
+                    return player.bank3.item;
+            }
+            return null;
+        }
     }
     public partial class BagItem : ModItem
     {

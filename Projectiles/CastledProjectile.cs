@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using CastledsContent.Items.Weapons.Melee;
+using CastledsContent.Items.Summon.DistortedFlask;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace CastledsContent.Projectiles
@@ -117,6 +117,34 @@ namespace CastledsContent.Projectiles
                 }
                 if (timer <= 25)
                     timer++;
+            }
+        }
+        public override void Kill(Projectile projectile, int timeLeft)
+        {
+            if (projectile.type == ProjectileID.HolyWater)
+            {
+                foreach(NPC n in Main.npc)
+                {
+                    if ((DistortNPC.IsWitch(n) || n.type == ModContent.NPCType<NPCs.Witch.StylistWitch>()) && DistortedFlaskExplosion.WithinRange(n, projectile, true))
+                    {
+                        n.StrikeNPC(25, projectile.knockBack, projectile.direction);
+                        n.AddBuff(BuffID.OnFire, 300);
+                    }
+                }
+            }
+            if (projectile.type == ProjectileID.UnholyWater || projectile.type == ProjectileID.BloodWater)
+            {
+                foreach (NPC n in Main.npc)
+                {
+                    if (DistortNPC.IsWitch(n) && DistortedFlaskExplosion.WithinRange(n, projectile, true))
+                    {
+                        Main.PlaySound(SoundID.NPCDeath6.WithVolume(1.5f), n.position);
+                        Main.PlaySound(SoundID.Item103, n.position);
+                        for (int a = 0; a < Main.rand.Next(4, 7); a++)
+                            Gore.NewGore(n.position, Vector2.Zero, Main.rand.Next(61, 63));
+                        n.Transform(ModContent.NPCType<NPCs.Witch.StylistWitch>());
+                    }
+                }
             }
         }
     }

@@ -16,9 +16,11 @@ allowing you to save up to five presets, and give names to each of them.
 In this update (Version 0.9.1), several older features from a year/so ago were removed, due to them either being
 too lazily made, or being outdated; including several items and all bosses besides Nasha and Grakos.
 
-(Small Content Update) - Storage Update
-Completely overhauled how the bag system worked, as well as making new bags, new features and mechanics for these bags, as well as cardboard packages, which you can put items in, place down, and pick right back up to get your stuff from.
-Also adressed an oversight on a Superintendent issue related to very late rounds that it would disappear if the quantum scan was unsuccessful.
+(Small Content Update) - Arachnich's Arrival
+A mysterious figure pretending to be a stylist, find them, reveal them and help them with their supplies.
+Use their bottles of glitches on town NPCs to turn them into rare enemies; not only for getting the mystery figure's supplies, but to also make getting certain items or banners much easier!
+- First Cross-Mod content; Shrine Finder (Calamity Mod) - Locates any shrine in the world as long as certain conditions are met.
+- Certain small tweaks to features.
 
 Thanks to everyone who contributed:
 Akocis, Aria, Atomic Renegade, AYO BRUH, (basically, i am fox), Beepbopbop, Cookiecraft_, Darkpuppey, Invalid Pyrossal, Invasive, Jokey, Lewis /ˈluːɪs/, mango, Septimus Maximus the Third, SpicySpaceSnake, SupremeShadow, TacoBurritoGuacamole, token, Universe, Woodio, Wyvern, yelloface, Yhariel

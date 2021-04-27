@@ -1063,7 +1063,7 @@ namespace CastledsContent.NPCs.Boss.HarpyQueen
                         npc.frameCounter++;
                         if (npc.frameCounter < 120)
                         {
-                            npc.defense = 16828;
+                            npc.takenDamageMultiplier = adrPrevent == 3 ? 0.4f : 0.01f;
                             npc.frame.Y = Frame_0 * frameHeight;
                         }
                         else if (npc.frameCounter < 240)
@@ -1096,6 +1096,7 @@ namespace CastledsContent.NPCs.Boss.HarpyQueen
                         }
                         else if (npc.frameCounter > 600)
                         {
+                            npc.takenDamageMultiplier = 1;
                             npc.frameCounter = 0;
                             aiState = 4;
                             npc.dontTakeDamage = false;

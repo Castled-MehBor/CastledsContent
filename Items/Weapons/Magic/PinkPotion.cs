@@ -2,7 +2,6 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using static Terraria.ModLoader.ModContent;
 using CastledsContent.Projectiles.DualForce.Friendly;
 
 namespace CastledsContent.Items.Weapons.Magic
@@ -34,7 +33,7 @@ namespace CastledsContent.Items.Weapons.Magic
             item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
-            item.shoot = ProjectileType<PinkBottleFriendly>();
+            item.shoot = ModContent.ProjectileType<PinkBottleFriendly>();
             item.shootSpeed = 8f;
         }
         #region DualForce Hook

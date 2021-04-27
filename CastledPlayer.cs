@@ -63,8 +63,21 @@ namespace CastledsContent
         public List<Item> contrabande;
         public static string[] banks = { "Piggy Bank", "Safe", "Defender's Forge" };
         public readonly static List<int> bankIndex = new List<int>() { };
+        public int shrineType;
+        public int pointer;
+        public int[] witchQuest;
         #endregion
+        public bool witchEgg = false;
         #region Saving Stuff
+        public override void SetupStartInventory(IList<Item> items, bool mediumcoreDeath)
+        {
+            if (CastledsContent.ModLoaded(CastledsContent.Calamity))
+            {
+                Item finder = new Item();
+                finder.SetDefaults(ModContent.ItemType<ModStuff.Calamity.ShrineFinder>());
+                items.Add(finder);
+            }
+        }
         public override void Initialize()
         {
             //MBAddress = "";
@@ -80,6 +93,9 @@ namespace CastledsContent
                 new PlayerPreset(),
                 new PlayerPreset()
             };
+            witchQuest = new int[4];
+            for (int a = 0; a < witchQuest.Length; a++)
+                witchQuest[a] = 0;
         }
         public override TagCompound Save()
         {
@@ -89,6 +105,8 @@ namespace CastledsContent
                 {nameof(presets), presets },
                 {nameof(superintendentDelay), superintendentDelay },
                 {nameof(contrabande), contrabande },
+                {nameof(witchQuest), witchQuest },
+                {nameof(witchEgg), witchEgg }
                 //{nameof(MBAddress), MBAddress }
             };
         }
@@ -97,6 +115,8 @@ namespace CastledsContent
             contrabande = tag.Get<List<Item>>(nameof(contrabande));
             superintendentDelay = tag.GetInt(nameof(superintendentDelay));
             preset = tag.GetInt(nameof(preset));
+            witchQuest = tag.GetIntArray(nameof(witchQuest));
+            witchEgg = tag.GetBool(nameof(witchEgg));
             if (tag.Get<List<PlayerPreset>>(nameof(presets)) != null && tag.Get<List<PlayerPreset>>(nameof(presets)).Count > 0)
                 presets = tag.Get<List<PlayerPreset>>(nameof(presets));
             //MBAddress = tag.GetString(nameof(MBAddress));
@@ -140,6 +160,8 @@ namespace CastledsContent
             //Arena Debuffs
             if (NPC.AnyNPCs(ModContent.NPCType<HarpyQueen>()))
                 player.AddBuff(ModContent.BuffType<HarpyQueenDebuff>(), 2);
+            if (player.HasBuff(BuffID.Gravitation))
+                player.noFallDmg = true;
         }
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
