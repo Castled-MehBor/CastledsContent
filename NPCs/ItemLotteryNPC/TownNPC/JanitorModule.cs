@@ -92,7 +92,7 @@ namespace CastledsContent.NPCs.ItemLotteryNPC.TownNPC
         public override void AI()
         {
             Player player = Main.LocalPlayer;
-            if (player.GetModPlayer<CastledPlayer>().witchQuest[3] < 3)
+            if (WitchQuest(player.GetModPlayer<CastledPlayer>(), 3, 3, false))
             {
                 if (NPC.AnyNPCs(NPCID.Stylist) && !NPC.AnyNPCs(ModContent.NPCType<NPCs.Witch.StylistWitch>()))
                 {
@@ -113,6 +113,23 @@ namespace CastledsContent.NPCs.ItemLotteryNPC.TownNPC
                 if ((!NPC.AnyNPCs(NPCID.Stylist) || NPC.AnyNPCs(ModContent.NPCType<NPCs.Witch.StylistWitch>()) || !LineOfSight(player)) && reaction[1] > 0)
                     if (reaction[0]-- < 1)
                         reaction[1] = 0;
+            }
+        }
+        bool WitchQuest(CastledPlayer player, int type, int num, bool greater)
+        {
+            try
+            {
+                return player != null && player.witchQuest != null && player.witchQuest.Length > 0 && greater ? player.witchQuest[type] > num : player.witchQuest[type] < num;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                if (player.witchQuest.Length < 1)
+                {
+                    player.witchQuest = new int[4];
+                    for (int a = 0; a < player.witchQuest.Length; a++)
+                        player.witchQuest[a] = 0;
+                }
+                return false;
             }
         }
         public override void PostAI()
@@ -284,7 +301,7 @@ namespace CastledsContent.NPCs.ItemLotteryNPC.TownNPC
                     }
                 }
             }
-            if (reaction[1] > 0 && player.GetModPlayer<CastledPlayer>().witchQuest[3] < 3)
+            if (reaction[1] > 0 && WitchQuest(player.GetModPlayer<CastledPlayer>(), 3, 3, false))
             {
                 player.GetModPlayer<CastledPlayer>().witchQuest[3]++;
                 return witch;
