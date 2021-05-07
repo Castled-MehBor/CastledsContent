@@ -71,12 +71,16 @@ namespace CastledsContent
         #region Saving Stuff
         public override void SetupStartInventory(IList<Item> items, bool mediumcoreDeath)
         {
+            Item bag = new Item();
+            bag.SetDefaults(ModContent.ItemType<Items.Storage.StartingBag>());
+            items.Add(bag);
             if (CastledsContent.ModLoaded(CastledsContent.Calamity))
             {
                 Item finder = new Item();
                 finder.SetDefaults(ModContent.ItemType<ModStuff.Calamity.ShrineFinder>());
                 items.Add(finder);
             }
+
         }
         public override void Initialize()
         {

@@ -563,14 +563,14 @@ namespace CastledsContent.NPCs.Witch
                 shop.item[13].SetDefaults(ItemID.WaterleafSeeds);
                 shop.item[13].value = shop.item[13].value * 4;
                 shop.item[14].SetDefaults(ItemID.ShiverthornSeeds);
-                shop.item[14].value = shop.item[23].value * 4;
+                shop.item[14].value = shop.item[14].value * 4;
             }
             if (player.witchQuest[1] > 4)
             {
                 shop.item[15].SetDefaults(ItemID.DeathweedSeeds);
-                shop.item[16].value = shop.item[14].value * 4;
-                shop.item[15].SetDefaults(ItemID.FireblossomSeeds);
                 shop.item[15].value = shop.item[15].value * 4;
+                shop.item[16].SetDefaults(ItemID.FireblossomSeeds);
+                shop.item[16].value = shop.item[16].value * 4;
             }
             if (player.witchQuest[1] > 5)
             {

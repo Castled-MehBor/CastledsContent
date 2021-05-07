@@ -16,11 +16,9 @@ allowing you to save up to five presets, and give names to each of them.
 In this update (Version 0.9.1), several older features from a year/so ago were removed, due to them either being
 too lazily made, or being outdated; including several items and all bosses besides Nasha and Grakos.
 
-(Small Content Update) - Arachnich's Arrival
-A mysterious figure pretending to be a stylist, find them, reveal them and help them with their supplies.
-Use their bottles of glitches on town NPCs to turn them into rare enemies; not only for getting the mystery figure's supplies, but to also make getting certain items or banners much easier!
-- First Cross-Mod content; Shrine Finder (Calamity Mod) - Locates any shrine in the world as long as certain conditions are met.
-- Certain small tweaks to features.
+(Patch) Small Patch:
+- Fixed a pricing issue with some of Arachnich's items
+- Added a starter bag, which you can randomize the contents of.
 
 Thanks to everyone who contributed:
 Akocis, Aria, Atomic Renegade, AYO BRUH, (basically, i am fox), Beepbopbop, Cookiecraft_, Darkpuppey, Invalid Pyrossal, Invasive, Jokey, Lewis /ˈluːɪs/, mango, Septimus Maximus the Third, SpicySpaceSnake, SupremeShadow, TacoBurritoGuacamole, token, Universe, Woodio, Wyvern, yelloface, Yhariel

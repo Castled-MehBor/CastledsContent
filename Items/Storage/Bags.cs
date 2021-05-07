@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework.Input;
+using CastledsContent.Items.Armor.Scaffold;
 
 namespace CastledsContent.Items.Storage
 {
@@ -95,6 +96,7 @@ namespace CastledsContent.Items.Storage
     {
         public static readonly Func<TagCompound, BagPickup> DESERIALIZER = Load;
         public bool doPickup = false;
+        public bool starterBagOpened = false;
         public List<Item> contained = new List<Item>();
         public List<int> infStack = new List<int>();
         public int limit;
@@ -141,6 +143,11 @@ namespace CastledsContent.Items.Storage
             }
             else if (item == null || item.IsAir)
             {
+                if (StarterBag())
+                {
+                    StartingBag.RollItems(bag.GetGlobalItem<SGlobalItem>().storage);
+                    SetList(bag, modPlayer, this);
+                }
                 if (PotionPouch())
                 {
                     bool used = false;
@@ -198,7 +205,7 @@ namespace CastledsContent.Items.Storage
                         Main.PlaySound(SoundID.Item3);
                     SetList(bag, modPlayer, this);
                 }
-                else
+                if (!OtherInteraction())
                 {
                     SetList(bag, modPlayer, this);
                     if (contained.Count > 0)
@@ -219,6 +226,16 @@ namespace CastledsContent.Items.Storage
                                             player.inventory[a].GetGlobalItem<SGlobalItem>().tagExpire = ModContent.GetInstance<ClientConfig>().bagTagExpire * 1000;
                                         }
                                         contained.RemoveAt(0);
+                                        if (bag.type == ModContent.ItemType<StartingBag>() && !starterBagOpened)
+                                        {
+                                            player.QuickSpawnItem(ItemID.GoldCoin, Main.rand.Next(1, 2));
+                                            player.QuickSpawnItem(ItemID.SilverCoin, Main.rand.Next(49, 99));
+                                            player.QuickSpawnItem(ItemID.Wood, Main.rand.Next(79, 119));
+                                            player.QuickSpawnItem(ItemID.Torch, Main.rand.Next(14, 29));
+                                            player.QuickSpawnItem(ItemID.RecallPotion, Main.rand.Next(4, 9));
+                                            player.QuickSpawnItem(WorldGen.IronTierOre == TileID.Iron ? ItemID.IronOre : ItemID.LeadOre, Main.rand.Next(14, 27));
+                                            starterBagOpened = true;
+                                        }
                                     }
                                 }
                             }
@@ -230,6 +247,7 @@ namespace CastledsContent.Items.Storage
                     modPlayer.listMade = true;
                 }
             }
+            bool OtherInteraction() => PotionPouch() || StarterBag();
             bool PotionPouch()
             {
                 if (bag.type == ModContent.ItemType<NPCs.Witch.PotionPouch>())
@@ -248,6 +266,12 @@ namespace CastledsContent.Items.Storage
                             return Main.keyState.IsKeyDown(Keys.LeftControl) || Main.keyState.IsKeyDown(Keys.RightControl);
                     }
                 }
+                return false;
+            }
+            bool StarterBag()
+            {
+                if (!starterBagOpened && bag.type == ModContent.ItemType<StartingBag>())
+                    return Main.keyState.IsKeyDown(Keys.LeftShift) || Main.keyState.IsKeyDown(Keys.RightShift);
                 return false;
             }
             void ContainItem(Item item1)
@@ -308,7 +332,8 @@ namespace CastledsContent.Items.Storage
             {
                 {nameof(contained), contained },
                 {nameof(limit), limit },
-                {nameof(doPickup), doPickup }
+                {nameof(doPickup), doPickup },
+                {nameof(starterBagOpened), starterBagOpened }
             };
         }
         public static BagPickup Load(TagCompound tag)
@@ -317,7 +342,8 @@ namespace CastledsContent.Items.Storage
             {
                 contained = tag.Get<List<Item>>(nameof(contained)),
                 limit = tag.GetInt(nameof(limit)),
-                doPickup = tag.GetBool(nameof(doPickup))
+                doPickup = tag.GetBool(nameof(doPickup)),
+                starterBagOpened = tag.GetBool(nameof(starterBagOpened))
             };
             return bP;
         }
@@ -895,6 +921,170 @@ namespace CastledsContent.Items.Storage
                     item.overrideColor = new Color(255, 115, 65);
                 }
             }
+        }
+    }
+    public class StartingBag : BagItem
+    {
+        bool randomized = false;
+        public override int BagLimit { get { return 5; } }
+        public override List<string> EquipTooltips
+        {
+            get
+            {
+                return new List<string>
+                {
+                    "Hold Shift and Right-Click to reroll the contents inside if unopened"
+                };
+            }
+        }
+        public override string Texture => "CastledsContent/Items/Storage/StartingBag";
+        public override void SetStaticDefaults() { DisplayName.SetDefault("Coveted Strap-Bag"); }
+        public override void SetDefaults()
+        {
+            item.width = 20;
+            item.height = 22;
+            item.rare = ItemRarityID.Blue;
+        }
+        public override TagCompound Save() => new TagCompound { { nameof(randomized), randomized }, { "b", item.GetGlobalItem<SGlobalItem>().storage } };
+        public override void Load(TagCompound tag) { randomized = tag.GetBool(nameof(randomized)); item.GetGlobalItem<SGlobalItem>().storage = tag.Get<BagPickup>("b"); }
+        public override void UpdateInventory(Player player)
+        {
+            if (!randomized && item.GetGlobalItem<SGlobalItem>().storage != null)
+            {
+                RollItems(item.GetGlobalItem<SGlobalItem>().storage);
+                randomized = true;
+            }
+            Main.NewText(item.GetGlobalItem<SGlobalItem>().storage == null);
+        }
+        public static void RollItems(BagPickup bag)
+        {
+            bool ModLoaded(Mod mod) => mod != null;
+            int I(Mod mod, string name) => mod.ItemType(name);
+            Mod spirit = ModLoader.GetMod("SpiritMod");
+            Mod split = ModLoader.GetMod("Split");
+            Mod thorium = ModLoader.GetMod("ThoriumMod");
+            Mod calamity = ModLoader.GetMod("CalamityMod");
+            Mod clicker = ModLoader.GetMod("ClickerClass");
+            Mod joost = ModLoader.GetMod("JoostMod");
+            int chosenClass = Main.rand.Next(4);
+            if (ModLoaded(thorium))
+                chosenClass += 2;
+            if (ModLoaded(clicker))
+                chosenClass++;
+            List<int> melee = new List<int>
+            {
+                ItemID.WoodenSword
+            };
+            List<int> ranged = new List<int>
+            {
+                ItemID.WoodenBow
+            };
+            List<int> magic = new List<int>
+            {
+                ItemID.WandofSparking
+            };
+            List<int> summon = new List<int>();
+            List<int> misc = new List<int>();
+            List<int> acc = new List<int>
+            {
+                WorldGen.CopperTierOre == 7 ? ItemID.CopperWatch : ItemID.TinWatch
+            };
+            if (ModLoaded(spirit))
+            {
+                melee.Remove(ItemID.WoodenSword);
+                melee.Add(I(spirit, "HuskstalkSword"));
+                melee.Add(I(spirit, "WoodenClub"));
+                magic.Add(I(spirit, "CactusStaff"));
+                summon.Add(I(spirit, "OvergrowthStaff"));
+                acc.Add(I(spirit, "Rabbit_Foot"));
+            }
+            if (ModLoaded(split))
+                melee.Add(I(split, "WoodenRacquet"));
+            if (ModLoaded(thorium))
+            {
+                misc.Add(I(thorium, "WoodenBaton"));
+                misc.Add(I(thorium, "WoodenWhistle"));
+                acc.Add(I(thorium, WorldGen.CopperTierOre == 7 ? "CopperBuckler" : "CopperBuckler"));
+            }
+            if (ModLoaded(clicker))
+                misc.Add(I(clicker, "WoodenClicker"));
+            if (ModLoaded(calamity))
+            {
+                melee.Add(I(calamity, "WulfrumBlade"));
+                ranged.Add(I(calamity, "WulfrumBow"));
+                magic.Add(I(calamity, "WulfrumWand"));
+                summon.Add(I(calamity, "SquirrelSquireStaff"));
+                summon.Add(I(calamity, "WulfrumController"));
+            }
+            if (ModLoaded(joost))
+            {
+                magic.Add(I(joost, "EmberWand"));
+                summon.Add(I(joost, "EmberStaff"));
+            }
+            #region Fill the bag (First Part)
+            bag.contained.Clear();
+            Item weapon = new Item();
+            Item accessory = new Item();
+            accessory.SetDefaults(Main.rand.Next(acc));
+            switch (chosenClass)
+            {
+                case 0:
+                    weapon.SetDefaults(Main.rand.Next(melee));
+                    break;
+                case 1:
+                    weapon.SetDefaults(Main.rand.Next(ranged));
+                    break;
+                case 2:
+                    weapon.SetDefaults(Main.rand.Next(magic));
+                    break;
+                case 3:
+                    weapon.SetDefaults(Main.rand.Next(summon));
+                    break;
+            }
+            if (ModLoaded(thorium) && misc.Contains(I(thorium, "WoodenBaton")) && CustomClass())
+                weapon.SetDefaults(I(thorium, "WoodenBaton"));
+            if (ModLoaded(thorium) && misc.Contains(I(thorium, "WoodenWhistle")) && CustomClass())
+                weapon.SetDefaults(I(thorium, "WoodenWhistle"));
+            if (ModLoaded(clicker) && misc.Contains(I(clicker, "WoodenClicker")) && CustomClass())
+                weapon.SetDefaults(I(clicker, "WoodenClicker"));
+            if (weapon.type < ItemID.IronPickaxe)
+                RandomItem();
+            bag.contained.Add(weapon);
+            bag.contained.Add(accessory);
+            bool CustomClass() => chosenClass > 3 && Main.rand.NextBool(3);
+            void RandomItem()
+            {
+                int a = Main.rand.Next(3);
+                switch (a)
+                {
+                    case 0:
+                        weapon.SetDefaults(Main.rand.Next(melee));
+                        break;
+                    case 1:
+                        weapon.SetDefaults(Main.rand.Next(ranged));
+                        break;
+                    case 2:
+                        weapon.SetDefaults(Main.rand.Next(magic));
+                        break;
+                    case 3:
+                        weapon.SetDefaults(Main.rand.Next(summon));
+                        break;
+                }
+            }
+            #endregion
+            #region Fill the bag (Second Part)
+            Item[] set = new Item[3]
+{
+                new Item(),
+                new Item(),
+                new Item()
+};
+            set[0].SetDefaults(ModContent.ItemType<ScaffoldTreads>());
+            set[1].SetDefaults(ModContent.ItemType<ScaffoldPlate>());
+            set[2].SetDefaults(ModContent.ItemType<ScaffoldHeadgear>());
+            foreach (Item i in set)
+                bag.contained.Add(i);
+            #endregion
         }
     }
 }
