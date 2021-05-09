@@ -954,7 +954,6 @@ namespace CastledsContent.Items.Storage
                 RollItems(item.GetGlobalItem<SGlobalItem>().storage);
                 randomized = true;
             }
-            Main.NewText(item.GetGlobalItem<SGlobalItem>().storage == null);
         }
         public static void RollItems(BagPickup bag)
         {

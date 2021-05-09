@@ -1,6 +1,6 @@
 displayName = Castled's Equilibrium
 author = The Fortressed Castle Inc. Team
 homepage = https://forums.terraria.org/index.php?threads/castleds-content.81988/
-version = 0.9.3.2
+version = 0.9.3.3
 buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*
 includePDB = true
