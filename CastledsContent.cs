@@ -48,6 +48,8 @@ namespace CastledsContent
         internal int FrameCounter1Inv = 0;
         internal int Frame2Inv = 0;
         internal int FrameCounter2Inv = 0;
+        internal float[] pedestal = new float[4] { 0, 1, 0, 1 };
+        internal List<PIH> images = new List<PIH>();
         #endregion
         #region Variables
         private int packetNum = 0;
@@ -87,6 +89,13 @@ namespace CastledsContent
                 //HarpyQueen
                 bossChecklist.Call("AddBoss", 4.9f, new List<int>() { ModContent.NPCType<NPCs.Boss.HarpyQueen.HarpyQueen>() }, this, "Harpy Queen", (Func<bool>)(() => CastledWorld.downedHarpyQueen), ModContent.ItemType<Items.Placeable.SkywareArtifact>(), new List<int>() { ModContent.ItemType<HQTrophy>(), ModContent.ItemType<HQMask>(), ModContent.ItemType<MusicBox2>(), },  new List<int>() { ModContent.ItemType<HarpyGun>(), ModContent.ItemType<HarpyArm>(), ModContent.ItemType<HarpyStaff>(), ModContent.ItemType<TreasureBag3>(), ModContent.ItemType<HarpyQueenCirclet>(), ModContent.ItemType<Items.Material.HarpyFeather>(), ItemID.Feather, ModContent.ItemType<HarpyBreastplate>(), ModContent.ItemType<HarpyLeggings>() }, "Can spawn sleeping in space after Queen Bee has been defeated, or you can put three feathers on a [i:" + ItemType("SkywareArtifact") + "]", "...", "CastledsContent/NPCs/Boss/HarpyQueen/HarpyQueenBossLog");
                 bossChecklist.Call("AddEvent", 1.99f, new List<int>() { ModContent.NPCType<NPCs.ItemLotteryNPC.ItemLotteryNPC>() }, this, "Superintendent", (Func<bool>)(() => CastledWorld.downedAlgorithmo), ModContent.ItemType<Items.MinigameItem>(), ItemID.None, ItemID.None, "Use a fully-charged [i:" + ItemType("MinigameItem") + "].", "", "CastledsContent/NPCs/ItemLotteryNPC/ItemLotteryNPCBossLog", "CastledsContent/Content/RobotInvasion_Icon", (Func<bool>)(() => NPC.downedSlimeKing));            }
+            #region Pedestal Behind Image Loading
+            for (int a = 0; a < Main.itemTexture.Length; a++)
+                images.Add(new PIH(a, Main.itemTexture[a] == null));
+            foreach (PIH p in instance.images)
+                if (!p.voiden)
+                    p.CreateTexture();
+            #endregion
 
         }
         public override void Load()
@@ -323,6 +332,18 @@ namespace CastledsContent
             if (Main.mouseItem != null && !Main.mouseItem.IsAir)
             Main.mouseItem.GetGlobalItem<SGlobalItem>().bagTag = false;
             CastledPlayer mP = Main.player[Main.myPlayer].GetModPlayer<CastledPlayer>();
+            #region Pedestal Offset Modification
+            pedestal[1] += 0.4901960784313725f;
+            if (pedestal[1] > 300 && pedestal[0] < 0.02)
+                pedestal[1] = 0;
+            Vector2 velocity = new Vector2(0f, (float)Math.Sin((double)((Math.PI * 2) * pedestal[1] / 300f)) * 0.5f);
+            //sin(-2pi*x/300)*0.5 + 0.5
+            Vector2 velocityTwo = new Vector2(0f, (float)(Math.Sin((double)((Math.PI * -2) * pedestal[1] / 300f)) * 0.5f) + 0.5f);
+            //\sin(2pi*x/300)*0.5
+            //velocity = Vector2.UnitY * velocity.Length();
+            pedestal[0] = velocity.Y;
+            pedestal[3] = velocityTwo.Y;
+            #endregion
             #region PresetUI
             Mod mod = ModLoader.GetMod("ProjectB");
             if (mP.drawUI)
@@ -1318,6 +1339,28 @@ namespace CastledsContent
         }
         public static bool ModLoaded(int type) => ModLoader.GetMod(ModName(type)) != null;
     }
+    class RemakePHIList : ModCommand
+    {
+        public override CommandType Type
+        {
+            get { return CommandType.Chat; }
+        }
+
+        public override string Command
+        {
+            get { return "pedrefresh"; }
+        }
+
+        public override void Action(CommandCaller caller, string input, string[] args)
+        {
+            CastledsContent.instance.images.Clear();
+            for (int a = 0; a < Main.itemTexture.Length; a++)
+                CastledsContent.instance.images.Add(new PIH(a, Main.itemTexture[a] == null));
+            foreach (PIH p in CastledsContent.instance.images)
+                if (!p.voiden)
+                    p.CreateTexture();
+        }
+    }
     class RefreshDuration : ModCommand
     {
         public override CommandType Type
@@ -1368,6 +1411,47 @@ namespace CastledsContent
                 player.QuickSpawnItem(ItemID.AnglerVest);
                 player.QuickSpawnItem(ItemID.AnglerPants);
             }
+        }
+    }
+    /// <summary>
+    /// Pedestal Image Helper
+    /// </summary>
+    public class PIH
+    {
+        public Texture2D tex;
+        public Color texColor;
+        public int index;
+        public bool voiden;
+        public PIH(int dex, bool v) { index = dex; voiden = v; }
+        public void CreateTexture()
+        {
+            tex = new Texture2D(Main.graphics.GraphicsDevice, Main.itemTexture[index] == null ? 1 : Main.itemTexture[index].Width, Main.itemTexture[index] == null ? 1 : Main.itemTexture[index].Height);
+            Color[] array = new Color[Main.itemTexture[index].Width * Main.itemTexture[index].Height];
+            Main.itemTexture[index].GetData(array);
+            GetMeanColor();
+            for (int a = 0; a < array.Length; a++)
+            {
+                if (array[a] != Color.Transparent)
+                    array[a] = texColor;
+            }
+            tex.SetData(array);
+        }
+        void GetMeanColor()
+        {
+            Color[] array = new Color[Main.itemTexture[index].Width * Main.itemTexture[index].Height];
+            int[] rgb = new int[4];
+            Main.itemTexture[index].GetData(array);
+            for(int a = 0; a < array.Length; a++)
+            {
+                if (array[a] != Color.Transparent)
+                {
+                    rgb[0] += array[a].R;
+                    rgb[1] += array[a].G;
+                    rgb[2] += array[a].B;
+                    rgb[3] += array[a].A;
+                }
+            }
+            texColor = new Color(rgb[0] / array.Length, rgb[1] / array.Length, rgb[2] / array.Length, rgb[3] / array.Length);
         }
     }
 }

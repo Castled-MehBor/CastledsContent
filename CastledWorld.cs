@@ -11,6 +11,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.World.Generation;
 using CastledsContent.Items.Placeable;
+using CastledsContent.Items.Placeable.Pedestal;
 using CastledsContent.Utilities;
 using CastledsContent.Items.Storage.Boxes;
 
@@ -50,6 +51,7 @@ namespace CastledsContent
         public List<int> tarr1 = new List<int>();
         public List<Vector2> tarr2 = new List<Vector2>();
         public static List<PackageData> packages = new List<PackageData>();
+        public static List<PedestalData> pedestals = new List<PedestalData>();
         public override void PostUpdate()
         {
             if (determineContraSp)
@@ -84,7 +86,8 @@ namespace CastledsContent
                 ["botShop"] = LMan.setupShop,
                 [nameof(dualForceEncounter)] = dualForceEncounter,
                 [nameof(packages)] = packages,
-                [nameof(pirateIndex)] = pirateIndex
+                [nameof(pirateIndex)] = pirateIndex,
+                [nameof(pedestals)] = pedestals
                 //[nameof(mailboxes)] = mailboxes
             };
         }
@@ -101,8 +104,7 @@ namespace CastledsContent
             dualForceEncounter = tag.GetInt(nameof(dualForceEncounter));
             packages = tag.Get<List<PackageData>>(nameof(packages));
             pirateIndex = tag.GetIntArray(nameof(pirateIndex));
-            //mailboxes = tag.Get<List<MailboxData>>(nameof(mailboxes));
-            //packages = tag.Get<List<PackageData>>(nameof(packages));
+            pedestals = tag.Get<List<PedestalData>>(nameof(pedestals));
         }
 
         public override void LoadLegacy(BinaryReader reader)

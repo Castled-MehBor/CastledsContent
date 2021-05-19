@@ -307,7 +307,7 @@ namespace CastledsContent.Items.Material
 			recipe.AddIngredient(ItemID.LivingFireBlock, 25);
 			recipe.AddIngredient(ItemID.SpookyWood, 100);
 			recipe.AddTile(TileID.Loom);
-			recipe.SetResult(ItemID.UmbrellaHat);
+			recipe.SetResult(ItemID.JackOLanternMask);
 			recipe.AddRecipe();
 
 			recipe = new ModRecipe(mod);

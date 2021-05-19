@@ -982,7 +982,10 @@ namespace CastledsContent.Items.Storage
             {
                 ItemID.WandofSparking
             };
-            List<int> summon = new List<int>();
+            List<int> summon = new List<int>
+            {
+                ItemID.SlimeStaff
+            };
             List<int> misc = new List<int>();
             List<int> acc = new List<int>
             {
@@ -990,8 +993,10 @@ namespace CastledsContent.Items.Storage
             };
             if (ModLoaded(spirit))
             {
+                summon.Remove(ItemID.SlimeStaff);
                 melee.Remove(ItemID.WoodenSword);
                 melee.Add(I(spirit, "HuskstalkSword"));
+                ranged.Add(I(spirit, "HuskstalkBow"));
                 melee.Add(I(spirit, "WoodenClub"));
                 magic.Add(I(spirit, "CactusStaff"));
                 summon.Add(I(spirit, "OvergrowthStaff"));
@@ -1009,6 +1014,7 @@ namespace CastledsContent.Items.Storage
                 misc.Add(I(clicker, "WoodenClicker"));
             if (ModLoaded(calamity))
             {
+                summon.Remove(ItemID.SlimeStaff);
                 melee.Add(I(calamity, "WulfrumBlade"));
                 ranged.Add(I(calamity, "WulfrumBow"));
                 magic.Add(I(calamity, "WulfrumWand"));
@@ -1017,6 +1023,7 @@ namespace CastledsContent.Items.Storage
             }
             if (ModLoaded(joost))
             {
+                summon.Remove(ItemID.SlimeStaff);
                 magic.Add(I(joost, "EmberWand"));
                 summon.Add(I(joost, "EmberStaff"));
             }
