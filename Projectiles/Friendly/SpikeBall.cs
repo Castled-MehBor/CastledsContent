@@ -32,11 +32,11 @@ namespace CastledsContent.Projectiles.Friendly
         {
             if (projectile.velocity.X != oldVelocity.X)
             {
-                projectile.velocity.X = oldVelocity.X * -1.15f;
+                projectile.velocity.X = oldVelocity.X * -0.75f;
             }
             if (projectile.velocity.Y != oldVelocity.Y)
             {
-                projectile.velocity.Y = oldVelocity.Y * -1.15f;
+                projectile.velocity.Y = oldVelocity.Y * -0.75f;
             }
             Main.PlaySound(SoundID.NPCHit42, projectile.position);
             for (int i = 0; i < 3; i++)

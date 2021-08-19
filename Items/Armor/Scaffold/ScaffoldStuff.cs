@@ -125,7 +125,7 @@ namespace CastledsContent.Items.Armor.Scaffold
 				{
 					scaffoldSet[0]--;
 					scaffoldSet[2] = 90;
-					Main.PlaySound(SoundID.Tink);
+					Main.PlaySound(SoundID.Tink, player.Center);
 					return false;
 				}
 			}

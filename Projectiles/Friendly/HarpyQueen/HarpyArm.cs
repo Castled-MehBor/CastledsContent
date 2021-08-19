@@ -162,16 +162,14 @@ namespace CastledsContent.Projectiles.Friendly.HarpyQueen
 			val2 *= num3;
 			for (int a = 0; a < power; a++)
             {
-				Vector2 perturbedSpeed = new Vector2(val2.Y, val2.X).RotatedByRandom(MathHelper.ToRadians(precision));
-				perturbedSpeed = perturbedSpeed.RotatedBy(225, default);
+				Vector2 perturbedSpeed = new Vector2(val2.X, val2.Y).RotatedByRandom(MathHelper.ToRadians(precision));
 				Projectile.NewProjectileDirect(projectile.Center, perturbedSpeed, ModContent.ProjectileType<HyperFeatherF>(), projectile.damage, projectile.knockBack, player.whoAmI);
 			}
 			if (precision < 60)
             {
 				for (int a = 0; a < 2; a++)
 				{
-					Vector2 perturbedSpeed = new Vector2(val2.Y, val2.X).RotatedByRandom(MathHelper.ToRadians(precision));
-					perturbedSpeed = perturbedSpeed.RotatedBy(225, default);
+					Vector2 perturbedSpeed = new Vector2(val2.X, val2.Y).RotatedByRandom(MathHelper.ToRadians(precision));
 					Projectile.NewProjectileDirect(projectile.Center, perturbedSpeed, ModContent.ProjectileType<GiantFeatherF>(), projectile.damage * 2, projectile.knockBack * 2, player.whoAmI);
 				}
 			}

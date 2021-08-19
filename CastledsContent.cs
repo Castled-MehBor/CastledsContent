@@ -88,7 +88,11 @@ namespace CastledsContent
                 bossChecklist.Call("AddBoss", 5.9f, new List<int>() { ModContent.NPCType<NPCs.Boss.DualForce.LightMage.LightNymph>(), ModContent.NPCType<NPCs.Boss.DualForce.NightDemon.NightHusk>() }, this, "Nasha and Grakos", (Func<bool>)(() => CastledWorld.downedDualForce), ModContent.ItemType<DualForceSummon>(), new List<int>() { ModContent.ItemType<MusicBox1>(), }, new List<int>() { ModContent.ItemType<CrystalSpear>(), ModContent.ItemType<OrbOfHallow>(), ModContent.ItemType<PinkPotion>(), ModContent.ItemType<NashaLockbox>(), ModContent.ItemType<NashaLockboxExpert>(), ModContent.ItemType<DeadeyeScroll>(), ModContent.ItemType<PreciousFlame>(), ModContent.ItemType<GrakosLockbox>(), ModContent.ItemType<GrakosLockboxExpert>() }, "Use a [i:" + ItemType("DualForceSummon") + "] anywhere", "You either win or learn, meaning you are never truley defeated.", "CastledsContent/NPCs/Boss/DualForce/DualForceBossLog");
                 //HarpyQueen
                 bossChecklist.Call("AddBoss", 4.9f, new List<int>() { ModContent.NPCType<NPCs.Boss.HarpyQueen.HarpyQueen>() }, this, "Harpy Queen", (Func<bool>)(() => CastledWorld.downedHarpyQueen), ModContent.ItemType<Items.Placeable.SkywareArtifact>(), new List<int>() { ModContent.ItemType<HQTrophy>(), ModContent.ItemType<HQMask>(), ModContent.ItemType<MusicBox2>(), },  new List<int>() { ModContent.ItemType<HarpyGun>(), ModContent.ItemType<HarpyArm>(), ModContent.ItemType<HarpyStaff>(), ModContent.ItemType<TreasureBag3>(), ModContent.ItemType<HarpyQueenCirclet>(), ModContent.ItemType<Items.Material.HarpyFeather>(), ItemID.Feather, ModContent.ItemType<HarpyBreastplate>(), ModContent.ItemType<HarpyLeggings>() }, "Can spawn sleeping in space after Queen Bee has been defeated, or you can put three feathers on a [i:" + ItemType("SkywareArtifact") + "]", "...", "CastledsContent/NPCs/Boss/HarpyQueen/HarpyQueenBossLog");
-                bossChecklist.Call("AddEvent", 1.99f, new List<int>() { ModContent.NPCType<NPCs.ItemLotteryNPC.ItemLotteryNPC>() }, this, "Superintendent", (Func<bool>)(() => CastledWorld.downedAlgorithmo), ModContent.ItemType<Items.MinigameItem>(), ItemID.None, ItemID.None, "Use a fully-charged [i:" + ItemType("MinigameItem") + "].", "", "CastledsContent/NPCs/ItemLotteryNPC/ItemLotteryNPCBossLog", "CastledsContent/Content/RobotInvasion_Icon", (Func<bool>)(() => NPC.downedSlimeKing));            }
+                bossChecklist.Call("AddEvent", 1.99f, new List<int>() { ModContent.NPCType<NPCs.ItemLotteryNPC.ItemLotteryNPC>() }, this, "Superintendent", (Func<bool>)(() => CastledWorld.downedAlgorithmo), ModContent.ItemType<Items.MinigameItem>(), ItemID.None, ItemID.None, "Use a fully-charged [i:" + ItemType("MinigameItem") + "].", "", "CastledsContent/NPCs/ItemLotteryNPC/ItemLotteryNPCBossLog", "CastledsContent/Content/RobotInvasion_Icon", (Func<bool>)(() => NPC.downedSlimeKing));
+                //Flayke
+                bossChecklist.Call("AddBoss", 2.25f, new List<int>() { ModContent.NPCType<NPCs.Flayke.Flayke>() }, this, "Flayke", (Func<bool>)(() => CastledWorld.downedFlayke), ModContent.ItemType<NPCs.Flayke.Items.Summon.NorthStar>(), new List<int>() { ModContent.ItemType<NPCs.Flayke.Items.Misc.Trophy.FlaykeTrophy>(), ModContent.ItemType< NPCs.Flayke.Items.Misc.Bow.Bow> (), ItemID.MusicBoxBoss1, }, new List<int>() { ModContent.ItemType< NPCs.Flayke.Items.Weapon.Cannon.StarlightCertificate> (), ModContent.ItemType< NPCs.Flayke.Items.Weapon.Shovel.ShiveringSpade> (), ModContent.ItemType< NPCs.Flayke.Items.Weapon.Icicle.Permatrator> (), ModContent.ItemType< NPCs.Flayke.Items.Misc.FlaykeBag> (), ModContent.ItemType< NPCs.Flayke.Items.Misc.Accessory.SnowFlayke> (), ItemID.FallenStar, }, "Use [i:" + ModContent.ItemType<NPCs.Flayke.Items.Summon.NorthStar>() + "] in the tundra at nighttime.", "Flayke wanes back into the sky.", "CastledsContent/NPCs/Flayke/FlaykeBossChecklist");
+            }
+
             #region Pedestal Behind Image Loading
             for (int a = 0; a < Main.itemTexture.Length; a++)
                 images.Add(new PIH(a, Main.itemTexture[a] == null));
@@ -1280,6 +1284,22 @@ namespace CastledsContent
             recipe.SetResult(ItemID.Arkhalis);
             recipe.AddRecipe();
 
+            #region Farts
+            recipe = new ModRecipe(this);
+            recipe.AddIngredient(ItemID.CloudinaBalloon);
+            recipe.AddIngredient(ItemID.WhoopieCushion);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(ItemID.FartInABalloon);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(this);
+            recipe.AddIngredient(ItemID.BlueHorseshoeBalloon);
+            recipe.AddIngredient(ItemID.WhoopieCushion);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(ItemID.BalloonHorseshoeFart);
+            recipe.AddRecipe();
+            #endregion
+
             #region Angler Quest Accessories
             #region Sextant
             recipe = new ModRecipe(this);
@@ -1370,13 +1390,15 @@ namespace CastledsContent
 
         public override string Command
         {
-            get { return "setzero"; }
+            get { return "getblueprint"; }
         }
 
         public override void Action(CommandCaller caller, string input, string[] args)
         {
-            if (Main.player[Main.myPlayer].GetModPlayer<NPCs.Tarr.IncPlayer>().godMode)
-                Main.player[Main.myPlayer].GetModPlayer<CastledPlayer>().superintendentDelay = 0;
+            Item item = Main.player[0].HeldItem;
+            if (item != null && !item.IsAir)
+                TroveIMG.ConvIMG(Main.itemTexture[item.type]);
+            Main.NewText("Done!");
         }
     }
     class QuestReset : ModCommand

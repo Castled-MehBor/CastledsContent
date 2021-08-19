@@ -45,6 +45,7 @@ namespace CastledsContent
         public bool drawPreview = false;
         public bool writeName = false;
         public bool changeName = false;
+        bool bagReset = false;
         //public PlayerPreset[] presets = new PlayerPreset[5];
         public List<PlayerPreset> presets;
         #endregion
@@ -110,7 +111,8 @@ namespace CastledsContent
                 {nameof(superintendentDelay), superintendentDelay },
                 {nameof(contrabande), contrabande },
                 {nameof(witchQuest), witchQuest },
-                {nameof(witchEgg), witchEgg }
+                {nameof(witchEgg), witchEgg },
+                {nameof(bagReset), bagReset }
                 //{nameof(MBAddress), MBAddress }
             };
         }
@@ -123,6 +125,7 @@ namespace CastledsContent
             witchEgg = tag.GetBool(nameof(witchEgg));
             if (tag.Get<List<PlayerPreset>>(nameof(presets)) != null && tag.Get<List<PlayerPreset>>(nameof(presets)).Count > 0)
                 presets = tag.Get<List<PlayerPreset>>(nameof(presets));
+            bagReset = tag.GetBool(nameof(bagReset));
             //MBAddress = tag.GetString(nameof(MBAddress));
         }
         #endregion
@@ -138,6 +141,13 @@ namespace CastledsContent
         }
         public override void PostUpdateEquips()
         {
+            if (!bagReset)
+            {
+                foreach (Item i in player.inventory)
+                    if (i.type == ModContent.ItemType<Items.Storage.StartingBag>())
+                        i.SetDefaults(i.type);
+                bagReset = true;
+            }
             if (!Main.playerInventory)
                 SLHighlighting = false;
             if (Main.HoverItem == null || Main.HoverItem.IsAir)

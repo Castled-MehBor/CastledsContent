@@ -1,24 +1,21 @@
-Disclaimer: This update was rushed at the last moment, due to both unfortunate circumstances.
-Sorry if so much was removed and so little was added, we will try to fully complete the update whenever we can.
-
 Current Major Update: Feathers & Metal
+Current Feature Update: Blissful Blizzards
 
 Castled's Equilibrium is a passion project that started two years ago, which was to create a content mod with abstract elements.
 
 Current Contents:
 - A handful of items (including weapons, accessories and armor)
-- Two Bosses; Nasha & Grakos, and the Harpy Queen
+- Three Bosses; Flayke, Nasha & Grakos, and the Harpy Queen
 - Superintendent: An item-based lottery minigame where you put your inventory at stake for a possible fortune.
 - Vanity Presets: A vanity helper that helps to save and provide quick access to modifying the looks of your character,
 allowing you to save up to five presets, and give names to each of them.
 - The Tarr; a ravenous, rainbow hued sludgeball from the Far, Far Range, that will ignore nearly any attempt of harming it, while eat everything in it's way, replicating itself until it conquers the world...
 
-In this update (Version 0.9.1), several older features from a year/so ago were removed, due to them either being
-too lazily made, or being outdated; including several items and all bosses besides Nasha and Grakos.
-
-(Patch) Small Patch:
-- Fixed a pricing issue with some of Arachnich's items
-- Added a starter bag, which you can randomize the contents of.
+(Feature Update) Blissful Blizzards:
+- Added a new boss called Flayke; the first boss that I put an unreasonable amount of effort into (even the drops!)
+- Added three new melee weapons (credit to Callie and Lamb sauce for creating them)
+- Fixed certain bugs that stuck out sorely (Appendage of Her Highness, Enchanted Strap-bag)
+- Added recipes for variations of the Fart in a Balloon
 
 Thanks to everyone who contributed:
-Akocis, Aria, Atomic Renegade, AYO BRUH, (basically, i am fox), Beepbopbop, Cookiecraft_, Darkpuppey, Invalid Pyrossal, Invasive, Jokey, Lewis /ˈluːɪs/, mango, Septimus Maximus the Third, SpicySpaceSnake, SupremeShadow, TacoBurritoGuacamole, token, Universe, Woodio, Wyvern, yelloface, Yhariel
+Akocis, Aria, Atomic Renegade, AYO BRUH, (basically, i am fox), Beepbopbop, Callie, Cookiecraft_, Darkpuppey, Invalid Pyrossal, Invasive, Jokey, Lewis /ˈluːɪs/, mango, Septimus Maximus the Third, SpicySpaceSnake, SupremeShadow, TacoBurritoGuacamole, token, Universe, Woodio, Wyvern, yelloface, Yhariel

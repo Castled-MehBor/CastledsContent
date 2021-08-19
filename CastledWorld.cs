@@ -37,6 +37,7 @@ namespace CastledsContent
         public static bool downedDualForce;
         public static bool downedHarpyQueen;
         public static bool downedAlgorithmo;
+        public static bool downedFlayke;
         //Extra Values
         public static int dualForceEncounter;
         public static bool hasMetDualForce;
@@ -77,6 +78,8 @@ namespace CastledsContent
                 downed.Add("HarpyQueen");
             if (downedAlgorithmo)
                 downed.Add("Algorithmo");
+            if (downedFlayke)
+                downed.Add("Flayke");
 
             return new TagCompound
             {
@@ -98,6 +101,7 @@ namespace CastledsContent
             downedDualForce = downed.Contains("DualForce");
             downedHarpyQueen = downed.Contains("HarpyQueen");
             downedAlgorithmo = downed.Contains("Algorithmo");
+            downedFlayke = downed.Contains("Flayke");
             tarr1 = tag.Get<List<int>>("tarr1");
             tarr2 = tag.Get<List<Vector2>>("tarr2");
             LMan.setupShop = tag.Get<List<int>>("botShop");
@@ -133,6 +137,7 @@ namespace CastledsContent
             downedDualForce = false;
             downedHarpyQueen = false;
             downedAlgorithmo = false;
+            downedFlayke = false;
         }
         public override void NetSend(BinaryWriter writer)
         {
@@ -140,6 +145,7 @@ namespace CastledsContent
             flags[0] = downedDualForce;
             flags[1] = downedHarpyQueen;
             flags[2] = downedAlgorithmo;
+            flags[3] = downedFlayke;
             writer.Write(flags);
         }
 
@@ -149,6 +155,7 @@ namespace CastledsContent
             downedDualForce = flags[0];
             downedHarpyQueen = flags[1];
             downedAlgorithmo = flags[2];
+            downedFlayke = flags[3];
         }
         public override void PostWorldGen()
         {
