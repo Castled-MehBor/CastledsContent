@@ -201,6 +201,10 @@ namespace CastledsContent.NPCs.Flayke.Items.Weapon.Icicle
 					if (counter >= delay)
 						projectile.damage = damage;
 				}
+			if (counter < 60)
+				projectile.tileCollide = false;
+			else
+				projectile.tileCollide = true;
 		}
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{

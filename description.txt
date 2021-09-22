@@ -17,5 +17,9 @@ allowing you to save up to five presets, and give names to each of them.
 - Fixed certain bugs that stuck out sorely (Appendage of Her Highness, Enchanted Strap-bag)
 - Added recipes for variations of the Fart in a Balloon
 
+New Laptop change (Test Update)
+This isn't meant to add or fix many things, if any at all. I'm just testing the new laptop to see if it can debug properly.
+- Fixed an issue where the Permatrator was colliding into tiles if firing upwards while standing on a tile
+
 Thanks to everyone who contributed:
 Akocis, Aria, Atomic Renegade, AYO BRUH, (basically, i am fox), Beepbopbop, Callie, Cookiecraft_, Darkpuppey, Invalid Pyrossal, Invasive, Jokey, Lewis /ˈluːɪs/, mango, Septimus Maximus the Third, SpicySpaceSnake, SupremeShadow, TacoBurritoGuacamole, token, Universe, Woodio, Wyvern, yelloface, Yhariel
