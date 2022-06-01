@@ -45,4 +45,11 @@ public class ClientConfig : ModConfig
     [DefaultValue(false)]
     [Label("Show Testing Tablet UI")]
     public bool tabletUI;
+
+    [Header("[i:2799] [C/4173FF:Miscellaneous Configuration]")]
+
+    [DefaultValue(true)]
+    [Label("Generate Tarr Pits (TEST)")]
+    [Tooltip("TESTING FEATURE:\nGenerates 'Tarr Pits' biomes, though it is incomplete")]
+    public bool tarrPits;
 }

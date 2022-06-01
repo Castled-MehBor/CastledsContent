@@ -14,6 +14,7 @@ using CastledsContent.Items.Placeable;
 using CastledsContent.Items.Placeable.Pedestal;
 using CastledsContent.Utilities;
 using CastledsContent.Items.Storage.Boxes;
+using CastledsContent.GenerationNation;
 
 namespace CastledsContent
 {
@@ -156,6 +157,17 @@ namespace CastledsContent
             downedHarpyQueen = flags[1];
             downedAlgorithmo = flags[2];
             downedFlayke = flags[3];
+        }
+        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
+        {
+            int cleanUp = tasks.FindIndex(genpass => genpass.Name.Equals("Final Cleanup"));
+            if (cleanUp != -1 && ModContent.GetInstance<ClientConfig>().tarrPits)
+            {
+                tasks.Insert(cleanUp + 1, new PassLegacy("Tarr Pit Generation", delegate (GenerationProgress progress) {
+                    progress.Message = "Plaguing the caverns...";
+                    GenerateTarrPit.CreateTarrPits(progress);
+                }));
+            }
         }
         public override void PostWorldGen()
         {

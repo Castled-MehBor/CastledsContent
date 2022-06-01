@@ -190,6 +190,7 @@ namespace CastledsContent.NPCs.Witch
             }
             return chat;
         }
+
         public override void AI()
         {
             Player player = Main.LocalPlayer;

@@ -141,6 +141,9 @@ namespace CastledsContent
         }
         public override void PostUpdateEquips()
         {
+            //[TS]
+            if (CastledsContent.ScreenShader.JustPressed)
+                CastledsContent.instance.pendingShaderUpdate = true;
             if (!bagReset)
             {
                 foreach (Item i in player.inventory)

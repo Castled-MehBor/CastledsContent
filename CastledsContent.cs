@@ -21,6 +21,8 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
+using Terraria.Graphics.Effects;
+using Terraria.Graphics.Shaders;
 
 namespace CastledsContent
 {
@@ -51,6 +53,9 @@ namespace CastledsContent
         internal float[] pedestal = new float[4] { 0, 1, 0, 1 };
         internal List<PIH> images = new List<PIH>();
         #endregion
+        #region Primitive Testing
+        public static BasicEffect basicEffect;
+        #endregion
         #region Variables
         private int packetNum = 0;
         internal int titleAlpha = 0;
@@ -79,6 +84,11 @@ namespace CastledsContent
         internal UserInterface TabletState;
         internal TabletButton tabletUI;
         #endregion
+        //[TS] Shader Hotkey Activation
+        internal static ModHotKey ScreenShader;
+        internal bool shaderActive;
+        internal bool pendingShaderUpdate;
+        internal float[] transition = new float[3];
         public override void PostSetupContent()
         {
             Mod bossChecklist = ModLoader.GetMod("BossChecklist");
@@ -104,6 +114,23 @@ namespace CastledsContent
         }
         public override void Load()
         {
+            #region Primitive Testing
+            //Screen width/size?
+            int width = Main.graphics.GraphicsDevice.Viewport.Width;
+            int height = Main.graphics.GraphicsDevice.Viewport.Height;
+            //How much the game is zoomed in (probably not with it's default zoom system)
+            Vector2 zoom = Main.GameViewMatrix.Zoom;
+            //Sets up a Matrix to draw primitives
+            Matrix view = Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) * Matrix.CreateTranslation(width / 2, height / -2, 0) * Matrix.CreateRotationZ(MathHelper.Pi) * Matrix.CreateScale(zoom.X, zoom.Y, 1f);
+            //Sets the dimensions available for drawing
+            Matrix projection = Matrix.CreateOrthographic(width, height, 0, 1000);
+            basicEffect = new BasicEffect(Main.graphics.GraphicsDevice)
+            {
+                VertexColorEnabled = true,
+                View = view,
+                Projection = projection
+            };
+            #endregion
             Instance = this;
             instance = this;
             //Main.instance.LoadProjectile(ModContent.ProjectileType<Items.Summon.DistortedFlask.DistortedFlaskExplosion>());
@@ -127,6 +154,8 @@ namespace CastledsContent
             JoinMinigame = RegisterHotKey("Join Minigame (NOT FUNCTIONAL | WIP)", "/");
             PresetNavigate = RegisterHotKey("Preset Navigation Hotkey", "G");
             SpecialHotkey = RegisterHotKey("Speciall Hotkey", "F");
+            //[TS] Shader Hotkey Activation
+            ScreenShader = RegisterHotKey("Toggle Screen Shader", "/");
             #region Music Boxes
             //Music Box Trivial Equality Original
             AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/OST/TrivialEquality"), ItemType("MusicBox1"), TileType("MusicBoxEquality"));
@@ -217,6 +246,22 @@ namespace CastledsContent
                 tabletUI.Activate();
                 #endregion
                 LoadClient();
+            }
+            //[TS]
+            if (Main.netMode != NetmodeID.Server)
+            {
+                Ref<Effect> screenRef = new Ref<Effect>(GetEffect("Effects/TestShader")); // The path to the compiled shader file.
+                Filters.Scene["TestShader"] = new Filter(new ScreenShaderData(screenRef, "TestShader"), EffectPriority.Medium);
+                Filters.Scene["TestShader"].Load();
+                Ref<Effect> screenRefTarr1 = new Ref<Effect>(GetEffect("Effects/InYourWalls")); // The path to the compiled shader file.
+                Filters.Scene["InYourWalls"] = new Filter(new ScreenShaderData(screenRefTarr1, "InYourWalls"), EffectPriority.Medium);
+                Filters.Scene["InYourWalls"].Load();
+                Ref<Effect> screenRefTarr2 = new Ref<Effect>(GetEffect("Effects/Transition")); // The path to the compiled shader file.
+                Filters.Scene["Transition"] = new Filter(new ScreenShaderData(screenRefTarr2, "Transition"), EffectPriority.Medium);
+                Filters.Scene["Transition"].Load();
+                #region Armor Shaders
+                GameShaders.Armor.BindShader(ModContent.ItemType<Effects.Dyes.TestDye1>(), new ArmorShaderData(new Ref<Effect>(GetEffect("Effects/TestDye1")), "TestDye1").UseImage("CastledsContent/Content/testBG"));
+                #endregion
             }
         }
         private void LoadClient()
@@ -328,7 +373,33 @@ namespace CastledsContent
         }
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
-            bagTagFlash += 3 * bagTagMult;
+            //[TS] Actual shader stuff
+            if (Main.netMode != NetmodeID.Server) // This all needs to happen client-side!
+            {
+                if(pendingShaderUpdate)
+                {
+                    if (!shaderActive)
+                    {
+                        Filters.Scene.Activate("TestShader");
+                        shaderActive = true;
+                        pendingShaderUpdate = false;
+                        Main.NewText("Shader ON");
+                    }
+                    else
+                    {
+                        Filters.Scene["TestShader"].Deactivate();
+                        shaderActive = false;
+                        pendingShaderUpdate = false;
+                        Main.NewText("Shader OFF");
+                    }
+                }
+                if (shaderActive)
+                {
+                    // Updating a filter
+                    Filters.Scene["TestShader"].GetShader().UseProgress((float)Main.instance.TargetElapsedTime.TotalMilliseconds);
+                }
+            }
+                bagTagFlash += 3 * bagTagMult;
             if (bagTagFlash > 125)
                 bagTagMult = -1;
             if (bagTagFlash < 0)
@@ -337,12 +408,12 @@ namespace CastledsContent
             Main.mouseItem.GetGlobalItem<SGlobalItem>().bagTag = false;
             CastledPlayer mP = Main.player[Main.myPlayer].GetModPlayer<CastledPlayer>();
             #region Pedestal Offset Modification
-            pedestal[1] += 0.4901960784313725f;
-            if (pedestal[1] > 300 && pedestal[0] < 0.02)
+            pedestal[1] += 0.5233333333f;
+            if (pedestal[1] > 314 && pedestal[0] < 0.02)
                 pedestal[1] = 0;
-            Vector2 velocity = new Vector2(0f, (float)Math.Sin((double)((Math.PI * 2) * pedestal[1] / 300f)) * 0.5f);
+            Vector2 velocity = new Vector2(0f, (float)Math.Sin((double)((Math.PI * 2) * pedestal[1] / 314f)) * 0.5f);
             //sin(-2pi*x/300)*0.5 + 0.5
-            Vector2 velocityTwo = new Vector2(0f, (float)(Math.Sin((double)((Math.PI * -2) * pedestal[1] / 300f)) * 0.5f) + 0.5f);
+            Vector2 velocityTwo = new Vector2(0f, (float)(Math.Sin((double)((Math.PI * -2) * pedestal[1] / 314f)) * 0.5f) + 0.5f);
             //\sin(2pi*x/300)*0.5
             //velocity = Vector2.UnitY * velocity.Length();
             pedestal[0] = velocity.Y;
@@ -386,6 +457,19 @@ namespace CastledsContent
                 }
             }
             #endregion
+            if (instance.transition[0] > 0)
+            {
+                instance.transition[2] = 1;
+                var transitionLayer = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Interface Logic 1"));
+                var transitionState = new LegacyGameInterfaceLayer("CastledsContent: Interface Logic 1",
+                    delegate
+                    {
+                        Transition2();
+                        return true;
+                    },
+                    InterfaceScaleType.UI);
+                layers.Insert(transitionLayer, transitionState);
+            }
             if (CastledWorld.waitParti)
             {
                 var waitLayer = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));
@@ -1252,6 +1336,20 @@ namespace CastledsContent
             */
             #endregion
         }
+        private static void Transition2()
+        {
+            Texture2D tex = ModContent.GetTexture("CastledsContent/Content/Transition2");
+            int alpha = MiscUtilities.Round(255 * (1 - instance.transition[1]));
+            Main.spriteBatch.Draw(tex, new Vector2((float)(Main.screenWidth / 2), (float)(Main.screenHeight / 2)), new Rectangle(0, 0, tex.Width, tex.Height), new Color(alpha, alpha, alpha, alpha), 0f, new Vector2(tex.Width / 2, tex.Height / 2), 12.5f, SpriteEffects.None, 0f);
+        }
+        public override void UpdateMusic(ref int music, ref MusicPriority priority)
+        {
+            if (Main.musicVolume != 0 && Main.myPlayer != -1 && !Main.gameMenu && TarrPitsShaders.InTarrBiome())
+            {
+                music = GetSoundSlot(SoundType.Music, "Sounds/Music/OST/TarrPitsMusic");
+                priority = MusicPriority.BiomeHigh;
+            }
+        }
         #endregion
         public override void AddRecipes()
         {
@@ -1273,6 +1371,12 @@ namespace CastledsContent
             recipe.SetResult(ItemID.EnchantedSword);
             recipe.AddRecipe();
             #endregion
+            recipe = new ModRecipe(this);
+            recipe.AddIngredient(ItemID.BlackAndWhiteDye);
+            recipe.AddIngredient(ItemID.HallowedBar);
+            recipe.AddTile(TileID.DyeVat);
+            recipe.SetResult(ModContent.ItemType<Effects.Dyes.TestDye1>());
+            recipe.AddRecipe();
 
             recipe = new ModRecipe(this);
             recipe.AddIngredient(ItemID.EnchantedSword);
